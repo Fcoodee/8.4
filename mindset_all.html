@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورقة عصف ذهني تقنية — قاعدة البيانات والتكامل | مبادرة #التحول_الرقمي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2A4A;
+    --navy-deep: #071B2F;
+    --gold: #C69A46;
+    --gold-light: #E7CD8E;
+    --ivory: #F7F4EC;
+    --ink: #16222E;
+    --slate: #5C6B7A;
+    --line: #E1DBC9;
+    --tech-blue: #1EA1E0;
+    --green: #27ae60;
+    --purple: #7c3aed;
+    --code-bg: #1a2332;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Cairo', sans-serif;
+    color: var(--ink);
+    direction: rtl;
+    background: linear-gradient(135deg, #f8f6f0 0%, #eef2f5 100%);
+    line-height: 1.85;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  .doc {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    box-shadow: 0 4px 40px rgba(11,42,74,.15);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* Header */
+  .doc-header {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: #FFFFFF;
+    padding: 45px 45px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-header::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(198,154,70,.2), transparent 70%);
+    border-radius: 50%;
+  }
+  .doc-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(30,161,224,.15), transparent 70%);
+    border-radius: 50%;
+  }
+  .doc-header > * { position: relative; z-index: 2; }
+
+  .doc-tag {
+    display: inline-block;
+    background: rgba(198,154,70,.2);
+    color: var(--gold-light);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: 1px solid var(--gold);
+    margin-bottom: 15px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  h1 em { font-style: normal; color: var(--gold-light); }
+  .doc-subtitle {
+    font-size: 14px;
+    color: #C7CFD6;
+    line-height: 1.8;
+    max-width: 700px;
+    font-weight: 500;
+  }
+  .doc-meta {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.15);
+    font-size: 11px;
+    color: #A5B3C0;
+  }
+  .doc-meta strong { color: var(--gold-light); }
+
+  /* Body */
+  .doc-body { padding: 40px 45px; }
+
+  .warning-box {
+    background: rgba(198,154,70,.08);
+    border: 1px solid var(--gold);
+    border-right: 4px solid var(--gold);
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .warning-box strong { color: #A67C2E; }
+
+  h2 {
+    font-size: 22px;
+    color: var(--navy);
+    font-weight: 800;
+    margin: 40px 0 15px;
+    padding-right: 15px;
+    border-right: 5px solid var(--gold);
+    line-height: 1.4;
+  }
+  h2:first-of-type { margin-top: 20px; }
+
+  .sec-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold-light);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    padding: 3px 11px;
+    border-radius: 12px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  h3 {
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 700;
+    margin: 25px 0 10px;
+  }
+
+  p, li {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  ul, ol { padding-right: 25px; margin-bottom: 20px; }
+  li { margin-bottom: 6px; }
+
+  strong { color: var(--navy); font-weight: 700; }
+
+  /* Cards */
+  .card {
+    background: var(--ivory);
+    border-right: 4px solid var(--gold);
+    padding: 20px 22px;
+    border-radius: 6px;
+    margin: 15px 0;
+  }
+  .card.green { border-color: var(--green); background: #f0f9f4; }
+  .card.blue { border-color: var(--tech-blue); background: #eef7fb; }
+  .card.gold { border-color: var(--gold); background: #FFF8EA; }
+  .card.purple { border-color: var(--purple); background: #F5EEFB; }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 13px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  }
+  th {
+    background: var(--navy);
+    color: #FFFFFF;
+    padding: 10px 12px;
+    text-align: right;
+    font-weight: 700;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    background: #FFFFFF;
+    font-weight: 500;
+  }
+  tr:nth-child(even) td { background: #fafaf7; }
+  td.check { color: var(--green); font-weight: 700; }
+  td.warn { color: #A67C2E; font-weight: 700; }
+  td.no { color: #c0392b; font-weight: 700; }
+
+  /* Code */
+  pre {
+    background: var(--code-bg);
+    color: #E8ECEF;
+    padding: 20px 25px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 15px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    direction: ltr;
+    text-align: left;
+    border-right: 4px solid var(--tech-blue);
+  }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(30,161,224,.1);
+    color: var(--tech-blue);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    direction: ltr;
+    display: inline-block;
+    unicode-bidi: embed;
+  }
+  pre code { background: transparent; color: inherit; padding: 0; }
+
+  /* Diagram */
+  .diagram {
+    background: #fafaf7;
+    border: 1px solid var(--line);
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--navy);
+    text-align: center;
+    direction: ltr;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  /* Scenarios */
+  .scenario {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin: 15px 0;
+    background: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(0,0,0,.04);
+  }
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .scenario-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: var(--tech-blue);
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .scenario-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .scenario .pros, .scenario .cons {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .scenario .pros {
+    background: #f0f9f4;
+    border-right: 3px solid var(--green);
+  }
+  .scenario .cons {
+    background: #fff5f0;
+    border-right: 3px solid #e67e22;
+  }
+  .scenario .pros strong { color: var(--green); }
+  .scenario .cons strong { color: #d35400; }
+
+  /* Footer */
+  .doc-footer {
+    background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+    color: #C7CFD6;
+    padding: 30px 45px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .doc-footer strong { color: var(--gold-light); }
+
+  /* Highlights */
+  mark {
+    background: linear-gradient(180deg, transparent 60%, rgba(198,154,70,.3) 60%);
+    color: var(--navy);
+    font-weight: 700;
+    padding: 0 3px;
+  }
+
+  /* ========== SCENARIO ROADMAP (8.3) ========== */
+  .roadmap-header {
+    background: linear-gradient(135deg, #04182C 0%, var(--navy) 60%, var(--tech-blue) 200%);
+    color: #FFFFFF;
+    padding: 30px 35px;
+    border-radius: 12px;
+    margin: 20px 0 25px;
+    position: relative;
+    overflow: hidden;
+  }
+  .roadmap-header::before {
+    content: '8.3';
+    position: absolute;
+    top: -20px;
+    left: 25px;
+    font-size: 130px;
+    font-weight: 900;
+    color: rgba(198,154,70,.1);
+    line-height: 1;
+    letter-spacing: -4px;
+  }
+  .roadmap-header > * { position: relative; z-index: 2; }
+  .roadmap-header h2 {
+    color: #FFFFFF;
+    border-right-color: var(--gold);
+    margin-top: 0;
+    font-size: 24px;
+  }
+  .roadmap-header p {
+    color: #C7CFD6;
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 0;
+  }
+  .roadmap-header strong { color: var(--gold-light); }
+
+  .components-triangle {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0 30px;
+  }
+  .comp-chip {
+    background: #FFFFFF;
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .comp-chip.dev { border-color: var(--tech-blue); color: var(--tech-blue); background: rgba(30,161,224,.05); }
+  .comp-chip.corp { border-color: var(--gold); color: #A67C2E; background: #FFF8EA; }
+  .comp-chip.share { border-color: var(--purple); color: var(--purple); background: #F5EEFB; }
+  .comp-chip .cid {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .scen-case {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 0;
+    margin: 20px 0;
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
+    overflow: hidden;
+  }
+  .scen-case-head {
+    padding: 18px 22px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .scen-case[data-tone="green"] .scen-case-head { background: linear-gradient(135deg, var(--green), #229954); }
+  .scen-case[data-tone="gold"]  .scen-case-head { background: linear-gradient(135deg, var(--gold), #A67C2E); color: var(--navy-deep); }
+  .scen-case[data-tone="purple"] .scen-case-head { background: linear-gradient(135deg, var(--purple), #6b2fc9); }
+  .scen-case[data-tone="blue"]  .scen-case-head { background: linear-gradient(135deg, var(--tech-blue), #1785BE); }
+  .scen-case[data-tone="mixed"] .scen-case-head { background: linear-gradient(135deg, var(--tech-blue), var(--purple)); }
+  .scen-case[data-tone="red"]   .scen-case-head { background: linear-gradient(135deg, #c0392b, #922b21); }
+
+  .scen-case-head .scen-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,.2);
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 16px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,.4);
+  }
+  .scen-case[data-tone="gold"] .scen-case-head .scen-num {
+    background: rgba(0,0,0,.15);
+    border-color: rgba(0,0,0,.25);
+  }
+  .scen-case-head .scen-titles {
+    flex: 1;
+  }
+  .scen-case-head .scen-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: .9;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .scen-case-head .scen-name {
+    font-size: 16px;
+    font-weight: 800;
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .scen-case-body {
+    padding: 18px 22px 22px;
+  }
+  .scen-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .scen-row:last-child { border-bottom: none; }
+  .scen-row .k {
+    color: var(--slate);
+    font-weight: 700;
+    font-size: 11.5px;
+  }
+  .scen-row .v {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .scen-row .v strong { color: var(--navy); }
+  .scen-flow {
+    background: linear-gradient(180deg, #f5f7fa 0%, #eef2f5 100%);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+  .scen-flow-label {
+    color: var(--tech-blue);
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .scen-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .scen-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+  .scen-badge.time { background: #E3F2FD; color: #1565C0; }
+  .scen-badge.cost { background: #E8F5E9; color: #2E7D32; }
+  .scen-badge.risk { background: #FFEBEE; color: #C62828; }
+  .scen-badge.actor { background: #F3E5F5; color: #6A1B9A; }
+
+  /* ========== TIMELINE (رحلة المشروع) ========== */
+  .timeline {
+    position: relative;
+    padding-right: 30px;
+    margin: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--tech-blue), var(--gold), var(--purple));
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 22px;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 0 0 2px var(--tech-blue);
+  }
+  .tl-item.milestone::before { box-shadow: 0 0 0 2px var(--gold); }
+  .tl-item.current::before { box-shadow: 0 0 0 2px var(--green); background: var(--green); }
+  .tl-stage {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--tech-blue);
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+  .tl-item.milestone .tl-stage { color: var(--gold-deep, #A67C2E); }
+  .tl-item.current .tl-stage { color: var(--green); }
+  .tl-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .tl-desc {
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.75;
+    font-weight: 500;
+  }
+
+  /* ========== NECESSITY TIERS (ضرورة الأطراف) ========== */
+  .necessity-block {
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 14px 0;
+    border-right: 5px solid;
+  }
+  .necessity-block.min { background: #eafaf0; border-color: var(--green); }
+  .necessity-block.full { background: #FFF8EA; border-color: var(--gold); }
+  .necessity-block h4 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .necessity-block.min h4 { color: #1e8449; }
+  .necessity-block.full h4 { color: #A67C2E; }
+
+  /* ============ RESPONSIVE — جوّال وأجهزة لوحية ============ */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  table thead, table tbody { width: max-content; min-width: 100%; }
+
+  @media (max-width: 760px) {
+    body { padding: 20px 10px; }
+    .doc-header { padding: 32px 24px 28px; }
+    .doc-body { padding: 28px 22px; }
+    h1 { font-size: 24px; }
+    .doc-subtitle { font-size: 13px; }
+    .doc-meta { flex-direction: column; gap: 8px; }
+    h2 { font-size: 19px; }
+    h3 { font-size: 15px; }
+    p, li { font-size: 13px; }
+    .components-triangle { grid-template-columns: 1fr; }
+    .scen-row { grid-template-columns: 1fr; gap: 3px; }
+    .scen-row .k { margin-bottom: 2px; }
+    .scen-case-head { padding: 14px 16px; }
+    .scen-case-body { padding: 14px 16px 18px; }
+    .roadmap-header { padding: 24px 20px; }
+    .roadmap-header h2 { font-size: 19px; }
+    .roadmap-header::before { font-size: 80px; }
+    pre { padding: 14px 16px; font-size: 11px; }
+    .diagram { padding: 15px; font-size: 10px; }
+    .timeline { padding-right: 24px; }
+    .tl-item::before { right: -24px; }
+    .doc-footer { padding: 24px 22px; font-size: 11px; }
+  }
+
+  @media (max-width: 420px) {
+    h1 { font-size: 20px; }
+    .doc-tag { font-size: 10px; padding: 5px 12px; }
+    .card, .warning-box, .necessity-block { padding: 14px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- Header -->
+  <header class="doc-header">
+    <span class="doc-tag">📋 ورقة عصف ذهني وخارطة سيناريوهات · للمطوّر</span>
+    <h1>
+      خارطة سيناريوهات 8.3 — نقطة انطلاق العمل<br>
+      <em>+ قاعدة البيانات وسيناريوهات التكامل التقني</em>
+    </h1>
+    <p class="doc-subtitle">
+      وثيقة عمل استراتيجية-تقنية مزدوجة: تُقدّم في جزئها الأول <strong>خارطة السيناريوهات الستة</strong>
+      (المرحلة 8.3، إحالةً إلى المكوّنات الثلاثة الجوهرية: ShareEdu، الاتصال المؤسسي، المطور)
+      كنقاط انطلاق أساسية لأي مسار تطويري قادم. ثم تُتبع بتحليل تقني معمّق لقاعدة البيانات وبنية التكامل،
+      ليكون كل سيناريو مصحوبًا بخريطة تنفيذ عملية.
+    </p>
+    <div class="doc-meta">
+      <span>📅 <strong>التاريخ:</strong> 10 يوليو 2026 · 25 محرم 1448هـ</span>
+      <span>🔐 <strong>التصنيف:</strong> داخلي — للمطوّر</span>
+      <span>📎 <strong>المرافق:</strong> تقرير النسخة السابعة</span>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <div class="doc-body">
+
+    <div class="warning-box" id="accessLogBox" style="display:none;">
+      <strong>🕓 سجل محاولات الدخول (محلي لهذا المتصفح):</strong>
+      <div id="accessLogList" style="margin-top:8px; font-size:12px; font-family:monospace;"></div>
+    </div>
+
+    <div class="warning-box">
+      <strong>⚠ تنبيه:</strong> هذه الورقة <strong>ليست للاعتماد الرسمي</strong>، بل مادة عمل تقنية-استراتيجية تُساعدك على الاستعداد
+      لأسئلة تفصيلية قد تُطرح في اجتماعات التنسيق. الملخّص المُختصر منها موجود في الصفحة 10 من التقرير الرسمي.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--          خارطة السيناريوهات 8.3 — نقطة الانطلاق         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div class="roadmap-header">
+      <h2 style="margin-top: 0;">🗺️ خارطة السيناريوهات 8.3 — نقطة انطلاق العمل</h2>
+      <p>
+        قبل أي عمل تقني، يجب فهم <strong>المسارات الست الممكنة</strong> التي قد ينطلق منها المشروع
+        بحسب القرار الذي يتّخذه مركز صناعة القرار. الرقم <strong>8.3</strong> ترميز:
+        الرقم <strong>8</strong> يُشير إلى هذه المرحلة النهائية من التخطيط،
+        والرقم <strong>3</strong> يُشير إلى <strong>المكوّنات الثلاثة الجوهرية</strong>
+        التي تتشابك حولها كل السيناريوهات.
+      </p>
+    </div>
+
+    <div class="components-triangle">
+      <div class="comp-chip dev">
+        <span class="cid">🟢</span>
+        المطور (متبنّي مبادرة <br>#التحول_الرقمي)
+      </div>
+      <div class="comp-chip corp">
+        <span class="cid">🟡</span>
+        قسم الاتصال المؤسسي
+      </div>
+      <div class="comp-chip share">
+        <span class="cid">🟣</span>
+        منصة ShareEdu
+      </div>
+    </div>
+
+    <p style="font-size: 13.5px; color: var(--slate); margin-bottom: 25px;">
+      كل سيناريو أدناه <strong>حالة عمل مستقلة (Work Case)</strong> تُحدّد بدقة: مَن ينفّذ؟ ما النطاق؟ ما الجدول الزمني؟
+      ما التكلفة والمخاطر؟ وما خط سير العمليات التي تنطلق منها تباعًا؟ اعتماد أحد هذه السيناريوهات هو
+      <strong>نقطة الانطلاق الرسمية</strong> لكل ما يليها.
+    </p>
+
+    <!-- ============ السيناريو 1 ============ -->
+    <div class="scen-case" data-tone="green">
+      <div class="scen-case-head">
+        <span class="scen-num">1</span>
+        <div class="scen-titles">
+          <div class="scen-tag">CASE 1 · الفكرة الأصلية للمطور</div>
+          <div class="scen-name">صفحة هبوط / إقلاع فقط لعملية القبول والتسجيل</div>
+        </div>
+      </div>
+      <div class="scen-case-body">
+        <div class="scen-row"><div class="k">قرار الانطلاق</div><div class="v">مركز صناعة القرار يوافق فقط على الفكرة الأصلية للمطور، دون التوسّع لإعادة تصميم الموقع.</div></div>
+        <div class="scen-row"><div class="k">الأطراف المنفّذة</div><div class="v"><strong>المطور</strong> (تطوير) + <strong>إدارة القبول والتسجيل</strong> (تشغيل) + <strong>ShareEdu</strong> (نطاق فرعي فقط)</div></div>
+        <div class="scen-row"><div class="k">النطاق</div><div class="v">صفحة واحدة على نطاق فرعي (مثل <code>portal.daralforsan.edu.sa</code>) لاستقبال ملف المتقدم + لوحة تحكم داخلية بسيطة لفريق القبول (ثلاث مراحل: استقبال / مراجعة / قبول).</div></div>
+        <div class="scen-row"><div class="k">الحزمة التقنية</div><div class="v">Next.js + Tailwind + PostgreSQL (Supabase Free) + WhatsApp API. بلا VR، بلا chatbot ذكي في المرحلة الأولى.</div></div>
+        <div class="scen-row"><div class="k">الجدول الزمني</div><div class="v">2-4 أسابيع من قرار الانطلاق حتى الإطلاق التجريبي.</div></div>
+        <div class="scen-row"><div class="k">التكلفة</div><div class="v"><strong>الإعداد:</strong> ~3,000 SAR · <strong>التشغيل:</strong> 300-400 SAR/شهر (WhatsApp API فقط)</div></div>
+        <div class="scen-row"><div class="k">المخاطر</div><div class="v">فقدان فرصة تطوير الموقع الرسمي · بقاء الموقع الأم على بنيته الحالية.</div></div>
+        <div class="scen-row"><div class="k">معيار النجاح</div><div class="v">تسهيل عمل فريق القبول لموسم <strong>1447-1448هـ / 2026-2027م</strong> + استقبال أول 100 طلب تسجيل رقميًا.</div></div>
+
+        <div class="scen-flow">
+          <div class="scen-flow-label">▶ خط سير العمليات</div>
+          <ol style="margin: 0; padding-right: 20px;">
+            <li>الحصول على نطاق فرعي من ShareEdu (webhook أحادي)</li>
+            <li>بناء صفحة الهبوط + لوحة التحكم في 2-3 أسابيع</li>
+            <li>تدريب فريق القبول (يوم واحد)</li>
+            <li>الإطلاق التجريبي + مراقبة الأداء لمدة شهر</li>
+            <li>تقييم التوسّع في مواسم لاحقة بناءً على النتائج</li>
+          </ol>
+        </div>
+
+        <div class="scen-badges">
+          <span class="scen-badge time">⏱ 2-4 أسابيع</span>
+          <span class="scen-badge cost">💰 ~3,000 SAR إعداد</span>
+          <span class="scen-badge actor">👤 المطور فقط</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ السيناريو 2 ============ -->
+    <div class="scen-case" data-tone="gold">
+      <div class="scen-case-head">
+        <span class="scen-num">2</span>
+        <div class="scen-titles">
+          <div class="scen-tag">CASE 2 · رؤية قسم الاتصال المؤسسي كاملة</div>
+          <div class="scen-name">حالة الموافقة على مبادرة الاتصال المؤسسي الشاملة</div>
+        </div>
+      </div>
+      <div class="scen-case-body">
+        <div class="scen-row"><div class="k">قرار الانطلاق</div><div class="v">مركز صناعة القرار يعتمد مقترح قسم الاتصال المؤسسي بالكامل، ويكلّفهم بتنفيذه.</div></div>
+        <div class="scen-row"><div class="k">الأطراف المنفّذة</div><div class="v"><strong>قسم الاتصال المؤسسي</strong> (قيادة) + <strong>وكالة تطوير خارجية</strong> (تنفيذ) + <strong>مصورون / فريق VR</strong> + <strong>ShareEdu</strong> (تعاقد إضافي محتمل)</div></div>
+        <div class="scen-row"><div class="k">النطاق</div><div class="v">إعادة تصميم كامل الموقع + جولات VR 360° للفرعين + chatbot ذكي + WhatsApp API + subdomains لكل فرع + معرض صور احترافي.</div></div>
+        <div class="scen-row"><div class="k">الحزمة التقنية</div><div class="v">Next.js + Firebase + Vercel Pro + Landbot + Kuula. حزمة اشتراكات حديثة تعمل في السحابة.</div></div>
+        <div class="scen-row"><div class="k">الجدول الزمني</div><div class="v">3-6 أشهر من قرار الانطلاق حتى الإطلاق الرسمي.</div></div>
+        <div class="scen-row"><div class="k">التكلفة</div><div class="v"><strong>الإعداد:</strong> 15,000 SAR · <strong>التشغيل:</strong> 500 SAR/شهر · <strong>5 سنوات:</strong> 45,000 SAR</div></div>
+        <div class="scen-row"><div class="k">المخاطر</div><div class="v">Vendor lock-in بـFirebase · تكلفة الاشتراكات المتراكمة · <mark>عدم توافق تقني مع بيئة ShareEdu الحالية</mark> · فقدان النموذج الأولي المرفوع.</div></div>
+        <div class="scen-row"><div class="k">معيار النجاح</div><div class="v">إطلاق موقع تسويقي حديث بمعايير عالمية + تجربة رقمية متكاملة لأولياء الأمور.</div></div>
+
+        <div class="scen-flow">
+          <div class="scen-flow-label">▶ خط سير العمليات</div>
+          <ol style="margin: 0; padding-right: 20px;">
+            <li>توقيع عقد مع وكالة التطوير المختارة</li>
+            <li>جولة تصوير + إنتاج محتوى VR (شهر)</li>
+            <li>بناء الحزمة التقنية على Firebase (شهرين)</li>
+            <li>ربط WhatsApp API + chatbot + اختبار (شهر)</li>
+            <li>ترحيل بيانات ShareEdu أو التكامل معها (شهر)</li>
+            <li>الإطلاق + التدريب + التسليم</li>
+          </ol>
+        </div>
+
+        <div class="scen-badges">
+          <span class="scen-badge time">⏱ 3-6 أشهر</span>
+          <span class="scen-badge cost">💰 15,000 إعداد + 500/شهر</span>
+          <span class="scen-badge actor">👤 قسم الاتصال + وكالة</span>
+          <span class="scen-badge risk">⚠ تعارض مع ShareEdu</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ السيناريو 3 ============ -->
+    <div class="scen-case" data-tone="purple">
+      <div class="scen-case-head">
+        <span class="scen-num">3</span>
+        <div class="scen-titles">
+          <div class="scen-tag">CASE 3 · ShareEdu توسّع خدماتها</div>
+          <div class="scen-name">حالة العمل على البنية التحتية الخلفية الحالية ShareEdu</div>
+        </div>
+      </div>
+      <div class="scen-case-body">
+        <div class="scen-row"><div class="k">قرار الانطلاق</div><div class="v">مركز صناعة القرار يقرر البناء على بنية ShareEdu القائمة، وتوسيع عقدها لتشمل التطوير الجديد.</div></div>
+        <div class="scen-row"><div class="k">الأطراف المنفّذة</div><div class="v"><strong>ShareEdu</strong> منفردةً، بتوسيع عقدها التعاقدي.</div></div>
+        <div class="scen-row"><div class="k">النطاق</div><div class="v">تحسينات محدودة على النظام الحالي: نموذج تسجيل + إشعارات + تقارير أساسية. ضمن بيئة Classic ASP + Access DB.</div></div>
+        <div class="scen-row"><div class="k">الحزمة التقنية</div><div class="v">Classic ASP + Access DB (البيئة الحالية) + إضافات على النظام القائم.</div></div>
+        <div class="scen-row"><div class="k">الجدول الزمني</div><div class="v">غير محدد — يعتمد على أولويات ShareEdu وطاقتهم التقنية.</div></div>
+        <div class="scen-row"><div class="k">التكلفة</div><div class="v">مبلغ إضافي على العقد القائم (غير معلن مسبقًا) — يُقدّر عادةً بين <strong>8,000 – 20,000 SAR سنويًا</strong>.</div></div>
+        <div class="scen-row"><div class="k">المخاطر</div><div class="v"><mark>قيود تقنية موروثة</mark> (Access محدود بـ2GB وبـ10-15 مستخدمًا متزامنًا) · محدودية الابتكار · عدم دعم واجهات حديثة (WhatsApp API الرسمي، chatbot ذكي).</div></div>
+        <div class="scen-row"><div class="k">معيار النجاح</div><div class="v">استقرار وتوافر تحسينات صغيرة ضمن حدود بيئة العمل الحالية.</div></div>
+
+        <div class="scen-flow">
+          <div class="scen-flow-label">▶ خط سير العمليات</div>
+          <ol style="margin: 0; padding-right: 20px;">
+            <li>مفاوضات مع ShareEdu على نطاق التوسّع والتكلفة</li>
+            <li>توقيع ملحق تعاقدي</li>
+            <li>ShareEdu ينفّذ حسب جدولها الداخلي</li>
+            <li>الاعتماد على تسليمها بلا رقابة تقنية داخلية للمدارس</li>
+            <li>الإطلاق حسب جاهزيتهم</li>
+          </ol>
+        </div>
+
+        <div class="scen-badges">
+          <span class="scen-badge time">⏱ غير محدد</span>
+          <span class="scen-badge cost">💰 حسب التفاوض</span>
+          <span class="scen-badge actor">👤 ShareEdu فقط</span>
+          <span class="scen-badge risk">⚠ قيود Access</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ السيناريو 4 ============ -->
+    <div class="scen-case" data-tone="blue">
+      <div class="scen-case-head">
+        <span class="scen-num">4</span>
+        <div class="scen-titles">
+          <div class="scen-tag">CASE 4 · المطور ينفّذ رؤية شاملة بأدوات مفتوحة</div>
+          <div class="scen-name">حالة السماح للمطور بتنفيذ الرؤية الشاملة لقسم الاتصال</div>
+        </div>
+      </div>
+      <div class="scen-case-body">
+        <div class="scen-row"><div class="k">قرار الانطلاق</div><div class="v">مركز صناعة القرار يعتمد الرؤية الشاملة (كل ما اقترحه قسم الاتصال) لكنه يُكلّف <strong>مبادرة #التحول_الرقمي (المطور)</strong> بتنفيذها.</div></div>
+        <div class="scen-row"><div class="k">الأطراف المنفّذة</div><div class="v"><strong>المطور</strong> (تنفيذ تقني) + <strong>قسم الاتصال</strong> (شريك محتوى وهوية بصرية) + <strong>ShareEdu</strong> (نطاقات فرعية / تكامل)</div></div>
+        <div class="scen-row"><div class="k">النطاق</div><div class="v">نفس نطاق السيناريو 2، لكن باستخدام <strong>أدوات مفتوحة المصدر</strong> بدل الاشتراكات التجارية.</div></div>
+        <div class="scen-row"><div class="k">الحزمة التقنية</div><div class="v">Next.js + PostgreSQL + Cloudflare Pages + Marzipano.js (VR مفتوح) + LangChain.js + WhatsApp API + OpenAI/Claude API.</div></div>
+        <div class="scen-row"><div class="k">الجدول الزمني</div><div class="v">2-4 أشهر (أسرع من السيناريو 2 بفضل غياب مفاوضات الوكالة الخارجية).</div></div>
+        <div class="scen-row"><div class="k">التكلفة</div><div class="v"><strong>الإعداد:</strong> 5,000 SAR · <strong>التشغيل:</strong> 500 SAR/شهر · <strong>5 سنوات:</strong> 35,000 SAR · <strong>توفير:</strong> 10,000 SAR</div></div>
+        <div class="scen-row"><div class="k">المخاطر</div><div class="v"><mark>حساسية سياسية</mark> مع قسم الاتصال المؤسسي (شعور بمصادرة المبادرة) · عبء تنفيذي كبير على المطور · ضرورة التنسيق المستمر.</div></div>
+        <div class="scen-row"><div class="k">معيار النجاح</div><div class="v">تحقيق نفس أهداف قسم الاتصال + توفير 22% من الميزانية + مرونة أعلى.</div></div>
+
+        <div class="scen-flow">
+          <div class="scen-flow-label">▶ خط سير العمليات</div>
+          <ol style="margin: 0; padding-right: 20px;">
+            <li>إصدار قرار إداري بتكليف مبادرة #التحول_الرقمي</li>
+            <li>اجتماع تنسيقي مع قسم الاتصال لتحديد الهوية والمحتوى</li>
+            <li>بناء الواجهات + الطبقة الخلفية + التكامل مع ShareEdu</li>
+            <li>جولة تصوير مشتركة + إنتاج VR</li>
+            <li>ربط WhatsApp + chatbot + اختبار</li>
+            <li>الإطلاق + التسليم للفرق التشغيلية</li>
+          </ol>
+        </div>
+
+        <div class="scen-badges">
+          <span class="scen-badge time">⏱ 2-4 أشهر</span>
+          <span class="scen-badge cost">💰 5,000 إعداد + 500/شهر</span>
+          <span class="scen-badge actor">👤 المطور + الاتصال</span>
+          <span class="scen-badge risk">⚠ حساسية سياسية</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ السيناريو 5 ============ -->
+    <div class="scen-case" data-tone="mixed">
+      <div class="scen-case-head">
+        <span class="scen-num">5</span>
+        <div class="scen-titles">
+          <div class="scen-tag">CASE 5 · الشراكة الهجينة — الحل التوافقي</div>
+          <div class="scen-name">حالة تقاطع العمل للمطور مع البنية التحتية الخلفية ShareEdu</div>
+        </div>
+      </div>
+      <div class="scen-case-body">
+        <div class="scen-row"><div class="k">قرار الانطلاق</div><div class="v">مركز صناعة القرار يعتمد نموذج شراكة بين المطور و ShareEdu — كلٌّ منهما في نطاق تخصّصه.</div></div>
+        <div class="scen-row"><div class="k">الأطراف المنفّذة</div><div class="v"><strong>المطور</strong> (الواجهات الأمامية) + <strong>ShareEdu</strong> (البنية الخلفية والـ APIs) + <strong>قسم الاتصال</strong> (المحتوى)</div></div>
+        <div class="scen-row"><div class="k">النطاق</div><div class="v">واجهات جديدة يبنيها المطور تعمل فوق بنية ShareEdu الحالية عبر طبقة APIs توفّرها ShareEdu.</div></div>
+        <div class="scen-row"><div class="k">الحزمة التقنية</div><div class="v">Frontend: Next.js من المطور · Backend APIs: تُطوّرها ShareEdu فوق Classic ASP · التكامل عبر REST JSON.</div></div>
+        <div class="scen-row"><div class="k">الجدول الزمني</div><div class="v">6-10 أسابيع (يعتمد على استجابة ShareEdu في تطوير الـ APIs).</div></div>
+        <div class="scen-row"><div class="k">التكلفة</div><div class="v">تكلفة المطور (0 SAR تطوير) + تكلفة إضافية على عقد ShareEdu (لبناء APIs) — يُقدّر ~3,000-5,000 SAR إضافي مرة واحدة.</div></div>
+        <div class="scen-row"><div class="k">المخاطر</div><div class="v">الاعتماد على تجاوب ShareEdu وسرعة إنجازهم · قد يحتاج مفاوضات مطوّلة · قد لا تُطوّر APIs بجودة كافية.</div></div>
+        <div class="scen-row"><div class="k">معيار النجاح</div><div class="v"><strong>تكامل حقيقي بين الطرفين</strong> + احترام لأدوار كل شريك + بنية قابلة للتوسّع لاحقًا.</div></div>
+
+        <div class="scen-flow">
+          <div class="scen-flow-label">▶ خط سير العمليات</div>
+          <ol style="margin: 0; padding-right: 20px;">
+            <li>اجتماع تقني ثلاثي (المطور + ShareEdu + الاتصال) لتحديد الأدوار</li>
+            <li>ShareEdu تُطوّر مجموعة APIs محدّدة (تسجيل، رفع مستندات، حالة الطلب)</li>
+            <li>المطور يبني الواجهات ويختبر التكامل مع الـ APIs</li>
+            <li>اختبار مشترك على بيئة تجريبية</li>
+            <li>الإطلاق + المتابعة المشتركة للأداء</li>
+          </ol>
+        </div>
+
+        <div class="scen-badges">
+          <span class="scen-badge time">⏱ 6-10 أسابيع</span>
+          <span class="scen-badge cost">💰 مشترك</span>
+          <span class="scen-badge actor">👤 شراكة ثلاثية</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ السيناريو 6 — الحرج ============ -->
+    <div class="scen-case" data-tone="red">
+      <div class="scen-case-head">
+        <span class="scen-num">6</span>
+        <div class="scen-titles">
+          <div class="scen-tag">CASE 6 · الحالة الحرجة — الجمود التعاقدي</div>
+          <div class="scen-name">حالة تمسّك ShareEdu ببنود عقدها ورفض أي تغيير خارجي</div>
+        </div>
+      </div>
+      <div class="scen-case-body">
+        <div class="scen-row"><div class="k">قرار الانطلاق</div><div class="v">ShareEdu <strong>ترفض</strong> السماح للمطور بنشر صفحة الهبوط، وترفض تنفيذ قسم الاتصال لخطة التطوير الشاملة، وترفض أي تعديل هيكلي خارجي على الدومين — بحجة أن نظامها الإلكتروني القائم يتأثّر بأي تغيير خارجي، وأن اتفاقيتها التعاقدية تُخوّلها إدارة كامل البنية التحتية للدومين حتى نهاية العقد.</div></div>
+        <div class="scen-row"><div class="k">الأطراف المنفّذة</div><div class="v"><strong>ShareEdu فقط</strong>، بلا سلطة عملية للمطور أو قسم الاتصال في الفترة الحالية.</div></div>
+        <div class="scen-row"><div class="k">النطاق</div><div class="v">لا تطوير جديد على الدومين الحالي. أي تطوير جديد يبقى مؤجّلاً حتى انتهاء عقد ShareEdu.</div></div>
+        <div class="scen-row"><div class="k">الحزمة التقنية</div><div class="v">استمرار البنية الحالية (Classic ASP + Access) دون تغيير.</div></div>
+        <div class="scen-row"><div class="k">الجدول الزمني</div><div class="v">انتظار انتهاء عقد ShareEdu (يُفترض 12 شهرًا أو أكثر حسب تاريخ التوقيع).</div></div>
+        <div class="scen-row"><div class="k">التكلفة</div><div class="v"><strong>مالية:</strong> 0 SAR إضافية. <strong>تكلفة الفرصة:</strong> عالية — استمرار الأعباء الإدارية على فريق القبول لموسم كامل.</div></div>
+        <div class="scen-row"><div class="k">المخاطر</div><div class="v"><mark>تدهور تجربة أولياء الأمور</mark> · استمرار العمل الورقي · <mark>خسارة تنافسية</mark> أمام مدارس أخرى ذات بوابات رقمية · إحباط الكوادر الداخلية.</div></div>
+        <div class="scen-row"><div class="k">إجراءات الاستعداد (Mitigation)</div><div class="v">
+          <ol style="margin: 5px 0 0; padding-right: 20px;">
+            <li><strong>مراجعة قانونية للعقد</strong> — التحقق من صياغة نصوص الحصرية الفعلية (قد لا تكون قاطعة كما يُدّعى).</li>
+            <li><strong>تفاوض على استثناءات</strong> — كصفحة على نطاق منفصل تمامًا (github.io مثلاً).</li>
+            <li><strong>خطة انتقالية مسبقة</strong> — لاستبدال ShareEdu فورًا عند انتهاء العقد.</li>
+            <li><strong>تجهيز النموذج محليًا</strong> بلا نشر — الاستعداد للحظة الانتقال.</li>
+          </ol>
+        </div></div>
+        <div class="scen-row"><div class="k">معيار النجاح</div><div class="v">توثيق شامل للوضع القانوني الحالي + خارطة انتقالية جاهزة للتنفيذ الفوري عند نهاية العقد.</div></div>
+
+        <div class="scen-flow" style="background: linear-gradient(180deg, #fff5f5 0%, #ffefef 100%);">
+          <div class="scen-flow-label" style="color: #c0392b;">▶ خط سير العمليات (وضع الترقّب)</div>
+          <ol style="margin: 0; padding-right: 20px;">
+            <li>الحصول على نسخة كاملة من عقد ShareEdu لمراجعته قانونيًا</li>
+            <li>تحديد تاريخ انتهاء العقد بدقة</li>
+            <li>بناء نموذج المطور محليًا بلا نشر (استعداد صامت)</li>
+            <li>وثيقة استراتيجية للانتقال السلس عند نهاية العقد</li>
+            <li>تحسينات إجرائية داخلية غير رقمية لتخفيف العبء المؤقت على فريق القبول</li>
+            <li>عند نهاية العقد → تفعيل السيناريو 4 أو 5 مباشرة</li>
+          </ol>
+        </div>
+
+        <div class="scen-badges">
+          <span class="scen-badge time">⏱ انتظار نهاية العقد</span>
+          <span class="scen-badge cost">💰 0 SAR مالية · عالية فرصية</span>
+          <span class="scen-badge actor">👤 ShareEdu (بلا خيارات)</span>
+          <span class="scen-badge risk">⚠ الحالة الأشد خطورة</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== خاتمة السيناريوهات ========== -->
+    <div class="card blue" style="margin-top: 25px;">
+      <h3 style="color: var(--tech-blue); margin-top: 0;">🎯 خلاصة خارطة 8.3</h3>
+      <p style="margin-bottom: 8px;">
+        السيناريوهات الستة أعلاه <strong>تُشكّل معًا كامل الفضاء الممكن</strong> لمستقبل هذه المبادرة.
+        أي قرار من مركز صناعة القرار سيقع بالضرورة ضمن أحدها.
+      </p>
+      <p style="margin-bottom: 8px;">
+        <strong>الأفضل عمليًا:</strong> السيناريو 1 (سريع الإنجاز) أو السيناريو 5 (شراكة توافقية).<br>
+        <strong>الأخطر:</strong> السيناريو 6 (الجمود التعاقدي) — يجب الاستعداد له صامتًا في كل الأحوال.<br>
+        <strong>الأقلّ جدوى ماليًا:</strong> السيناريو 2 (رغم أنه الأكثر رواجًا في الطرح).
+      </p>
+      <p style="margin-bottom: 0;">
+        كل الأقسام التقنية التالية (قاعدة البيانات، بنية التكامل، مخطّط الـ Schema) تعمل
+        <strong>كأدوات تنفيذ</strong> لأيٍّ من السيناريوهات 1 و 4 و 5 — أي حيث يكون للمطور دور فعلي في التنفيذ.
+      </p>
+    </div>
+
+    <hr style="margin: 40px 0; border: 0; border-top: 2px dashed var(--line);">
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--          الجزء التقني (كما كان في النسخة السابقة)         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div style="background: var(--ivory); padding: 20px 25px; border-radius: 8px; margin-bottom: 25px; text-align: center;">
+      <strong style="color: var(--gold); letter-spacing: 2px; font-size: 12px;">— الجزء التقني —</strong>
+      <p style="margin-top: 5px; margin-bottom: 0; font-size: 13px; color: var(--slate);">
+        تفاصيل قاعدة البيانات، بنية التكامل، مخطّط الـ Schema، والحزمة التقنية — أدوات تنفيذية للسيناريوهات 1، 4، 5.
+      </p>
+    </div>
+
+    <h2>1. لماذا نناقش قاعدة البيانات أصلًا؟</h2>
+    <p>
+      قواعد البيانات هي <strong>نقطة التقاطع الحرجة</strong> بين المكوّنات الثلاثة (المطوّر، قسم الاتصال، ShareEdu).
+      كل مكوّن يتعامل معها بطريقة مختلفة، وأي خيار نتخذه يؤثّر على:
+    </p>
+    <ul>
+      <li>التكلفة الشهرية المتكرّرة (اشتراكات vs مجاني)</li>
+      <li>مرونة التكامل مع بنية ShareEdu القائمة</li>
+      <li>القدرة على النمو مستقبلًا دون إعادة بناء</li>
+      <li>ملكية البيانات (لدى المدارس vs لدى مزوّد خارجي)</li>
+      <li>الالتزامات القانونية (خصوصية بيانات الطلاب — قانون حماية البيانات السعودي PDPL)</li>
+    </ul>
+
+    <h2>2. المرشّحون الفعليون — مقارنة معمّقة</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>المعيار</th>
+          <th>PostgreSQL</th>
+          <th>MariaDB / MySQL</th>
+          <th>Firebase</th>
+          <th>Supabase</th>
+          <th>MS Access (الحالي)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>الرخصة</strong></td>
+          <td class="check">مفتوح ✓</td>
+          <td class="check">مفتوح ✓</td>
+          <td class="no">مغلق ✕</td>
+          <td class="check">مفتوح ✓</td>
+          <td class="no">مغلق ✕</td>
+        </tr>
+        <tr>
+          <td><strong>التكلفة الشهرية</strong></td>
+          <td class="check">0 SAR</td>
+          <td class="check">0 SAR</td>
+          <td class="warn">30-200 SAR</td>
+          <td class="check">0 SAR (Free tier)</td>
+          <td>ضمن رسوم Windows</td>
+        </tr>
+        <tr>
+          <td><strong>المستخدمون المتزامنون</strong></td>
+          <td class="check">آلاف</td>
+          <td class="check">مئات</td>
+          <td class="check">آلاف</td>
+          <td class="check">مئات</td>
+          <td class="no">10-15</td>
+        </tr>
+        <tr>
+          <td><strong>الحجم الأقصى</strong></td>
+          <td class="check">تيرابايت</td>
+          <td class="check">تيرابايت</td>
+          <td class="warn">حسب الاشتراك</td>
+          <td class="warn">500 MB مجاني</td>
+          <td class="no">2 GB</td>
+        </tr>
+        <tr>
+          <td><strong>JSON native</strong></td>
+          <td class="check">JSONB ممتاز</td>
+          <td class="warn">JSON محدود</td>
+          <td class="check">Document-native</td>
+          <td class="check">JSONB (نفس PG)</td>
+          <td class="no">لا يدعم</td>
+        </tr>
+        <tr>
+          <td><strong>REST API جاهزة</strong></td>
+          <td class="warn">عبر PostgREST</td>
+          <td class="warn">يدويًا</td>
+          <td class="check">Firebase SDK</td>
+          <td class="check">Auto-generated</td>
+          <td class="no">يدويًا في ASP</td>
+        </tr>
+        <tr>
+          <td><strong>Auth مدمج</strong></td>
+          <td class="no">لا</td>
+          <td class="no">لا</td>
+          <td class="check">Firebase Auth</td>
+          <td class="check">Supabase Auth</td>
+          <td class="no">لا</td>
+        </tr>
+        <tr>
+          <td><strong>الاستضافة الذاتية</strong></td>
+          <td class="check">ممكنة كليًا</td>
+          <td class="check">ممكنة كليًا</td>
+          <td class="no">Google Cloud فقط</td>
+          <td class="check">ممكنة (self-hosted)</td>
+          <td class="check">Windows Server</td>
+        </tr>
+        <tr>
+          <td><strong>PDPL (السعودي)</strong></td>
+          <td class="check">مرن (بياناتنا)</td>
+          <td class="check">مرن (بياناتنا)</td>
+          <td class="warn">بيانات خارج المملكة</td>
+          <td class="check">مرن (self-hosted)</td>
+          <td class="check">مرن (بياناتنا)</td>
+        </tr>
+        <tr>
+          <td><strong>Vendor Lock-in</strong></td>
+          <td class="check">لا</td>
+          <td class="check">لا</td>
+          <td class="no">عالٍ جدًا</td>
+          <td class="check">منخفض</td>
+          <td class="warn">Microsoft</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card green">
+      <strong style="color: var(--green); font-size: 15px;">💡 الاستنتاج الأول:</strong>
+      PostgreSQL يفوز في 7 معايير من 10. الاستثناءات الوحيدة: عدم امتلاك Auth مدمج (يُحلّ بـNextAuth.js)،
+      وعدم توفير APIs تلقائية (يُحلّ بطبقة رفيعة أو PostgREST). Supabase بديل ممتاز إن أردنا كل الحزمة جاهزة.
+    </div>
+
+    <h2>3. السيناريوهات الثلاثة للتكامل مع ShareEdu</h2>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <span class="scenario-num">1</span>
+        <span class="scenario-title">PostgreSQL مستقل — لا تدخّل في ShareEdu</span>
+      </div>
+      <div class="diagram">┌──────────────────────┐        ┌──────────────────────┐
+│ Frontend (Next.js)   │───────>│ API Layer (Node.js)  │
+└──────────────────────┘        └──────────┬───────────┘
+                                           │
+                                           ▼
+                          ┌────────────────────────────┐
+                          │ PostgreSQL (مستقل)         │
+                          └────────────────────────────┘
+                                           
+        ┌─────────────────────────┐   (webhook أحادي عند تثبيت المقعد)
+        │ ShareEdu (Access DB)    │◄─────────────────────
+        └─────────────────────────┘</div>
+      <div class="pros">
+        <strong>المميزات:</strong> لا تدخّل في بنية ShareEdu · حرية كاملة في التصميم · يمكن الإطلاق فورًا · تكلفة صفرية · لا يتعطّل نظام ShareEdu بأي حال.
+      </div>
+      <div class="cons">
+        <strong>القيود:</strong> تكرار جزئي للبيانات (اسم الطالب في المكانَين) · يحتاج webhook أحادي الاتجاه (نُرسل فقط، ShareEdu يستقبل).
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <span class="scenario-num">2</span>
+        <span class="scenario-title">ShareEdu يُرقّي بنيته إلى PostgreSQL موحّدة</span>
+      </div>
+      <div class="diagram">┌──────────────────────┐        ┌──────────────────────┐
+│ Frontend (Next.js)   │───────>│ API Layer (Node.js)  │
+└──────────────────────┘        └──────────┬───────────┘
+                                           │
+                                           ▼
+                          ┌────────────────────────────┐
+                          │ PostgreSQL موحّدة          │
+                          │ (لدى ShareEdu)             │
+                          └────────────┬───────────────┘
+                                       │
+                                       ▼
+                          ┌────────────────────────────┐
+                          │ ShareEdu Platform (Classic │
+                          │ ASP الحالي + طبقة PG)      │
+                          └────────────────────────────┘</div>
+      <div class="pros">
+        <strong>المميزات:</strong> مصدر واحد للحقيقة · لا تكرار للبيانات · فرصة لترقية ShareEdu بشكل عام · تكامل حقيقي.
+      </div>
+      <div class="cons">
+        <strong>القيود:</strong> يحتاج موافقة ShareEdu على ترقية بنيتهم · يفتح باب توسّع عقدهم مقابل الترقية · قد يستغرق شهورًا · قرار خارج نطاقنا كمطوّرين.
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <span class="scenario-num">3</span>
+        <span class="scenario-title">Firebase (مقترح قسم الاتصال) — البيانات في Google Cloud</span>
+      </div>
+      <div class="diagram">┌──────────────────────┐        ┌──────────────────────┐
+│ Frontend (Next.js)   │───────>│ Firebase SDK         │
+└──────────────────────┘        └──────────┬───────────┘
+                                           │
+                                           ▼
+                          ┌────────────────────────────┐
+                          │ Firestore (Google Cloud)   │
+                          │ خارج المملكة               │
+                          └────────────────────────────┘
+                                           
+        ┌─────────────────────────┐   (جسر تكامل معقّد)
+        │ ShareEdu (Access DB)    │◄─────────────────────
+        └─────────────────────────┘</div>
+      <div class="pros">
+        <strong>المميزات:</strong> SDK جاهز · Auth مدمج · لا حاجة لكتابة API layer · تجربة مطوّر ممتازة.
+      </div>
+      <div class="cons">
+        <strong>القيود:</strong> اشتراك شهري متكرّر · <mark>بيانات الطلاب في Google Cloud (تحدّي PDPL السعودي)</mark> · Vendor lock-in عالٍ · صعوبة الخروج لاحقًا · نموذج بيانات NoSQL يحتاج تعلّم.
+      </div>
+    </div>
+
+    <h2>4. التوصية النهائية للمطوّر</h2>
+
+    <div class="card blue">
+      <h3 style="color: var(--tech-blue); margin-top: 0;">🎯 الخيار المفضّل: السيناريو الأول (PostgreSQL مستقل)</h3>
+      <ol>
+        <li><strong>يحترم استقلالية ShareEdu</strong> — لا نطلب منهم شيئًا سوى نقطة استقبال (webhook)</li>
+        <li><strong>ملكية البيانات للمدارس بالكامل</strong> — على خادم داخلي أو خادم سعودي</li>
+        <li><strong>متوافق مع PDPL</strong> — بيانات الطلاب لا تغادر المملكة</li>
+        <li><strong>تكلفة تشغيل صفرية</strong> — PostgreSQL مجاني، والاستضافة على VPS بـ ~30 SAR/شهر أو مجانًا على Railway/Fly.io</li>
+        <li><strong>قابل للترحيل</strong> — إذا رقّت ShareEdu بنيتها لاحقًا، نندمج معها بسهولة</li>
+      </ol>
+    </div>
+
+    <h2>5. الحزمة التقنية المقترحة عمليًا</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>الطبقة</th>
+          <th>الأداة</th>
+          <th>الاستضافة</th>
+          <th>التكلفة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frontend</td>
+          <td><code>Next.js 15 + TypeScript</code></td>
+          <td>Vercel / Cloudflare Pages</td>
+          <td>0 SAR</td>
+        </tr>
+        <tr>
+          <td>Styling</td>
+          <td><code>Tailwind CSS + shadcn/ui</code></td>
+          <td>—</td>
+          <td>0 SAR</td>
+        </tr>
+        <tr>
+          <td>API Layer</td>
+          <td><code>Next.js API Routes</code> أو <code>Hono</code></td>
+          <td>Vercel / Fly.io</td>
+          <td>0 SAR</td>
+        </tr>
+        <tr>
+          <td>Database</td>
+          <td><code>PostgreSQL 16</code></td>
+          <td>Supabase Free / Neon / Railway</td>
+          <td>0 SAR</td>
+        </tr>
+        <tr>
+          <td>ORM</td>
+          <td><code>Drizzle ORM</code> أو <code>Prisma</code></td>
+          <td>—</td>
+          <td>0 SAR</td>
+        </tr>
+        <tr>
+          <td>Auth</td>
+          <td><code>Auth.js (NextAuth)</code></td>
+          <td>—</td>
+          <td>0 SAR</td>
+        </tr>
+        <tr>
+          <td>File Storage</td>
+          <td><code>Cloudflare R2</code> أو <code>Supabase Storage</code></td>
+          <td>Cloudflare / Supabase</td>
+          <td>0-20 SAR</td>
+        </tr>
+        <tr>
+          <td>WhatsApp API</td>
+          <td>Wsla / Wati (BSP سعودي)</td>
+          <td>—</td>
+          <td>300-500 SAR</td>
+        </tr>
+        <tr>
+          <td>AI Chatbot</td>
+          <td>OpenAI API أو Claude API</td>
+          <td>—</td>
+          <td>200-500 SAR</td>
+        </tr>
+        <tr>
+          <td>Monitoring</td>
+          <td><code>Sentry</code> + <code>Umami</code></td>
+          <td>Self-hosted or Free tier</td>
+          <td>0 SAR</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>6. تصميم مخطّط بيانات مقترح (Schema)</h2>
+
+    <pre><code>-- ═══════════════════════════════════════════════════
+-- مخطّط قاعدة بيانات بوابة القبول والتسجيل
+-- PostgreSQL 16 · مبادرة #التحول_الرقمي
+-- ═══════════════════════════════════════════════════
+
+CREATE TABLE branches (
+  id SERIAL PRIMARY KEY,
+  code VARCHAR(20) UNIQUE NOT NULL, -- 'salamah', 'salihiyah'
+  name_ar VARCHAR(100) NOT NULL,
+  gender VARCHAR(10) NOT NULL, -- 'boys', 'girls', 'mixed'
+  is_new BOOLEAN DEFAULT FALSE,
+  contact_whatsapp VARCHAR(20)
+);
+
+CREATE TABLE tracks (
+  id SERIAL PRIMARY KEY,
+  code VARCHAR(30) UNIQUE NOT NULL, -- 'ahli', 'diploma', 'special'
+  name_ar VARCHAR(100) NOT NULL,
+  description_ar TEXT
+);
+
+CREATE TABLE applications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  reference_number VARCHAR(20) UNIQUE NOT NULL,
+  branch_id INT REFERENCES branches(id),
+  track_id INT REFERENCES tracks(id),
+  student_data JSONB NOT NULL, -- name, birthdate, grade, etc.
+  guardian_data JSONB NOT NULL, -- name, phone, email, etc.
+  documents JSONB DEFAULT '[]', -- array of uploaded document refs
+  stage VARCHAR(20) NOT NULL DEFAULT 'received', -- received/review/accepted
+  status VARCHAR(20) NOT NULL DEFAULT 'active',
+  discount_applied BOOLEAN DEFAULT FALSE,
+  discount_percentage INT DEFAULT 0,
+  submitted_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  reviewed_by UUID REFERENCES users(id),
+  accepted_by UUID REFERENCES users(id),
+  shareedu_synced_at TIMESTAMPTZ, -- عند تثبيت المقعد
+  notes TEXT
+);
+
+CREATE TABLE stage_history (
+  id SERIAL PRIMARY KEY,
+  application_id UUID REFERENCES applications(id) ON DELETE CASCADE,
+  from_stage VARCHAR(20),
+  to_stage VARCHAR(20) NOT NULL,
+  changed_by UUID REFERENCES users(id),
+  changed_at TIMESTAMPTZ DEFAULT NOW(),
+  reason TEXT
+);
+
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email VARCHAR(120) UNIQUE NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  role VARCHAR(20) NOT NULL, -- admin/admissions/viewer
+  branch_id INT REFERENCES branches(id),
+  is_active BOOLEAN DEFAULT TRUE,
+  last_login_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE audit_logs (
+  id BIGSERIAL PRIMARY KEY,
+  actor_id UUID REFERENCES users(id),
+  action VARCHAR(50) NOT NULL,
+  entity_type VARCHAR(30),
+  entity_id VARCHAR(50),
+  metadata JSONB,
+  ip_address INET,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE whatsapp_messages (
+  id BIGSERIAL PRIMARY KEY,
+  application_id UUID REFERENCES applications(id),
+  direction VARCHAR(10), -- 'in' or 'out'
+  message_type VARCHAR(20),
+  content TEXT,
+  status VARCHAR(20),
+  sent_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- فهارس للأداء
+CREATE INDEX idx_apps_branch_stage ON applications(branch_id, stage);
+CREATE INDEX idx_apps_submitted ON applications(submitted_at DESC);
+CREATE INDEX idx_apps_reference ON applications(reference_number);
+CREATE INDEX idx_stage_history_app ON stage_history(application_id);
+CREATE INDEX idx_audit_actor ON audit_logs(actor_id, created_at DESC);</code></pre>
+
+    <h2>7. جسر التكامل مع ShareEdu — تفاصيل عملية</h2>
+
+    <div class="card purple">
+      <h3 style="color: var(--purple); margin-top: 0;">🔗 نقطة التقاطع الوحيدة</h3>
+      <p style="margin-bottom: 10px;">
+        عند تثبيت مقعد المتقدّم في نظامنا (تغيير الـ stage إلى <code>accepted</code>)،
+        نُرسل <strong>webhook أحادي</strong> إلى ShareEdu بالبيانات الأساسية فقط:
+      </p>
+      <pre style="margin: 10px 0 0;"><code>POST https://daralforsan.edu.sa/api/shareedu-hook
+Content-Type: application/json
+X-Signature: sha256=...
+
+{
+  "event": "student.accepted",
+  "reference": "APP-2026-00742",
+  "student": {
+    "name_ar": "...",
+    "birthdate": "2018-04-12",
+    "grade": "1",
+    "gender": "boys"
+  },
+  "guardian": {
+    "name_ar": "...",
+    "phone": "+966..."
+  },
+  "branch": "salamah",
+  "track": "ahli",
+  "accepted_at": "2026-08-15T14:32:00Z"
+}</code></pre>
+      <p style="margin-top: 12px; margin-bottom: 0; font-size: 12px;">
+        ShareEdu يستقبل هذا الاستدعاء ويُدخل الطالب في منصّته التعليمية بعد الموافقة اليدوية إن لزم.
+      </p>
+    </div>
+
+    <h2>8. نقاط النقاش المقترحة مع فريق ShareEdu</h2>
+
+    <ol>
+      <li><strong>هل يمكن توفير endpoint استقبال</strong> على النطاق الرسمي لاستقبال webhooks بعد قبول الطلاب؟</li>
+      <li><strong>هل يمكن إتاحة نطاق فرعي</strong> (مثل <code>portal.daralforsan.edu.sa</code>) للاستضافة الجديدة؟</li>
+      <li><strong>ما شكل الحقول التي تحتاجها ShareEdu</strong> من بيانات الطالب المقبول؟ (نُطابقها في webhook)</li>
+      <li><strong>هل هناك حسابات مستخدمين تُنشأ تلقائيًا</strong> في ShareEdu بعد القبول؟ (نحدّد آلية الربط)</li>
+      <li><strong>ما جدولة اجتماعات التنسيق التقني</strong> المناسبة لفريقهم؟</li>
+    </ol>
+
+    <h2>9. ⚡ تحديث تقني عاجل — الحل الحالي السريع - (أ. عبدالله غراب) بالتعاون مع ShareEdu</h2>
+
+    <div class="warning-box" style="border-color: #d35400; background: #fdf1e7;">
+      <strong style="color: #d35400;">⚡ للرجوع السريع:</strong> مبادرة فردية من الأستاذ عبدالله غراب
+      لمعالجة الوضع الراهن — إذ بدأ فعليًا موسم القبول والتسجيل — فبادر بالتعاون المباشر
+      (as we speak) مع فريق ShareEdu لتشغيل رحلة القبول والتسجيل كاملة <strong>مباشرة داخل بيئة
+      ShareEdu نفسها</strong>، لا عبر أي من السيناريوهات الثلاثة أعلاه. جُرِّبت فعليًا، وهي الآن في
+      مرحلة الإنهاء والإطلاق. له منّا كل التقدير على سرعة الاستجابة في هذا التوقيت الحرج.
+      التفاصيل الكاملة للعملية في
+      <a href="quick-solution.html" style="color: #d35400; font-weight: 800;">quick-solution.html ↗</a>.
+    </div>
+
+    <h3 style="color: #d35400;">🔍 كيف يختلف هذا الحل تقنيًا عن السيناريوهات الثلاثة أعلاه؟</h3>
+    <p>
+      الفرق الجوهري: السيناريوهات الثلاثة في القسم 3 تتعامل جميعها مع سؤال
+      <strong>"أين تُخزَّن البيانات خارج ShareEdu؟"</strong> (PostgreSQL مستقل / PostgreSQL موحّدة لدى ShareEdu / Firebase).
+      الحل الحالي السريع يتجاوز هذا السؤال كليًا: <strong>لا قاعدة بيانات خارجية، ولا webhook، ولا جسر تكامل</strong> —
+      العملية بأكملها (تسجيل ولي الأمر → نموذج الطالب → المقابلة → القبول → اختبار القبول) تُنفَّذ
+      داخل تبويبات ShareEdu الإدارية القائمة أصلًا (إدارة التسجيل، إدارة المقابلات)، على نفس بنية
+      Classic ASP + Access DB الحالية، دون أي طبقة وسيطة.
+    </p>
+
+    <div class="diagram">┌──────────────────────────────────────────────────┐
+│   daralforsan.edu.sa (نطاق ShareEdu الرسمي)      │
+│                                                    │
+│   تسجيل دخول ولي الأمر → نموذج تسجيل → SMS       │
+│                     │                              │
+│                     ▼                              │
+│   تبويب "إدارة التسجيل" (ShareEdu) — يدويًا:      │
+│   جدولة المقابلة → القبول الإلكتروني              │
+│                     │                              │
+│                     ▼                              │
+│   رابط اختبار قبول مولَّد من مدير النظام           │
+│   (على دومين ShareEdu نفسه) — 20 سؤال/قسم         │
+└──────────────────────────────────────────────────┘
+        لا PostgreSQL · لا Firebase · لا webhook خارجي</div>
+
+    <h3 style="color: #d35400;">📌 آثار هذا التحديث على القرارات المطروحة في هذه الورقة</h3>
+    <ol>
+      <li>
+        <strong>لا يُلغي التوصية في القسم 4</strong> (PostgreSQL مستقل) — الحل السريع يغطّي مسار القبول
+        والتسجيل التشغيلي فقط، بينما تبقى الحاجة قائمة لأي طبقة بيانات مستقلة إن احتاج المشروع
+        لاحقًا تحليلات، تقارير عبر الفروع، أو دمجًا مع أدوات قسم الاتصال (Chatbot، لوحات تحكم تسويقية).
+      </li>
+      <li>
+        <strong>توضيح تنظيمي مهم:</strong> لا علاقة تنظيمية أو تقنية بين الأستاذ عبدالله غراب وتوصية
+        PostgreSQL المستقلة أصلًا — الحل السريع مسار منفصل تمامًا عن مسار مبادرة #التحول_الرقمي
+        (المطوّر). لن تنشأ أي علاقة بينهما إلا إذا انضمّ الأستاذ عبدالله غراب رسميًا لمبادرة
+        #التحول_الرقمي مستقبلًا، عندها فقط يصبح التنسيق التقني بين المسارين موضوعًا مطروحًا.
+      </li>
+      <li>
+        <strong>يُثبت عمليًا</strong> أن ShareEdu منفتحة على تكامل مباشر مع أطراف خارجية (الأستاذ عبدالله غراب)
+        — معطى مفيد عند نقاش نقاط القسم 8 معهم مستقبلًا.
+      </li>
+      <li>
+        <strong>سؤال تقني مفتوح يستحق التوثيق هنا للرجوع إليه:</strong> هل الحل السريع يكتب مباشرة على
+        Access DB الخاصة بـ ShareEdu، أم عبر واجهة إدارية معزولة لا تلامس الجداول الأصلية؟ هذا يحدّد
+        مدى تأثيره على القيود المعروفة لـ Access (2GB حجم أقصى، 10-15 مستخدمًا متزامنًا) المذكورة سابقًا
+        في هذه الورقة — يُفضَّل تأكيدها مع الأستاذ عبدالله غراب مباشرة قبل الاعتماد الكامل على الحل
+        في موسم قبول مزدحم.
+      </li>
+      <li>
+        <strong>يُنصح بمواءمة الجدول الزمني</strong> بين إطلاق هذا الحل السريع وأي قرار مستقبلي بشأن
+        السيناريوهات الثلاثة، تفاديًا لازدواجية العمل على نفس تدفّق القبول من مسارين مختلفين.
+      </li>
+    </ol>
+
+    <h2>10. تحليل ضرورة الأطراف — بصدق ومسؤولية</h2>
+
+    <div class="warning-box">
+      <strong>⚠ ملاحظة صادقة:</strong> ليست كل الأطراف الثمانية بنفس درجة الضرورة الفعلية.
+      التصنيف أدناه يميّز بين ما هو <strong>ضروري تشغيليًا</strong> وما هو <strong>مُضاف بناءً على طلب مباشر</strong>
+      دون تقييم مستقل بأنه ضرورة قصوى — حتى تُتّخذ القرارات بعين مفتوحة، لا بافتراض تساوي الأدوار.
+    </div>
+
+    <div class="necessity-block min">
+      <h4>🟢 للسيناريو الأدنى (صفحة الهبوط المجانية)</h4>
+      <p style="margin-bottom: 0;">
+        يكفي فعليًا <strong>4–5 أطراف نشطة</strong>: مركز صناعة القرار، القبول والتسجيل، المطوّر، ShareEdu،
+        ولمسة خفيفة من الاتصال المؤسسي للهوية البصرية فقط (لا شراكة تنفيذية كاملة).
+        باقي الأطراف لا تُشكّل عبئًا حقيقيًا على هذا المسار المحدود، ويمكن تجاهلها كليًا في هذه المرحلة.
+      </p>
+    </div>
+
+    <div class="necessity-block full">
+      <h4>🟡 للرؤية الشاملة (السيناريو 2 أو 4)</h4>
+      <p style="margin-bottom: 0;">
+        الثمانية جميعًا منطقية عند هذا الاتساع، <strong>لكن</strong> يُفضَّل الإبقاء على دمج
+        "الإدارة الأكاديمية" و"الشؤون التعليمية" في طرف واحد (كما اعتمدنا فعليًا)،
+        وإبقاء "إدارة الجودة" في مرتبة <strong>استشاري (Consulted)</strong> بدل
+        <strong>مسؤول (Responsible)</strong> كامل في مصفوفة RACI — أي دوره أخف وزنًا من باقي الأطراف،
+        يُستشار عند الحاجة فقط ولا يُعطَّل به سير العمل اليومي.
+      </p>
+    </div>
+
+    <h3>لماذا هذا التمييز مهم عمليًا؟</h3>
+    <p>
+      كثرة الأطراف الرسمية في مصفوفة قرار واحدة تخلق <strong>عبء حوكمة</strong> يتعارض مع الروح الأصلية
+      للمبادرة — حل سريع وخفيف (صفحة هبوط بلا تعقيد). كل طرف إضافي بصفة "مسؤول" كامل يعني:
+      توقيعات إضافية، احتمال تأخير أكبر في الموافقات، وتعقيد تنسيقي لا يتناسب مع بساطة المسار الأدنى.
+      التمييز بين Responsible وConsulted ليس تفصيلًا شكليًا — إنه ما يحفظ سرعة الإنجاز.
+    </p>
+
+    <h2>11. رحلة المشروع — من الصفر حتى الآن</h2>
+
+    <p>
+      خط زمني كامل لتطوّر هذه المبادرة عبر كل مراحلها، للرجوع إليه عند الحاجة لفهم سياق أي قرار سابق.
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item milestone">
+        <div class="tl-stage">نقطة الانطلاق</div>
+        <div class="tl-title">تبنّي فكرة صفحة الهبوط/الإقلاع</div>
+        <div class="tl-desc">
+          المطوّر يتبنّى فكرة محدودة النطاق: صفحة واحدة لتسهيل عملية القبول والتسجيل
+          للعام الدراسي 1447-1448هـ / 2026-2027م. نموذج أولي (Prototype)، لا منتج نهائي.
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-stage">المرحلة 1</div>
+        <div class="tl-title">بناء البوابة الفعلية</div>
+        <div class="tl-desc">
+          بوابة HTML كاملة بشعارات الفروع الثلاثة، تاريخ/وقت عربي حي، Carousel تسويقي،
+          لوحة تحكم بمرحلتين × 3 مراحل قبول.
+        </div>
+      </div>
+
+      <div class="tl-item milestone">
+        <div class="tl-stage">المرحلة 2 — نقطة تحوّل</div>
+        <div class="tl-title">اكتشاف مقترح قسم الاتصال المؤسسي</div>
+        <div class="tl-desc">
+          تحليل المقترح الأوسع (إعادة تصميم شامل للموقع). اكتشاف خطأ جوهري في الميزانية:
+          15,000 ريال فعليًا، لا 150,000 كما كان مُعتقَدًا — تصحيح غيّر مسار كل التقارير اللاحقة.
+          المقترح الأصلي الكامل كما أرسله القسم متاح في
+          <a href="corp-comm-proposal.html" style="color: var(--gold);">corp-comm-proposal.html ↗</a>.
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-stage">المرحلة 3 (v1 → v7)</div>
+        <div class="tl-title">تطوّر التقرير عبر 7 نسخ</div>
+        <div class="tl-desc">
+          إعادة تموضع دور المطوّر من "قائد" إلى "متبنّي مبادرة" · ShareEdu من "طرف مجهول" إلى
+          "شريك تعاقدي شرعي" · فصل ميزانيتين بجدول تراكمي حتى 2030 (توفير 10K) ·
+          تحديد 3 مكوّنات تقنية · فحص تقني فعلي لموقع daralforsan.edu.sa (تأكيد Classic ASP + Access) ·
+          خارطة سيناريوهات 8.3 بست حالات، منها حالة حرجة (رفض ShareEdu التام).
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-stage">المرحلة 4</div>
+        <div class="tl-title">الإنفوجرافيك — نسختان</div>
+        <div class="tl-desc">
+          نسخة أولى بأسلوب منظّم (كحلي/ذهبي، أقسام متتالية). نسخة تجريبية بأسلوب
+          "قصاصات ورقية" (Scrapbook) لمحاكاة مرجع بصري خارجي — لم تُعتمَد.
+          العودة للنسخة المنظّمة وتحسين طباعتها (وزن وتباعد أحرف) لتُصبح النسخة المعتمدة نهائيًا.
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-stage">المرحلة 5</div>
+        <div class="tl-title">هذه الورقة — عصف ذهني تقني</div>
+        <div class="tl-desc">
+          وثيقة منفصلة (هذه الوثيقة) لترحيل كل التفاصيل التقنية العميقة بعيدًا عن التقرير الرسمي:
+          مخطّط قاعدة بيانات SQL كامل، مقارنة PostgreSQL/Firebase/Access، جسر تكامل ShareEdu،
+          وخارطة السيناريوهات الستة الكاملة (8.3).
+        </div>
+      </div>
+
+      <div class="tl-item milestone">
+        <div class="tl-stage">المرحلة 6</div>
+        <div class="tl-title">الموقع التفاعلي (v8)</div>
+        <div class="tl-desc">
+          3 ملفات مترابطة: <code>index.html</code> (لوحة تحكم بعرض مزدوج مراحل/أطراف)،
+          <code>report-v7.html</code>، وهذه الوثيقة (كانت باسم <code>brainstorm-database.html</code>
+          وبوابة وصول admin/2030، قبل أن تُعاد تسميتها <code>mindset_all.html</code> وتُفصَل عن
+          روابط الدخول في تحديث v8.6-v8.8).
+          ساعة حية، عارض تقرير مُضمَّن، ثم لاحقًا إضافة الإنفوجرافيك كقسم رابع مرتبط.
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-stage">الآن</div>
+        <div class="tl-title">إعادة هيكلة الأطراف + توثيق هذه الرحلة</div>
+        <div class="tl-desc">
+          تخفيض الأطراف من 9 إلى 8 (دمج الإدارة الأكاديمية والشؤون التعليمية)،
+          تصنيفها في 3 طبقات صادقة حسب الضرورة الفعلية، وتطبيق التغيير عبر كل ملفات المشروع
+          (التقرير، الموقع التفاعلي، الإنفوجرافيك) بلا أي تناقض بينها.
+        </div>
+      </div>
+
+      <div class="tl-item milestone current">
+        <div class="tl-stage">الآن — نقطة تحوّل</div>
+        <div class="tl-title">⚡ مبادرة الأستاذ عبدالله غراب: الحل الحالي السريع بالتعاون مع ShareEdu</div>
+        <div class="tl-desc">
+          بعد أن بدأ فعليًا موسم القبول والتسجيل للعام الدراسي القادم، يبادر الأستاذ عبدالله غراب
+          بالتعاون المباشر مع فريق ShareEdu لمعالجة الوضع الراهن بحلٍّ تشغيلي سريع يُؤتمت رحلة
+          القبول والتسجيل كاملة داخل بيئة ShareEdu نفسها مباشرة — دون قاعدة بيانات مستقلة ولا
+          جسر تكامل. جُرِّبت العملية فعليًا، وهي الآن في مرحلة الإنهاء والإطلاق. مبادرة سريعة
+          وفعّالة تستحق كل التقدير في توقيتها الحرج. أُضيفت كملحق مستقل عبر كل ملفات المشروع
+          (<code>index.html</code>، <code>infographic.html</code>)، وخُصِّصت له صفحة
+          شرح كاملة (<code>quick-solution.html</code>) وكلمة شكر ودعوة انضمام للمبادرة. التفاصيل التقنية
+          الكاملة موثّقة في القسم 9 أعلاه.
+        </div>
+      </div>
+
+      <div class="tl-item milestone current">
+        <div class="tl-stage">الآن — تحديث حوكمة الوصول</div>
+        <div class="tl-title">🔒 فصل هذه الورقة عن كل روابط الدخول العامة في المشروع</div>
+        <div class="tl-desc">
+          زر "الدخول بصلاحية المطوّر" في <code>index.html</code> لم يعد يفتح هذه الصفحة إطلاقًا.
+          بعد إدخال بيانات الدخول الصحيحة (admin/2030) يظهر الآن صندوق حوار نصي بسيط يعرّف
+          بهوية المطوّر (اسم المبادرة ووصفها المختصر) فقط، ثم يختفي تلقائيًا — دون أي تنقّل لأي صفحة.
+          <code>mindset_all.html</code> (سابقًا <code>brainstorm-database.html</code>) أصبحت ملفًا مستقلًا تمامًا، غير مرتبط بأي زر أو رابط
+          في بقية المشروع، ولا تزال قيد العمل والتحديث المستمر. ستُضمَّن في الحزمة النهائية كملف
+          منفصل يُفتح يدويًا فقط من يعرف مساره مباشرة.
+        </div>
+      </div>
+    </div>
+
+    <h2>12. 🔒 رؤية "التطوير الشامل" الكاملة — ملاحظة استراتيجية حساسة</h2>
+
+    <div class="warning-box" style="border-color:#c0392b; background:#fdecea;">
+      <strong style="color:#c0392b;">🔒 للاطلاع الداخلي فقط:</strong> هذا القسم بأكمله <strong>لا يُدرَج بأي صيغة</strong>
+      في التقرير الرسمي (<code>report-v7.html</code>) ولا في أي صفحة عامة من صفحات المشروع
+      (<code>index.html</code>، <code>infographic.html</code>، <code>quick-solution.html</code>)، ولا في
+      إجابات الروبوت المشترك (<code>faq-widget.js</code>). يبقى حصرًا في هذه الورقة الداخلية الموجّهة للمطوّر.
+    </div>
+
+    <p>
+      "التطوير الشامل" ليست مجرد زيادة في الميزانية، بل رؤية شاملة نحو تحوّل رقمي ذكي يواكب عصر
+      الذكاء الاصطناعي، وتتضمن محورين رئيسيين:
+    </p>
+
+    <h3>1️⃣ تحديث البنية التحتية الرقمية</h3>
+    <p>
+      انتقال من البنية التقليدية الحالية — غرفة سيرفرات فعلية، وأنظمة بمسمّياتها القديمة
+      (<code>TMG</code>، <code>ISA</code>، <code>Active Directory</code>) — إلى <strong>بنية تحتية رقمية
+      سحابية وذكية</strong> تواكب المتطلبات الحديثة للأمن والتوسّع وسهولة الإدارة.
+    </p>
+
+    <h3>2️⃣ تحديث منصة التعليم الإلكتروني</h3>
+    <p>
+      تصوّر لبديل ذكي وتفاعلي لمنصة ShareEdu الحالية — بمظهر بصري حديث، وهوية رقمية مواكبة للتحوّل،
+      وبدعم فعلي من الذكاء الاصطناعي في تحليل بيانات الطلاب والمعلمين وإدارة العملية التعليمية
+      باقتدار (على غرار منصات مرجعية معروفة في هذا المجال، مثل Classera، كمرجع لمستوى الطموح
+      لا كقرار نهائي).
+    </p>
+
+    <div class="card" style="border-color:#c0392b; background:#fdecea;">
+      <p style="margin:0 0 8px; font-weight:800; color:#c0392b;">⚠️ الخيار الحسّاس المطروح للنقاش الداخلي فقط:</p>
+      <p style="margin:0;">
+        هذه الهوية الرقمية الجديدة يمكن أن تحمل داخلها <strong>منصة ShareEdu نفسها بعد تحديثها</strong>،
+        أو — كخيار بديل لم يُحسم ويحتاج نقاشًا معمّقًا قبل أي طرح رسمي — <strong>إعادة النظر في التعاقد
+        الحالي معها واستبدالها بحلول أحدث</strong>. هذا الخيار الثاني حسّاس تعاقديًا وسياسيًا، ويُطرح هنا
+        فقط كملاحظة استراتيجية للتفكير المشترك بيننا، ولا يُبنى عليه أي قرار أو تواصل خارجي حتى إشعار آخر.
+      </p>
+    </div>
+
+    <p style="font-size:12.5px; color:var(--slate); margin-top:14px;">
+      🔗 مرتبط بسؤالي التكلفة الجديدين في الروبوت المشترك (القسم 9 وربوت الأسئلة الشائعة): مسار
+      "الاتصال المؤسسي" (21,000 ريال أول سنة + 6,000 سنويًا) مقابل مسار "#التحول_الرقمي" (11,000 ريال
+      أول سنة + 6,000 سنويًا) — كلاهما يخدم نفس رؤية "التطوير الشامل" هذه، بفارق النطاق والجهة المنفّذة.
+    </p>
+
+    <h2>13. 🔒 سيناريو مفصلي — "كتلة اتحاد التحول الرقمي" مقابل انفتاح ShareEdu</h2>
+
+    <div class="warning-box" style="border-color:#c0392b; background:#fdecea;">
+      <strong style="color:#c0392b;">🔒 للاطلاع الداخلي فقط (meandyou):</strong> هذا القسم بأكمله، بما فيه اسم
+      "الكتلة" المقترح وتحليل السيناريوهين، <strong>لا يُدرَج بأي صيغة</strong> في التقرير الرسمي أو أي صفحة
+      عامة أو في الروبوت المشترك. امتداد مباشر للقسمين 9 و12 أعلاه.
+    </div>
+
+    <p>
+      السيناريو المطروح يتمحور حول مصير عقد ShareEdu القائم: هل تستمر شريكًا تعاقديًا فقط، أم تنضمّ
+      فعليًا كطرف منفتح على التطوير والتعاون؟ هذا يفترض تصوّرًا لاندماج/اتحاد ثلاثة أطراف داخلية في
+      كتلة واحدة، أسميناها مبدئيًا:
+    </p>
+
+    <div class="card" style="border-color:var(--purple); background:#F5EEFB;">
+      <p style="margin:0 0 10px; font-weight:800; color:var(--purple);">🏷️ كتلة اتحاد التحول الرقمي لمدارس دار الفرسان 2030</p>
+      <p style="margin:0;">تضم ثلاثة أطراف: <strong>المطوّر (مبادرة #التحول_الرقمي)</strong>، <strong>قسم الاتصال
+      المؤسسي</strong>، و<strong>الأستاذ عبدالله غراب</strong> — بافتراض انضمامه الرسمي مستقبلًا (كما نوقش
+      في القسم 9).</p>
+    </div>
+
+    <h3 style="color:#c0392b;">⚖️ الفرق التقني الجوهري بين السيناريوهين</h3>
+
+    <table style="width:100%; border-collapse:collapse; margin:14px 0; font-size:12.5px;">
+      <thead>
+        <tr style="background:var(--navy); color:#fff;">
+          <th style="padding:8px; text-align:right;">المحور</th>
+          <th style="padding:8px; text-align:right;">أ) اتحاد الكتلة + ShareEdu كعقد قائم فقط</th>
+          <th style="padding:8px; text-align:right;">ب) ShareEdu منفتحة كشريك داخل التحوّل</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fdecea;">
+          <td style="padding:8px; font-weight:700;">موقع ShareEdu</td>
+          <td style="padding:8px;">صندوق مغلق (vendor) خارج الكتلة</td>
+          <td style="padding:8px;">طرف تقني داخل عملية التحوّل نفسها</td>
+        </tr>
+        <tr>
+          <td style="padding:8px; font-weight:700;">بنية Access/Classic ASP</td>
+          <td style="padding:8px;">تبقى كما هي بقيودها (2GB، 10-15 مستخدمًا)</td>
+          <td style="padding:8px;">مرشّحة للتحديث الجذري بالتعاون معهم</td>
+        </tr>
+        <tr style="background:#fdecea;">
+          <td style="padding:8px; font-weight:700;">دور حل عبدالله غراب</td>
+          <td style="padding:8px;">حل سريع يعمل ضمن قيود ShareEdu الحالية</td>
+          <td style="padding:8px;">نواة فعلية لمنصة جديدة موحّدة</td>
+        </tr>
+        <tr>
+          <td style="padding:8px; font-weight:700;">الحاجة لطبقة PostgreSQL الوسيطة (القسم 4)</td>
+          <td style="padding:8px;">تبقى ضرورية كجسر التفافي</td>
+          <td style="padding:8px;">قد تصبح غير ضرورية — الحل من الجذر لا التفافًا</td>
+        </tr>
+        <tr style="background:#fdecea;">
+          <td style="padding:8px; font-weight:700;">البنية النهائية</td>
+          <td style="padding:8px;">نظامان متوازيان مرتبطان بجسور (webhooks)</td>
+          <td style="padding:8px;">نظام موحّد واحد قابل للتطور</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card" style="border-color:#d35400; background:#fdf1e7;">
+      <p style="margin:0 0 8px; font-weight:800; color:#d35400;">💡 السؤال الاستراتيجي الحقيقي:</p>
+      <p style="margin:0;">
+        حل الأستاذ عبدالله غراب هو <strong>الدليل العملي الوحيد حتى الآن</strong> على أن ShareEdu منفتحة
+        فعلًا على التعاون — وليس مجرد افتراض نظري. هذا يرجّح أن نقطة الدخول الفعلية لسيناريو "الانفتاح"
+        (ب) ليست مواجهة "اتحاد الكتلة مقابل ShareEdu"، بل: <strong>انضمام الأستاذ عبدالله غراب رسميًا
+        لمبادرة #التحول_الرقمي أولًا</strong>، ليصبح هو نفسه جسر التفاوض التقني مع فريق ShareEdu نحو
+        سيناريو الانفتاح والتطوير المشترك، بدل مواجهة تعاقدية مباشرة معهم.
+      </p>
+    </div>
+
+    <p style="font-size:12.5px; color:var(--slate); margin-top:14px;">
+      🔗 هذا السيناريو حسّاس تعاقديًا وسياسيًا بنفس درجة حساسية القسم 12 — لا يُبنى عليه أي قرار أو
+      تواصل خارجي حتى إشعار آخر، ويحتاج نقاشًا معمّقًا إضافيًا قبل صياغته في أي مقترح رسمي.
+    </p>
+
+    <h2>14. 🔒 محرك قاعدة بيانات ShareEdu الحالي — وتوافقه مع رؤية الاتحاد (PostgreSQL)</h2>
+
+    <div class="warning-box" style="border-color:#c0392b; background:#fdecea;">
+      <strong style="color:#c0392b;">🔒 للاطلاع الداخلي فقط (meandyou):</strong> امتداد تقني مباشر للقسم 13
+      أعلاه — لا يُدرَج بأي صيغة في أي ملف عام أو في الروبوت المشترك.
+    </div>
+
+    <h3>🗄️ ما هو محرك قاعدة البيانات الفعلي؟</h3>
+    <p>
+      ShareEdu تعتمد حاليًا على <strong>Microsoft Access</strong>، عبر محرك <strong>Jet/ACE</strong>
+      (Jet للصيغة القديمة <code>.mdb</code>، وACE للصيغة الأحدث <code>.accdb</code>). هذا محرك
+      <strong>قائم على ملف واحد (file-based)</strong> لا خادم قاعدة بيانات حقيقي:
+    </p>
+    <ul>
+      <li>كامل قاعدة البيانات = ملف واحد يجلس على القرص، لا يستمع على أي منفذ شبكي</li>
+      <li>صفحات ASP الكلاسيكية تتصل به عبر <strong>ADO</strong> بمزوّد OLEDB
+        (<code>Microsoft.Jet.OLEDB.4.0</code> أو <code>Microsoft.ACE.OLEDB.12.0</code>)</li>
+      <li>قيود معروفة: حد أقصى <strong>2GB</strong> لحجم الملف، وتدهور أداء حاد بعد
+        <strong>10-15 اتصالًا متزامنًا</strong> (قفل على مستوى الملف، لا عميل-خادم حقيقي)</li>
+    </ul>
+
+    <h3>⚙️ آلية عملهم الحالية خطوة بخطوة (لكل طلب صفحة)</h3>
+    <ol>
+      <li>المستخدم (ولي أمر أو موظف) يفتح صفحة <code>.asp</code> عبر المتصفح</li>
+      <li>خادم IIS ينفّذ كود ASP الكلاسيكي (VBScript غالبًا) المُضمَّن بين وسوم <code>&lt;% %&gt;</code></li>
+      <li>الكود يفتح كائن اتصال ADO (<code>Server.CreateObject("ADODB.Connection")</code>)
+        بمزوّد OLEDB لـ Access</li>
+      <li>يُنفَّذ استعلام SQL عبر <code>ADODB.Recordset</code> مباشرة على ملف <code>.accdb</code>
+        المخزَّن محليًا على قرص الخادم</li>
+      <li>النتائج تُدرَج مباشرة داخل HTML الناتج عبر <code>Response.Write</code> أو الكتابة
+        المباشرة بين وسوم ASP</li>
+      <li>الصفحة الكاملة تُرسَل للمتصفح — <strong>لا توجد أي طبقة API أو REST وسيطة</strong>،
+        الاتصال بقاعدة البيانات يحدث ضمن نفس دورة تنفيذ الصفحة مباشرة</li>
+    </ol>
+    <p style="font-size:12px; color:var(--slate);">
+      هذا النمط (يُعرف تقنيًا بـ "Page-Level Data Access") هو سبب بساطة حل الأستاذ عبدالله غراب
+      وسرعته: أي إضافة تحدث <strong>داخل نفس هذا النمط</strong> (صفحة ASP جديدة تتصل بنفس ملف
+      Access) لا تحتاج أي بنية جديدة — بعكس أي محاولة لإدخال طبقة بيانات مختلفة الطبيعة.
+    </p>
+
+    <h3 style="color:#c0392b;">⚖️ التوافق مع PostgreSQL — ثلاثة مستويات، لا اثنان فقط</h3>
+    <p>
+      في نقاشنا السابق (القسم 13) وصفت طرفين متطرفين فقط. لكن سؤال "الانفتاح مع اتحاد المكونات"
+      يكشف عن <strong>مستوى ثالث أوسط</strong> — وهو الأقرب فعليًا لما تسأل عنه:
+    </p>
+
+    <table style="width:100%; border-collapse:collapse; margin:14px 0; font-size:12.5px;">
+      <thead>
+        <tr style="background:var(--navy); color:#fff;">
+          <th style="padding:8px; text-align:right;">المستوى</th>
+          <th style="padding:8px; text-align:right;">طبيعة العلاقة بـ Access</th>
+          <th style="padding:8px; text-align:right;">تعاون ShareEdu المطلوب</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fdecea;">
+          <td style="padding:8px; font-weight:700;">1) اتحاد الكتلة المستقل (القسم 4 الأصلي)</td>
+          <td style="padding:8px;">PostgreSQL مستقلة تمامًا وموازية، لا تلمس Access إطلاقًا —
+            استقبال بيانات فقط عبر webhook أحادي الاتجاه</td>
+          <td style="padding:8px; color:#27ae60; font-weight:700;">لا يُذكر</td>
+        </tr>
+        <tr style="background:#fff8ea;">
+          <td style="padding:8px; font-weight:700;">2) 🆕 التعايش عبر ODBC (انفتاح جزئي)</td>
+          <td style="padding:8px;">PostgreSQL تعمل <strong>بجانب</strong> Access، عبر جسر ODBC —
+            التفاصيل أدناه</td>
+          <td style="padding:8px; color:#d35400; font-weight:700;">محدود (تركيب + إذن نشر)</td>
+        </tr>
+        <tr>
+          <td style="padding:8px; font-weight:700;">3) الانفتاح الكامل — استبدال المحرك</td>
+          <td style="padding:8px;">ترحيل كامل (migration) لكل البيانات والاستعلامات إلى PostgreSQL</td>
+          <td style="padding:8px; color:#c0392b; font-weight:700;">كامل وحتمي</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card" style="border-color:#d35400; background:#fdf1e7;">
+      <p style="margin:0 0 10px; font-weight:800; color:#d35400;">🆕 المستوى 2 بالتفصيل — "الانفتاح مع اتحاد المكونات"</p>
+      <p style="margin:0 0 10px;">
+        هذا هو المسار الذي يجمع بين الاثنين فعليًا، عبر آليتين تقنيتين متاحتين في نفس نمط
+        "Page-Level Data Access" الموصوف أعلاه، دون أي قطيعة فورية مع النظام الحالي:
+      </p>
+      <p style="margin:0 0 8px;">
+        <strong>أ) صفحات جديدة تتصل بـ PostgreSQL مباشرة:</strong> تركيب مشغّل
+        <code>psqlODBC</code> على خادم IIS نفسه، وإنشاء DSN يشير لخادم PostgreSQL. أي صفحة
+        <code>.asp</code> <strong>جديدة</strong> (مثل وحدات تحليلات أو تقارير) تفتح اتصالًا بصيغة
+        <code>Provider=MSDASQL;DSN=...</code> بدل مزوّد Jet/ACE. الصفحات <strong>القديمة</strong>
+        تبقى كما هي بلا أي تعديل، متصلة بـ Access كالمعتاد.
+      </p>
+      <p style="margin:0;">
+        <strong>ب) الجداول المرتبطة (Linked Tables) داخل Access نفسها:</strong> تقنية أصلية في
+        Access تجعله "يتظاهر" بأن جداول PostgreSQL هي جداول محلية داخل نفس ملف <code>.accdb</code>،
+        فتصبح مرئية وقابلة للاستعلام بنفس صيغة SQL القديمة تقريبًا — رغم أن البيانات الفعلية تعيش
+        في PostgreSQL. هذا أقرب مسار "تدرّجي" حقيقي لدمج الأنظمة، ويحتاج تعاون ShareEdu بحدّه
+        الأدنى فقط (تركيب مشغّل ODBC + إذن ربط الجداول)، لا تسليم كامل الكود المصدري أو خادمهم.
+      </p>
+    </div>
+
+    <h3>🔧 متطلبات المستوى 3 التقنية (الترحيل الكامل)</h3>
+    <table style="width:100%; border-collapse:collapse; margin:14px 0; font-size:12.5px;">
+      <tbody>
+        <tr style="background:#f5f5f5;">
+          <td style="padding:8px; font-weight:700; width:35%;">تغيير مزوّد الاتصال</td>
+          <td style="padding:8px;">من <code>Microsoft.ACE.OLEDB</code> إلى مشغّل ODBC رسمي
+            (<code>psqlODBC</code>) مثبَّت على خادم IIS نفسه</td>
+        </tr>
+        <tr>
+          <td style="padding:8px; font-weight:700;">ترحيل البيانات</td>
+          <td style="padding:8px;">نقل كل السجلات من <code>.accdb</code> إلى PostgreSQL
+            (عبر pgloader أو تصدير/استيراد CSV)</td>
+        </tr>
+        <tr style="background:#f5f5f5;">
+          <td style="padding:8px; font-weight:700;">إعادة كتابة كل استعلامات SQL</td>
+          <td style="padding:8px;">لهجة Access SQL تختلف عن PostgreSQL: <code>IIF()</code> ↔
+            <code>CASE WHEN</code>، <code>TOP N</code> ↔ <code>LIMIT N</code>، حقول
+            <code>Memo</code> ↔ <code>TEXT</code>، عامل الدمج <code>&amp;</code> ↔ <code>||</code> —
+            كل استعلام داخل كل صفحة .asp يحتاج مراجعة يدوية</td>
+        </tr>
+        <tr>
+          <td style="padding:8px; font-weight:700;">الوصول لكود ASP وخادم IIS</td>
+          <td style="padding:8px;">يتطلب من فريق ShareEdu منح وصول فعلي لكودهم المصدري وخادمهم —
+            هذا وحده يفسّر لماذا هذا المسار مستحيل عمليًا دون تعاونهم الكامل</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card" style="border-color:#d35400; background:#fdf1e7;">
+      <p style="margin:0 0 8px; font-weight:800; color:#d35400;">💡 خلاصة مباشرة لسؤالنا في القسم 13:</p>
+      <p style="margin:0;">
+        المستوى 2 (التعايش عبر ODBC/الجداول المرتبطة) هو على الأرجح <strong>المسار العملي الأوسط
+        الأقرب لطموح "الانفتاح مع اتحاد المكونات"</strong> — لا يحتاج مواجهة تعاقدية ولا ترحيلًا
+        كاملًا محفوفًا بالمخاطر، بل تعاونًا محدودًا (تركيب مشغّل + إذن نشر/ربط) يمكن أن يبدأ فعليًا
+        من نفس نقطة الدخول التي أثبتها حل الأستاذ عبدالله غراب. هذا يعزّز الخلاصة السابقة: انضمامه
+        رسميًا لمبادرة #التحول_الرقمي هو المفتاح العملي لفتح هذا المسار، لا مجرد فرضية نظرية.
+      </p>
+    </div>
+
+    <h2>15. 🔒 بدائل PostgreSQL للتعايش مع بنية ShareEdu (ADO + Jet/ACE)</h2>
+
+    <div class="warning-box" style="border-color:#c0392b; background:#fdecea;">
+      <strong style="color:#c0392b;">🔒 للاطلاع الداخلي فقط (meandyou):</strong> امتداد مباشر للقسم 14 —
+      لا يُدرَج بأي صيغة في أي ملف عام أو في الروبوت المشترك.
+    </div>
+
+    <p>
+      PostgreSQL ليست الخيار الوحيد لمستوى "التعايش عبر ODBC" (المستوى 2 في القسم 14). إليك خمسة
+      بدائل حقيقية، مرتبة من الأقرب توافقًا مع البيئة الحالية إلى الأبعد:
+    </p>
+
+    <table style="width:100%; border-collapse:collapse; margin:14px 0; font-size:12px;">
+      <thead>
+        <tr style="background:var(--navy); color:#fff;">
+          <th style="padding:7px; text-align:right;">البديل</th>
+          <th style="padding:7px; text-align:right;">آلية الاتصال من ASP</th>
+          <th style="padding:7px; text-align:right;">أداة ترحيل جاهزة؟</th>
+          <th style="padding:7px; text-align:right;">التكلفة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#eafaf1;">
+          <td style="padding:7px; font-weight:800; color:#1e8449;">⭐ SQL Server Express</td>
+          <td style="padding:7px;">OLEDB أصلي (<code>MSOLEDBSQL</code>) — نفس نمط الاتصال الحالي تمامًا،
+            فرق حرفي واحد في connection string</td>
+          <td style="padding:7px; color:#1e8449; font-weight:700;">نعم — Access Upsizing Wizard
+            (أداة رسمية من Microsoft مدمجة في Access)</td>
+          <td style="padding:7px;">مجانية (حتى 10GB)</td>
+        </tr>
+        <tr>
+          <td style="padding:7px; font-weight:700;">Azure SQL Database</td>
+          <td style="padding:7px;">نفس OLEDB/ODBC القياسي، لكن الخادم سحابي بدل محلي</td>
+          <td style="padding:7px; color:#1e8449;">نعم — نفس Upsizing Wizard + أدوات هجرة سحابية</td>
+          <td style="padding:7px;">اشتراك سحابي (يبدأ من مستوى مجاني محدود)</td>
+        </tr>
+        <tr style="background:#f5f5f5;">
+          <td style="padding:7px; font-weight:700;">PostgreSQL <em>(المرجع السابق)</em></td>
+          <td style="padding:7px;">ODBC عبر <code>psqlODBC</code>، أو جداول مرتبطة في Access</td>
+          <td style="padding:7px; color:#c0392b;">لا أداة رسمية — ترحيل يدوي أو عبر pgloader</td>
+          <td style="padding:7px;">مجانية بالكامل (مفتوحة المصدر)</td>
+        </tr>
+        <tr>
+          <td style="padding:7px; font-weight:700;">MySQL / MariaDB</td>
+          <td style="padding:7px;">ODBC عبر <code>MySQL Connector/ODBC</code>، دعم جداول مرتبطة مشابه</td>
+          <td style="padding:7px; color:#c0392b;">لا أداة رسمية من Microsoft — أدوات طرف ثالث فقط</td>
+          <td style="padding:7px;">مجانية بالكامل (مفتوحة المصدر)</td>
+        </tr>
+        <tr style="background:#f5f5f5;">
+          <td style="padding:7px; font-weight:700;">SQLite</td>
+          <td style="padding:7px;">ODBC عبر مشغّل طرف ثالث — لا يحل مشكلة التزامن أصلًا (لا يزال
+            محرّكًا قائمًا على ملف واحد مثل Access)</td>
+          <td style="padding:7px; color:#c0392b;">غير مناسب لهذا الغرض تحديدًا</td>
+          <td style="padding:7px;">مجانية</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card" style="border-color:#1e8449; background:#eafaf1;">
+      <p style="margin:0 0 8px; font-weight:800; color:#1e8449;">⭐ لماذا SQL Server Express يستحق الأولوية في النقاش؟</p>
+      <p style="margin:0 0 10px;">
+        هو الخيار الوحيد من نفس عائلة Microsoft التي تعمل بها البيئة الحالية بالكامل (IIS + Classic ASP
+        + Windows Server). هذا يعني عمليًا:
+      </p>
+      <ul style="margin:0;">
+        <li><strong>لا "قفزة تقنية غريبة"</strong> — فريق ShareEdu على الأرجح مطّلع فعلًا على أدوات Microsoft،
+          بعكس PostgreSQL/MySQL التي تتطلب تعلّم بيئة جديدة كليًا</li>
+        <li><strong>أداة الترحيل مدمجة أصلًا في Access</strong> (Upsizing Wizard) — تنقل الجداول والعلاقات
+          والمفاتيح تلقائيًا، وتنشئ الجداول المرتبطة بنفسها دون كتابة كود ترحيل يدوي</li>
+        <li><strong>حد 10GB مجانًا</strong> كافٍ لسنوات عديدة مقارنة بحد الـ2GB الحالي في Access — يحل
+          مشكلة الحجم الأصلية دون أي تكلفة</li>
+        <li><strong>يبقى الخيار الأنسب لمستوى "الانفتاح الكامل" (المستوى 3) لاحقًا</strong> إن قرّرت
+          ShareEdu ذلك — نفس المحرك يخدم مسار التعايش والاستبدال الكامل معًا، بعكس PostgreSQL التي
+          تحتاج قرارًا منفصلاً لكل مستوى</li>
+      </ul>
+    </div>
+
+    <p style="font-size:12.5px; color:var(--slate); margin-top:14px;">
+      🔗 الخلاصة العملية: توصية القسم 4 الأصلية بـ PostgreSQL كانت مبنية على سيناريو "الاتحاد المستقل"
+      (المستوى 1) حيث لا صلة بـ Access أصلًا، فاختيار المحرك لم يكن مقيّدًا ببيئة ShareEdu. أما في سياق
+      "التعايش" (المستوى 2) الذي نناقشه الآن، فـ SQL Server Express يبدو مرشّحًا أقوى تقنيًا وسياسيًا —
+      يستحق طرحه صراحة عند أي نقاش مستقبلي مع فريق ShareEdu كبديل عملي لـ PostgreSQL.
+    </p>
+
+    <h2>16. الخلاصة الاستراتيجية — سطر واحد</h2>
+
+    <div class="card blue">
+      <p style="margin: 0; font-size: 15px; font-weight: 600; color: var(--navy);">
+        نبني على <mark>PostgreSQL مستقل</mark>، نعمل بأدوات مفتوحة المصدر،
+        نحترم بيئة ShareEdu بلا مساس، ونربط الطرفين بـ<mark>webhook واحد فقط</mark>
+        عند لحظة القبول — بأقل مخاطرة وأقل تعقيد وأقل تكلفة.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="doc-footer">
+    <strong>ورقة عصف ذهني تقنية داخلية</strong> · مبادرة <span style="color: var(--tech-blue);">#التحول_الرقمي</span> · مدارس دار الفرسان الأهلية<br>
+    مادة عمل مرافقة لتقرير النموذج الأولي (النسخة السابعة) · تاريخ التحرير: 10 يوليو 2026 · 25 محرم 1448هـ
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  // إضافة شارة "الصفحة N من Total" لكل قسم رئيسي بناءً على ترقيمها الحالي في نص العنوان
+  var headers = document.querySelectorAll('.doc-body > h2');
+  var total = headers.length;
+  headers.forEach(function (h2) {
+    var m = h2.textContent.match(/^(\d+)\./);
+    if (!m) return;
+    var num = m[1];
+    var badge = document.createElement('span');
+    badge.className = 'sec-badge';
+    badge.textContent = 'صفحة ' + num + ' من ' + total;
+    h2.appendChild(badge);
+  });
+})();
+</script>
+(function () {
+  try {
+    var log = JSON.parse(localStorage.getItem('devAccessLog') || '[]');
+    if (!log.length) return;
+    var box = document.getElementById('accessLogBox');
+    var list = document.getElementById('accessLogList');
+    var recent = log.slice(-10).reverse();
+    list.innerHTML = recent.map(function (item) {
+      var icon = item.success ? '✅' : '❌';
+      var time = new Date(item.ts).toLocaleString('ar-SA');
+      return icon + ' ' + time + ' — المستخدم: ' + item.user + ' — الصفحة: ' + item.page;
+    }).join('<br>');
+    box.style.display = 'block';
+  } catch (e) {
+    // localStorage غير متاح أو تالف — نتجاهل بصمت
+  }
+})();
+</script>
+<script src="faq-widget.js"></script>
+</body>
+</html>

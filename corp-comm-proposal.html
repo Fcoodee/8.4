@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>تقرير التعديلات المقترحة لبوابة القبول والتسجيل - دار الفرسان</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+    background: #333;
+    color: #1E2A38;
+    direction: rtl;
+  }
+  .slide {
+    width: 13.333in;
+    height: 7.5in;
+    background: #FFF;
+    margin: 20px auto;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    padding: 0;
+  }
+  @media print {
+    body { background: #FFF; }
+    .slide { margin: 0; box-shadow: none; }
+    .toolbar { display: none !important; }
+  }
+  .topbar {
+    position: absolute; top: 0; left: 0; right: 0; height: 0.93in;
+    background: #FFF; border-bottom: 2px solid #E8E9EA;
+  }
+  .topbar::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 0.08in;
+    background: #2F8EB9;
+  }
+  .topbar .logo {
+    position: absolute; top: 0.14in; left: 0.4in;
+    width: 0.72in; height: 0.72in;
+    background: url('logo.png') no-repeat center/contain;
+  }
+  .topbar h1 {
+    position: absolute; top: 0.18in; right: 0.4in; left: 1.3in;
+    font-size: 21pt; font-weight: 800; color: #1E5F7D;
+    text-align: right;
+  }
+  .topbar .sub {
+    position: absolute; top: 0.55in; right: 0.4in; left: 1.3in;
+    font-size: 11pt; color: #8C8E90; text-align: right;
+  }
+  .footer {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 0.35in;
+    background: #1E5F7D; color: #FFF;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 0.3in; font-size: 9pt;
+  }
+  .content {
+    position: absolute; top: 1.05in; bottom: 0.4in; left: 0.4in; right: 0.4in;
+  }
+  .section-title {
+    position: relative;
+    padding-right: 0.2in; padding-left: 0.1in;
+    font-size: 17pt; font-weight: 800; color: #1E5F7D;
+    border-right: 6px solid #2F8EB9;
+    margin-bottom: 0.15in;
+    line-height: 1.3;
+  }
+  .card {
+    background: #FFF; border-radius: 8px; padding: 0.15in 0.2in;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .card.tinted { background: #F6F9FB; }
+  .card-strip::before {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: var(--strip-color, #2F8EB9);
+    border-radius: 8px 0 0 8px;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.15in; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.15in; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.1in; }
+  .grid-7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.08in; }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    position: relative; padding-right: 0.3in; margin-bottom: 0.1in;
+    font-size: 10.5pt; line-height: 1.5; color: #1E2A38;
+  }
+  ul li::before {
+    content: ''; position: absolute; right: 0.05in; top: 0.09in;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--bullet, #2F8EB9);
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+  th {
+    background: #1E5F7D; color: #FFF; padding: 8px; font-weight: 700;
+    text-align: center; font-size: 11pt;
+  }
+  td {
+    padding: 8px 10px; text-align: center; color: #1E2A38;
+    border-bottom: 1px solid #E8E9EA;
+  }
+  tr:nth-child(even) td { background: #F0F6FA; }
+  tr:nth-child(odd) td  { background: #FFF; }
+  td.strong { color: #1E5F7D; font-weight: 700; }
+
+  /* Slide 1 (Cover) */
+  .cover { display: flex; height: 100%; }
+  .cover-left {
+    width: 5.5in; background: #1E5F7D; position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #FFF;
+  }
+  .cover-left::before {
+    content: ''; position: absolute; top: -1.5in; right: -1.5in;
+    width: 3.5in; height: 3.5in; background: #2F8EB9; border-radius: 50%;
+  }
+  .cover-left::after {
+    content: ''; position: absolute; bottom: -1.5in; left: -1.5in;
+    width: 2.5in; height: 2.5in; background: #2F8EB9; border-radius: 50%;
+  }
+  .cover-left img { width: 2.5in; height: 2.5in; z-index: 2; margin-bottom: 0.4in; }
+  .cover-left h2 { font-size: 22pt; z-index: 2; }
+  .cover-right { flex: 1; padding: 1in 0.6in; position: relative; }
+  .cover-right .kicker { font-size: 15pt; color: #2F8EB9; font-weight: 700; margin-bottom: 0.1in; }
+  .cover-right h1 {
+    font-size: 44pt; color: #1E5F7D; line-height: 1.05; font-weight: 900;
+    margin-bottom: 0.3in;
+  }
+  .cover-right .subtitle { font-size: 17pt; color: #4A4C4E; margin-bottom: 0.4in; }
+  .cover-right .divider { width: 100%; height: 3px; background: #2F8EB9; margin: 0.2in 0; }
+  .cover-right .meta { font-size: 12pt; color: #8C8E90; margin: 0.1in 0; }
+  .cover-right .strong-line { color: #1E5F7D; font-weight: 700; font-size: 12pt; }
+  .cover-right .badge {
+    background: #C9E4F0; padding: 0.15in 0.2in; border-radius: 8px;
+    margin-top: 0.3in;
+  }
+  .cover-right .badge b { color: #1E5F7D; font-size: 12pt; }
+  .cover-right .badge p { color: #1E5F7D; font-size: 12pt; margin-top: 0.05in; }
+
+  /* Architecture diagram */
+  .arch-node {
+    display: inline-block; padding: 0.1in 0.15in; border-radius: 6px;
+    color: #FFF; text-align: center; margin: 0.05in;
+  }
+
+  /* Concluding slide */
+  .final { background: #1E5F7D; color: #FFF; padding: 0.5in 0.6in; height: 100%; position: relative; }
+  .final h1 { font-size: 32pt; margin-bottom: 0.3in; border-bottom: 3px solid #C9E4F0; padding-bottom: 0.1in; display: inline-block; padding-left: 1in; }
+  .pillar {
+    background: #174E69; border-radius: 10px; padding: 0.2in 0.3in;
+    margin-bottom: 0.15in; border-right: 6px solid var(--pcolor, #2A9D8F);
+  }
+  .pillar h3 { font-size: 17pt; margin-bottom: 0.08in; }
+  .pillar p { font-size: 13pt; line-height: 1.4; }
+  .recommendation {
+    background: #C9E4F0; color: #1E5F7D; padding: 0.15in;
+    text-align: center; border-radius: 10px; margin-top: 0.2in;
+    font-weight: 700; font-size: 14pt;
+  }
+
+  .toolbar {
+    position: fixed; top: 10px; right: 10px; background: #1E5F7D;
+    color: #FFF; padding: 10px 14px; border-radius: 8px; z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); font-size: 12pt;
+  }
+  .toolbar button {
+    background: #2F8EB9; color: #FFF; border: none; padding: 6px 12px;
+    border-radius: 4px; cursor: pointer; margin-right: 6px; font-family: inherit;
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  📄 التقرير — 16 شريحة
+  <button onclick="window.print()">🖨️ حفظ PDF</button>
+</div>
+
+<!-- SLIDE 1: COVER -->
+<section class="slide">
+  <div class="cover">
+    <div class="cover-left">
+      <img src="logo.png" alt="شعار دار الفرسان">
+      <h2>نتعلم • نتأمل • نتفكر</h2>
+    </div>
+    <div class="cover-right">
+      <div class="kicker">تقرير التعديلات المقترحة ▸</div>
+      <h1>بوابة القبول<br>والتسجيل</h1>
+      <div class="subtitle">خطة إعادة التصميم — موقعان مستقلان لفرعَي المدرسة</div>
+      <div class="divider"></div>
+      <div class="strong-line" style="direction:ltr; text-align:right;">مرجع النموذج التجريبي: fcoodee.github.io/Admission_Registration_1448-2027</div>
+      <div class="meta">الجهة المطوّرة المقترحة: أ. فهد السفياني — Senior Software Specialist</div>
+      <div class="meta">تاريخ التقرير: 8 يوليو 2026</div>
+      <div class="badge">
+        <b>مرفوع إلى:</b> الإدارة العليا وفريق التطوير التقني
+        <p><b>معدّ من قِبَل:</b> قسم التواصل المؤسسي</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 2: PROJECT CONTEXT -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>خلفية المشروع</h1>
+    <div class="sub">أهداف البوابة الحالية والرؤية التطويرية الجديدة</div>
+  </div>
+  <div class="content">
+    <div class="grid-2" style="height: 100%;">
+      <div>
+        <div class="section-title">✅ الأهداف الأصلية للبوابة (المرجعية)</div>
+        <div class="card card-strip" style="--strip-color:#2A9D8F; height: calc(100% - 0.7in); padding: 0.2in 0.25in 0.2in 0.2in;">
+          <ul style="--bullet:#2A9D8F;">
+            <li>دعم التوسع الجغرافي: دمج فرع الصالحية الجديد ضمن النظام.</li>
+            <li>تفعيل العرض الترويجي: إبراز خصم الافتتاح 40% تلقائياً لفرع الصالحية.</li>
+            <li>تنظيم المسارات: أتمتة الفرز بناءً على الموقع والجنس والمسار.</li>
+            <li>استراتيجية التوجيه: أسلوب التدرج (سؤال/جواب هرمي).</li>
+            <li>تخفيف الضغط الإداري عن فريق القبول والتسجيل.</li>
+            <li>ضمان دقة المعلومات وتوحيدها مع الحفاظ على الخصوصية.</li>
+            <li>تحويل الحالات الاستثنائية للمسؤول الإداري فوراً.</li>
+            <li>قيد التطوير: مستشار القبول الذكي (وكيل رقمي تفاعلي).</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="section-title">🎯 الرؤية التطويرية النهائية</div>
+        <div class="card card-strip" style="--strip-color:#2F8EB9; height: calc(100% - 0.7in); padding: 0.2in 0.25in 0.2in 0.2in;">
+          <ul>
+            <li>دمج البوابة مع الموقع الرسمي (وليست صفحة مستقلة).</li>
+            <li><b>⭐ موقعان مستقلان:</b> كل فرع له موقعه الكامل (السلامة + الصالحية).</li>
+            <li><b>⭐ كل موقع = صفحتان:</b> الصفحة الرئيسية + صفحة القبول الخاصة.</li>
+            <li>زر تبديل بين موقعَي الفرعين في كل مكان.</li>
+            <li>قسم مستقل لكل مسار تعليمي داخل الصفحة الرئيسية.</li>
+            <li>كل مسار: الكتب الدراسية + المعلومات + الرسوم + CTA.</li>
+            <li><b>🔗 FAQ = محتوى مشترك</b> يظهر في الموقعين (نفس المحتوى).</li>
+            <li>مرافق المدرسة: صور احترافية + جولة VR افتراضية 360°.</li>
+            <li>الهدف الأسمى: تجربة مقنعة تحفّز التسجيل الفعلي.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 2 من 16 | تقرير التعديلات المقترحة لبوابة القبول</span>
+  </div>
+</section>
+
+<!-- SLIDE 3: SITE ARCHITECTURE -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>المعمارية الجديدة للموقع (Site Architecture)</h1>
+    <div class="sub">موقعان مستقلان تحت نطاق واحد + FAQ مشترك</div>
+  </div>
+  <div class="content">
+    <div class="section-title">الهيكل الشجري للموقعين</div>
+
+    <!-- Root -->
+    <div style="text-align:center; margin-top: 0.15in;">
+      <div class="arch-node" style="background:#1E5F7D; min-width:2.3in;">
+        <b>🏠 الصفحة الرئيسية</b><br>
+        <span style="font-size:9pt; color:#C9E4F0;">daralforsan.edu.sa</span>
+      </div>
+    </div>
+
+    <!-- Branches -->
+    <div style="display:flex; justify-content: space-between; margin-top: 0.15in; align-items:center;">
+      <div class="arch-node" style="background:#2F8EB9; width:5.5in;">
+        <b>🌐 موقع فرع السلامة</b><br>
+        <span style="font-size:9pt; color:#C9E4F0;">daralforsan.edu.sa/salama</span>
+      </div>
+      <div class="arch-node" style="background:#E69F35; width:1.2in; padding: 0.05in;">
+        <b style="font-size:10pt;">🔄 تبديل</b>
+      </div>
+      <div class="arch-node" style="background:#2F8EB9; width:5.5in;">
+        <b>🌐 موقع فرع الصالحية 🆕</b><br>
+        <span style="font-size:9pt; color:#C9E4F0;">daralforsan.edu.sa/salhia</span>
+      </div>
+    </div>
+
+    <!-- Pages -->
+    <div style="display:flex; justify-content: space-between; margin-top: 0.15in;">
+      <div style="display:flex; gap:0.1in; width:5.5in;">
+        <div class="arch-node" style="background:#C9E4F0; color:#1E5F7D; width:2.7in;">
+          <b>📄 الصفحة الرئيسية</b><br>
+          <span style="font-size:9pt;">3 مسارات + VR + معرض</span>
+        </div>
+        <div class="arch-node" style="background:#E69F35; width:2.7in;">
+          <b>📋 صفحة القبول - السلامة</b><br>
+          <span style="font-size:9pt;">نموذج + رسوم + أوراق</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:0.1in; width:5.5in;">
+        <div class="arch-node" style="background:#C9E4F0; color:#1E5F7D; width:2.7in;">
+          <b>📄 الصفحة الرئيسية</b><br>
+          <span style="font-size:9pt;">2 قسم + خصم 40% + VR</span>
+        </div>
+        <div class="arch-node" style="background:#E69F35; width:2.7in;">
+          <b>📋 صفحة القبول - الصالحية</b><br>
+          <span style="font-size:9pt;">نموذج + رسوم بعد الخصم</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shared FAQ -->
+    <div style="text-align:center; margin-top: 0.15in;">
+      <div class="arch-node" style="background:#8E44AD; width:4.3in;">
+        <b>🔗 مكتبة FAQ مشتركة</b><br>
+        <span style="font-size:9pt;">تُستدعى في الموقعين بنفس المحتوى</span>
+      </div>
+    </div>
+
+    <!-- Explanation -->
+    <div style="background:#1E5F7D; color:#FFF; border-radius:10px; padding: 0.15in 0.2in; margin-top: 0.2in;">
+      <b style="font-size:13pt;">💡 كيف تعمل المعمارية؟</b>
+      <p style="font-size:11pt; line-height:1.5; margin-top: 0.05in;">
+        كل فرع يعمل كموقع مستقل تسويقياً — النموذج والرسوم والأوراق تختلف بين الفرعين، بينما تُدار الأسئلة الشائعة (FAQ) من مكتبة واحدة تظهر بنفس المحتوى في الموقعين لتجنب التكرار في التحديث. زر التبديل بين الفرعين متاح في كل صفحة.
+      </p>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 3 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 4: PARENT JOURNEY -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>رحلة ولي الأمر الجديدة (User Journey)</h1>
+    <div class="sub">من الاكتشاف إلى التسجيل الفعلي</div>
+  </div>
+  <div class="content">
+    <div class="section-title">7 خطوات سلسة داخل الموقع</div>
+    <div class="grid-7" style="margin-top: 0.15in;">
+      <!-- Step cards -->
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#2A9D8F; color:#FFF; padding: 0.08in; text-align:center; font-weight:700; font-size:11pt;">خطوة 1</div>
+        <div style="text-align:center; padding: 0.1in;"><div style="font-size:26pt;">🏠</div>
+        <div style="color:#1E5F7D; font-weight:700; margin-top:0.05in;">الوصول</div>
+        <div style="font-size:9.5pt; color:#4A4C4E;">الصفحة الرئيسية</div>
+        <div style="font-size:8.5pt; color:#8C8E90; margin-top:0.05in;">يكتشف الموقع</div></div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#2A9D8F; color:#FFF; padding: 0.08in; text-align:center; font-weight:700; font-size:11pt;">خطوة 2</div>
+        <div style="text-align:center; padding: 0.1in;"><div style="font-size:26pt;">🏫</div>
+        <div style="color:#1E5F7D; font-weight:700; margin-top:0.05in;">الاختيار</div>
+        <div style="font-size:9.5pt; color:#4A4C4E;">يختار الفرع</div>
+        <div style="font-size:8.5pt; color:#8C8E90; margin-top:0.05in;">السلامة أم الصالحية</div></div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#2A9D8F; color:#FFF; padding: 0.08in; text-align:center; font-weight:700; font-size:11pt;">خطوة 3</div>
+        <div style="text-align:center; padding: 0.1in;"><div style="font-size:26pt;">📚</div>
+        <div style="color:#1E5F7D; font-weight:700; margin-top:0.05in;">التصفح</div>
+        <div style="font-size:9.5pt; color:#4A4C4E;">يستكشف المسارات</div>
+        <div style="font-size:8.5pt; color:#8C8E90; margin-top:0.05in;">أهلي/دبلوما/خاصة</div></div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#2A9D8F; color:#FFF; padding: 0.08in; text-align:center; font-weight:700; font-size:11pt;">خطوة 4</div>
+        <div style="text-align:center; padding: 0.1in;"><div style="font-size:26pt;">💰</div>
+        <div style="color:#1E5F7D; font-weight:700; margin-top:0.05in;">المعرفة</div>
+        <div style="font-size:9.5pt; color:#4A4C4E;">الرسوم + الكتب</div>
+        <div style="font-size:8.5pt; color:#8C8E90; margin-top:0.05in;">شفافية كاملة</div></div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#2A9D8F; color:#FFF; padding: 0.08in; text-align:center; font-weight:700; font-size:11pt;">خطوة 5</div>
+        <div style="text-align:center; padding: 0.1in;"><div style="font-size:26pt;">🎥</div>
+        <div style="color:#1E5F7D; font-weight:700; margin-top:0.05in;">الاقتناع</div>
+        <div style="font-size:9.5pt; color:#4A4C4E;">جولة VR + صور</div>
+        <div style="font-size:8.5pt; color:#8C8E90; margin-top:0.05in;">يشوف المرافق</div></div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#2A9D8F; color:#FFF; padding: 0.08in; text-align:center; font-weight:700; font-size:11pt;">خطوة 6</div>
+        <div style="text-align:center; padding: 0.1in;"><div style="font-size:26pt;">✅</div>
+        <div style="color:#1E5F7D; font-weight:700; margin-top:0.05in;">القرار</div>
+        <div style="font-size:9.5pt; color:#4A4C4E;">زر التسجيل</div>
+        <div style="font-size:8.5pt; color:#8C8E90; margin-top:0.05in;">احجز/سجّل</div></div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#2A9D8F; color:#FFF; padding: 0.08in; text-align:center; font-weight:700; font-size:11pt;">خطوة 7</div>
+        <div style="text-align:center; padding: 0.1in;"><div style="font-size:26pt;">📋</div>
+        <div style="color:#1E5F7D; font-weight:700; margin-top:0.05in;">التنفيذ</div>
+        <div style="font-size:9.5pt; color:#4A4C4E;">صفحة قبول الفرع</div>
+        <div style="font-size:8.5pt; color:#8C8E90; margin-top:0.05in;">نموذج + FAQ</div></div>
+      </div>
+    </div>
+
+    <div style="background:#1E5F7D; color:#FFF; border-radius:10px; padding: 0.15in 0.2in; margin-top: 0.2in;">
+      <b style="font-size:14pt;">🎯 قيم إضافية داخل الرحلة</b>
+      <ul style="--bullet:#C9E4F0; margin-top: 0.1in;">
+        <li style="color:#FFF; font-size:11.5pt;">زر تبديل الفرع (Switch Branch) متاح في كل مكان — تنقل حر بلا ضياع.</li>
+        <li style="color:#FFF; font-size:11.5pt;">خصم 40% لفرع الصالحية يظهر تلقائياً في كل قسم من موقع الصالحية.</li>
+        <li style="color:#FFF; font-size:11.5pt;">جولة VR افتراضية 360° لكل فرع — الفصول، المختبرات، الملاعب، المسبح.</li>
+        <li style="color:#FFF; font-size:11.5pt;">زر واتساب عائم في كل الصفحات + أرقام الفرع الحالي في كل قسم.</li>
+        <li style="color:#FFF; font-size:11.5pt;">Chatbot ذكي (مستشار القبول) يجيب على الأسئلة الشائعة فوراً.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 4 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 5: SALAMA WEBSITE -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>موقع فرع السلامة — صفحتان متكاملتان</h1>
+    <div class="sub">الصفحة الرئيسية + صفحة القبول الخاصة</div>
+  </div>
+  <div class="content">
+    <div class="grid-2" style="height: 100%;">
+      <div>
+        <div class="section-title">📄 الصفحة الرئيسية للسلامة</div>
+        <div style="display:flex; flex-direction:column; gap: 0.04in;">
+          <div style="background:#1E5F7D; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>Hero — بانر السلامة</b><br><span style="font-size:9pt;">شعار + صورة + CTA رئيسي</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>🔄 زر تبديل → موقع الصالحية</b> — <span style="font-size:9pt;">شريط علوي دائم</span></div>
+          <div style="background:#2F8EB9; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>مقدمة + إحصائيات</b> — <span style="font-size:9pt;">60+ جائزة | معتمدون | 25 سنة</span></div>
+          <div style="background:#2A9D8F; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>قسم 1: المسار الأهلي</b><br><span style="font-size:9pt;">كتب + معلومات + رسوم + CTA</span></div>
+          <div style="background:#2A9D8F; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>قسم 2: الدبلوما الأمريكية</b><br><span style="font-size:9pt;">كتب + معلومات + رسوم + CTA</span></div>
+          <div style="background:#2A9D8F; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>قسم 3: التربية الخاصة</b><br><span style="font-size:9pt;">كتب + معلومات + رسوم + CTA</span></div>
+          <div style="background:#1E5F7D; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>🎥 جولة VR 360°</b> — <span style="font-size:9pt;">الفصول + الملاعب + المرافق</span></div>
+          <div style="background:#2F8EB9; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>معرض صور المرافق</b> — <span style="font-size:9pt;">10-15 صورة احترافية</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>زر رئيسي → صفحة القبول</b> — <span style="font-size:9pt;">الانتقال لخطوة التسجيل</span></div>
+          <div style="background:#8C8E90; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>خريطة + أرقام + واتساب</b> — <span style="font-size:9pt;">التواصل مع فرع السلامة</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-title">📋 صفحة القبول والتسجيل — السلامة</div>
+        <div style="display:flex; flex-direction:column; gap: 0.04in;">
+          <div style="background:#1E5F7D; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>Hero — القبول والتسجيل - السلامة</b><br><span style="font-size:9pt;">عنوان واضح</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>🔄 زر تبديل → صفحة قبول الصالحية</b> — <span style="font-size:9pt;">لتسهيل المقارنة</span></div>
+          <div style="background:#2A9D8F; color:#FFF; padding: 0.1in 0.15in; border-radius:5px;"><b>📝 نموذج التسجيل - خاص بالسلامة</b><br><span style="font-size:9pt;">5 حقول ذكية + كل مسارات السلامة</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>💰 جدول الرسوم الكامل - السلامة</b><br><span style="font-size:9pt;">الأهلي / الدبلوما / التربية الخاصة</span></div>
+          <div style="background:#2F8EB9; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>📄 الأوراق المطلوبة</b><br><span style="font-size:9pt;">قائمة PDF + شرح لكل مستند</span></div>
+          <div style="background:#1E5F7D; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>📅 المواعيد الحاسمة</b> — <span style="font-size:9pt;">بدء + إغلاق + اليوم المفتوح</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>🎁 الخصومات المتاحة</b> — <span style="font-size:9pt;">الأخوة + الكاش + مسابقة الكراسي</span></div>
+          <div style="background:#8E44AD; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>🔗 FAQ - محتوى مشترك (Shared)</b><br><span style="font-size:9pt;">يظهر نفس المحتوى في الفرعين</span></div>
+          <div style="background:#8C8E90; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>📞 التواصل مع السلامة</b> — <span style="font-size:9pt;">بنين + بنات + واتساب</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 5 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 6: SALHIA WEBSITE -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>موقع فرع الصالحية — صفحتان متكاملتان</h1>
+    <div class="sub">التركيز على خصم الافتتاح 40% كعنصر تحفيزي</div>
+  </div>
+  <div class="content">
+    <div class="grid-2" style="height: 100%;">
+      <div>
+        <div class="section-title">📄 الصفحة الرئيسية للصالحية 🆕</div>
+        <div style="display:flex; flex-direction:column; gap: 0.035in; font-size:9.5pt;">
+          <div style="background:#1E5F7D; color:#FFF; padding: 0.07in 0.15in; border-radius:5px;"><b>Hero — بانر الصالحية الجديدة 🆕</b><br><span style="font-size:8.5pt;">شعار الافتتاح الجديد</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>🎁 شارة خصم 40% متحركة (Sticky)</b> — <span style="font-size:8.5pt;">دائمة الظهور</span></div>
+          <div style="background:#2F8EB9; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>🔄 زر تبديل → موقع السلامة</b> — <span style="font-size:8.5pt;">شريط علوي دائم</span></div>
+          <div style="background:#2F8EB9; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>مقدمة الفرع الجديد</b><br><span style="font-size:8.5pt;">المزايا التأسيسية + استعارة السمعة</span></div>
+          <div style="background:#2A9D8F; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>قسم 1: أهلي بنات (KG-متوسط 1)</b><br><span style="font-size:8.5pt;">خصم 40% مطبّق تلقائياً + كتب + رسوم</span></div>
+          <div style="background:#2A9D8F; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>قسم 2: أهلي بنين (KG-3 ابتدائي)</b><br><span style="font-size:8.5pt;">خصم 40% مطبّق تلقائياً + كتب + رسوم</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>⚠️ لا يوجد دبلوما بالصالحية</b> — <span style="font-size:8.5pt;">توجيه لفرع السلامة للراغبين</span></div>
+          <div style="background:#1E5F7D; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>🎥 جولة VR للمبنى الجديد</b> — <span style="font-size:8.5pt;">أحدث الفصول والمرافق</span></div>
+          <div style="background:#2F8EB9; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>معرض صور — استلام المبنى</b> — <span style="font-size:8.5pt;">لقطات حصرية للمبنى الجديد</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>زر رئيسي → صفحة القبول</b> — <span style="font-size:8.5pt;">الانتقال لخطوة التسجيل</span></div>
+          <div style="background:#8C8E90; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>خريطة الأحياء + أرقام</b> — <span style="font-size:8.5pt;">الصالحية + الحمدانية + الرحمانية</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-title">📋 صفحة القبول والتسجيل — الصالحية</div>
+        <div style="display:flex; flex-direction:column; gap: 0.035in; font-size:9.5pt;">
+          <div style="background:#1E5F7D; color:#FFF; padding: 0.07in 0.15in; border-radius:5px;"><b>Hero — القبول والتسجيل - الصالحية 🆕</b><br><span style="font-size:8.5pt;">عنوان واضح + خصم 40%</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>🎁 عدّاد تنازلي: انتهاء عرض التأسيس</b><br><span style="font-size:8.5pt;">"متبقي X يوم"</span></div>
+          <div style="background:#2F8EB9; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>🔄 زر تبديل → صفحة قبول السلامة</b> — <span style="font-size:8.5pt;">لتسهيل المقارنة</span></div>
+          <div style="background:#2A9D8F; color:#FFF; padding: 0.1in 0.15in; border-radius:5px;"><b>📝 نموذج التسجيل - خاص بالصالحية</b><br><span style="font-size:8.5pt;">خصم 40% مطبّق تلقائياً في المحاكاة</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>💰 جدول الرسوم بعد خصم 40%</b><br><span style="font-size:8.5pt;">أهلي بنات + أهلي بنين فقط</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>💰 حاسبة توفير تفاعلية</b><br><span style="font-size:8.5pt;">أدخل عدد الأبناء = يحسب التوفير</span></div>
+          <div style="background:#2F8EB9; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>📄 الأوراق المطلوبة</b><br><span style="font-size:8.5pt;">قائمة PDF + شرح لكل مستند</span></div>
+          <div style="background:#E69F35; color:#FFF; padding: 0.06in 0.15in; border-radius:5px;"><b>👥 مؤشر المقاعد المتاحة</b><br><span style="font-size:8.5pt;">"متبقي X مقعد من أصل 400"</span></div>
+          <div style="background:#8E44AD; color:#FFF; padding: 0.08in 0.15in; border-radius:5px;"><b>🔗 FAQ - نفس محتوى السلامة (Shared)</b><br><span style="font-size:8.5pt;">مكتبة مركزية موحّدة</span></div>
+          <div style="background:#8C8E90; color:#FFF; padding: 0.05in 0.15in; border-radius:5px;"><b>📞 التواصل مع الصالحية</b> — <span style="font-size:8.5pt;">الأرقام + واتساب</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 6 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 7: TRACK SECTION DETAIL -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>تفاصيل قسم المسار الواحد</h1>
+    <div class="sub">كل قسم مسار داخل الصفحة الرئيسية يحتوي على ما يلي</div>
+  </div>
+  <div class="content">
+    <div class="section-title">المكونات الإجبارية داخل كل قسم مسار (Track Section)</div>
+    <div class="grid-3" style="margin-top: 0.15in;">
+      <div class="card" style="padding: 0.2in; border-top: 4px solid #2F8EB9;">
+        <div style="font-size:20pt; color:#2F8EB9;">1️⃣</div>
+        <b style="color:#1E5F7D; font-size:12pt;">العنوان + الوصف المختصر</b>
+        <p style="font-size:10pt; color:#4A4C4E; line-height:1.3; margin-top:0.05in;">"المسار الأهلي — التعليم السعودي المعتمد"</p>
+      </div>
+      <div class="card" style="padding: 0.2in; border-top: 4px solid #2F8EB9;">
+        <div style="font-size:20pt; color:#2F8EB9;">2️⃣</div>
+        <b style="color:#1E5F7D; font-size:12pt;">بطاقات المراحل الدراسية</b>
+        <p style="font-size:10pt; color:#4A4C4E; line-height:1.3; margin-top:0.05in;">رياض / ابتدائي / متوسط / ثانوي (حسب الفرع)</p>
+      </div>
+      <div class="card" style="padding: 0.2in; border-top: 4px solid #2A9D8F;">
+        <div style="font-size:20pt; color:#2A9D8F;">3️⃣</div>
+        <b style="color:#1E5F7D; font-size:12pt;">📚 الكتب الدراسية</b>
+        <p style="font-size:10pt; color:#4A4C4E; line-height:1.3; margin-top:0.05in;">قائمة قابلة للتوسع + PDF قابل للتحميل</p>
+      </div>
+      <div class="card" style="padding: 0.2in; border-top: 4px solid #1E5F7D;">
+        <div style="font-size:20pt; color:#1E5F7D;">4️⃣</div>
+        <b style="color:#1E5F7D; font-size:12pt;">معلومات المنهج والمزايا</b>
+        <p style="font-size:10pt; color:#4A4C4E; line-height:1.3; margin-top:0.05in;">STEM + موهبة + IELTS + مسابقات + الأنشطة</p>
+      </div>
+      <div class="card" style="padding: 0.2in; border-top: 4px solid #E69F35;">
+        <div style="font-size:20pt; color:#E69F35;">5️⃣</div>
+        <b style="color:#1E5F7D; font-size:12pt;">💰 جدول الرسوم الشفاف</b>
+        <p style="font-size:10pt; color:#4A4C4E; line-height:1.3; margin-top:0.05in;">الرسوم قبل + بعد الخصم (إن وجد)</p>
+      </div>
+      <div class="card" style="padding: 0.2in; border-top: 4px solid #2A9D8F;">
+        <div style="font-size:20pt; color:#2A9D8F;">6️⃣</div>
+        <b style="color:#1E5F7D; font-size:12pt;">🏆 نتائج وإنجازات الطلاب</b>
+        <p style="font-size:10pt; color:#4A4C4E; line-height:1.3; margin-top:0.05in;">60+ جائزة + معدلات النجاح + قصص</p>
+      </div>
+      <div class="card" style="padding: 0.2in; border-top: 4px solid #E69F35; grid-column: 2 / 3;">
+        <div style="font-size:20pt; color:#E69F35;">7️⃣</div>
+        <b style="color:#1E5F7D; font-size:12pt;">زران CTA رئيسيان</b>
+        <p style="font-size:10pt; color:#4A4C4E; line-height:1.3; margin-top:0.05in;">[احجز زيارة] [ابدأ التسجيل → صفحة القبول]</p>
+      </div>
+      <div class="card" style="padding: 0.2in; border-top: 4px solid #2F8EB9;">
+        <div style="font-size:20pt; color:#2F8EB9;">8️⃣</div>
+        <b style="color:#1E5F7D; font-size:12pt;">📞 أرقام تواصل مباشرة</b>
+        <p style="font-size:10pt; color:#4A4C4E; line-height:1.3; margin-top:0.05in;">قسم البنين + قسم البنات + واتساب</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 7 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 8: FAQ SHARED MODULE -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>مكتبة FAQ المشتركة (Shared Module)</h1>
+    <div class="sub">المحتوى الوحيد المشترك بين الموقعين</div>
+  </div>
+  <div class="content">
+    <div class="grid-2" style="height: 100%;">
+      <div>
+        <div class="section-title">💡 لماذا FAQ مشترك؟</div>
+        <div class="card card-strip" style="--strip-color:#8E44AD; padding: 0.2in 0.25in;">
+          <ul style="--bullet:#8E44AD;">
+            <li>✅ سهولة الإدارة: تحديث السؤال مرة واحدة يظهر في الموقعين.</li>
+            <li>✅ اتساق المعلومات: لا تناقض بين الفروع في الأسئلة الشائعة.</li>
+            <li>✅ تقليل الجهد: تجنب تكرار كتابة نفس الأسئلة مرتين.</li>
+            <li>✅ أسئلة الفروع تتشابه في 80% من الحالات.</li>
+            <li>✅ توفير الوقت لفريق قسم القبول عند تحديث المحتوى.</li>
+            <li>✅ سهولة الترجمة للإنجليزية لاحقاً.</li>
+            <li>✅ يمكن إضافة أسئلة خاصة بكل فرع كـ Tags للفلترة.</li>
+            <li>🔧 التنفيذ التقني: استدعاء البيانات من قاعدة بيانات JSON أو CMS.</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="section-title">🏗️ التنفيذ التقني للـ FAQ</div>
+        <div style="background:#1E2A38; color:#C9E4F0; padding: 0.2in; border-radius:8px; font-family: 'Consolas', monospace; direction:ltr; text-align:left; font-size:9.5pt; line-height:1.5; height: calc(100% - 0.7in); overflow:hidden;">
+<pre style="font-family:inherit; margin:0;">// data/faq.json (مكتبة موحّدة)
+[
+  {
+    "id": 1,
+    "question": "ما المسارات المتاحة؟",
+    "answer": "الأهلي، الدبلوما، التربية الخاصة",
+    "tags": ["salama", "salhia", "general"]
+  },
+  {
+    "id": 2,
+    "question": "ما شروط قبول الدبلوما؟",
+    "answer": "شهادة إنجليزي + اختبار مستوى",
+    "tags": ["salama"] // خاص بالسلامة فقط
+  },
+  {
+    "id": 3,
+    "question": "هل خصم 40% شامل جميع المسارات؟",
+    "answer": "نعم للدفعة التأسيسية الأولى",
+    "tags": ["salhia"] // خاص بالصالحية
+  }
+]
+
+// في صفحة السلامة:
+faq.filter(q => q.tags.includes("salama"))
+
+// في صفحة الصالحية:
+faq.filter(q => q.tags.includes("salhia"))</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 8 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 9: VR TOUR SPEC -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>الجولة الافتراضية VR — المواصفات</h1>
+    <div class="sub">أهم عنصر تنافسي — منفصل لكل فرع</div>
+  </div>
+  <div class="content">
+    <div class="grid-2" style="height: 100%;">
+      <div>
+        <div class="section-title">🎥 المشاهد المطلوب تصويرها لكل فرع</div>
+        <div class="card card-strip" style="--strip-color:#2F8EB9; padding: 0.2in 0.25in;">
+          <ul>
+            <li>🚪 البوابة الرئيسية والاستقبال</li>
+            <li>🏫 الفناء الخارجي والملاعب المغطاة</li>
+            <li>📚 نموذج فصل رياض الأطفال</li>
+            <li>📚 نموذج فصل ابتدائي حديث</li>
+            <li>🔬 مختبر العلوم / STEM / الروبوت</li>
+            <li>💻 مختبر الحاسب الآلي</li>
+            <li>🎨 قاعة الأنشطة الفنية</li>
+            <li>🏊 المسبح المغطى (السلامة فقط)</li>
+            <li>🍽️ الكافتيريا / منطقة الوجبات</li>
+            <li>📖 المكتبة</li>
+            <li>🕌 المصلى</li>
+            <li>🚌 موقف الباصات المدرسية</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="section-title">🛠️ المواصفات التقنية</div>
+        <div class="card card-strip" style="--strip-color:#1E5F7D; padding: 0.15in 0.2in;">
+          <table style="font-size:10.5pt;">
+            <tr><td class="strong" style="text-align:right;">عدد المشاهد</td><td style="text-align:right;">12 مشهد × 2 فرع = 24 مشهد</td></tr>
+            <tr><td class="strong" style="text-align:right;">الكاميرا</td><td style="text-align:right;">Insta360 X3 (~2,500 ر.س)</td></tr>
+            <tr><td class="strong" style="text-align:right;">منصة الاستضافة</td><td style="text-align:right;">Kuula.co أو Matterport</td></tr>
+            <tr><td class="strong" style="text-align:right;">طريقة الدمج</td><td style="text-align:right;">iframe في الصفحتين</td></tr>
+            <tr><td class="strong" style="text-align:right;">الحجم</td><td style="text-align:right;">أقل من 5 MB / مشهد</td></tr>
+            <tr><td class="strong" style="text-align:right;">التنقل</td><td style="text-align:right;">Hotspots تنقل بين المشاهد</td></tr>
+            <tr><td class="strong" style="text-align:right;">الترجمة</td><td style="text-align:right;">دعم عربي + إنجليزي</td></tr>
+            <tr><td class="strong" style="text-align:right;">التوافق</td><td style="text-align:right;">الجوال + iPad + الكمبيوتر</td></tr>
+            <tr><td class="strong" style="text-align:right;">VR Glasses</td><td style="text-align:right;">متوافق مع Google Cardboard</td></tr>
+            <tr><td class="strong" style="text-align:right;">مدة الإنتاج</td><td style="text-align:right;">3-5 أيام تصوير + أسبوع تحرير</td></tr>
+            <tr><td class="strong" style="text-align:right;">التكلفة</td><td style="text-align:right;">10,000 - 15,000 ر.س للفرعين</td></tr>
+            <tr><td class="strong" style="text-align:right;">الفائدة</td><td style="text-align:right;">زيادة معدل التحويل 40-60%</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 9 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 10: CHANGES TABLE -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>التعديلات التفصيلية على البوابة الحالية</h1>
+    <div class="sub">مقارنة: الوضع الحالي vs الوضع المطلوب</div>
+  </div>
+  <div class="content">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40%;">المطلوب في التصميم الجديد</th>
+          <th style="width:38%;">الوضع الحالي (Prototype)</th>
+          <th style="width:22%;">العنصر</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>موقعان مستقلان × 2 صفحة = 4 صفحات إجمالاً</td><td>صفحة واحدة تشمل الفرعين</td><td class="strong">🗂️ عدد الصفحات</td></tr>
+        <tr><td>Landing pages تسويقية + صفحة قبول لكل فرع</td><td>Dashboard لعرض نسب الإنجاز</td><td class="strong">🎨 نوع الصفحة</td></tr>
+        <tr><td>زر تبديل بين الفرعين في كل صفحة</td><td>❌ لا يوجد</td><td class="strong">🔄 التنقل بين الفروع</td></tr>
+        <tr><td>قسم مستقل لكل مسار داخل الفرع</td><td>قوائم منسدلة فقط</td><td class="strong">📚 عرض المسارات</td></tr>
+        <tr><td>الكتب الدراسية + معلومات + رسوم</td><td>❌ لا يوجد</td><td class="strong">📖 محتوى المسار</td></tr>
+        <tr><td>صور احترافية + جولة VR 360° لكل فرع</td><td>❌ لا يوجد</td><td class="strong">🎥 المرافق</td></tr>
+        <tr><td>شارة خصم 40% متحركة دائمة في الصالحية فقط</td><td>ذكر عادي في العنوان</td><td class="strong">🎁 خصم الصالحية</td></tr>
+        <tr><td>نموذج تسجيل خاص لكل فرع (5 حقول ذكية)</td><td>رابط لبوابة خارجية</td><td class="strong">📝 نموذج التسجيل</td></tr>
+        <tr><td>FAQ مكتبة مشتركة تُستدعى في الموقعين</td><td>❌ لا يوجد</td><td class="strong">❓ الأسئلة الشائعة</td></tr>
+        <tr><td>رسوم منفصلة لكل فرع (السلامة كاملة، الصالحية بخصم)</td><td>❌ لا يوجد جدول رسوم</td><td class="strong">💰 الرسوم</td></tr>
+        <tr><td>أرقام الفرع + واتساب في كل قسم</td><td>أرقام في الأعلى فقط</td><td class="strong">📞 التواصل</td></tr>
+        <tr><td>Chatbot مستشار القبول (قيد التطوير)</td><td>قيد التطوير (كما ذُكر)</td><td class="strong">🤖 المستشار الذكي</td></tr>
+        <tr><td>دمج مع الموقع الرسمي كنطاق فرعي</td><td>استضافة GitHub Pages مستقلة</td><td class="strong">🌐 الاستضافة</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 10 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 11: KEEP - IMPROVE - REMOVE -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>ماذا نُبقي؟ ماذا نطوّر؟ ماذا نُلغي؟</h1>
+    <div class="sub">قرارات جوهرية للتعامل مع الـ Prototype الحالي</div>
+  </div>
+  <div class="content">
+    <div class="grid-3" style="height: 100%;">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#2A9D8F; color:#FFF; padding: 0.15in; text-align:center;">
+          <div style="font-size:16pt; font-weight:800;">✅ نُبقي</div>
+          <div style="font-size:10pt;">عناصر ممتازة تُنقل كما هي</div>
+        </div>
+        <div style="padding: 0.15in;">
+          <ul style="--bullet:#2A9D8F; font-size:10pt;">
+            <li>الألوان والهوية البصرية العامة.</li>
+            <li>تصميم البطاقات (Cards) — أنيق ومنظّم.</li>
+            <li>ذكر خصم الافتتاح 40% لفرع الصالحية.</li>
+            <li>زر واتساب لكل فرع (مع تحسين النصوص).</li>
+            <li>دعم RTL الكامل واختيار خط Cairo.</li>
+            <li>التصميم المتجاوب (Responsive).</li>
+            <li>فكرة الأيقونات لكل قسم.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#E69F35; color:#FFF; padding: 0.15in; text-align:center;">
+          <div style="font-size:16pt; font-weight:800;">🔧 نُطوّر</div>
+          <div style="font-size:10pt;">عناصر جيدة تحتاج إعادة تصميم</div>
+        </div>
+        <div style="padding: 0.15in;">
+          <ul style="--bullet:#E69F35; font-size:10pt;">
+            <li>الفصل بين الفرعين → موقعان بصفحتين لكل فرع.</li>
+            <li>معلومات المسارات → أقسام تفصيلية مستقلة.</li>
+            <li>أرقام التواصل → أرقام في كل قسم.</li>
+            <li>زر التسجيل → نموذج ذكي متكامل لكل فرع.</li>
+            <li>شارة الخصم → متحركة وأكثر بروزاً.</li>
+            <li>إضافة عناصر VR ومعرض صور.</li>
+            <li>بناء مكتبة FAQ مشتركة قابلة للاستدعاء.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="background:#C0392B; color:#FFF; padding: 0.15in; text-align:center;">
+          <div style="font-size:16pt; font-weight:800;">🗑️ نُلغي</div>
+          <div style="font-size:10pt;">عناصر لا تناسب الجمهور</div>
+        </div>
+        <div style="padding: 0.15in;">
+          <ul style="--bullet:#C0392B; font-size:10pt;">
+            <li>لوحة "نسب اكتمال الملفات" (إداري داخلي).</li>
+            <li>المراحل الثلاث (استقبال/مراجعة/قبول) للعامة.</li>
+            <li>أكواد الملفات (SLH-1-1) — تربك ولي الأمر.</li>
+            <li>زر "صلاحية مسؤول القبول" الظاهر.</li>
+            <li>🚨 كلمات السر المكشوفة في الكود.</li>
+            <li>بيانات اختبار (admission@...).</li>
+            <li>أزرار رفع الملفات في الصفحة العامة.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 11 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 12: SECURITY FIXES -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>الإصلاحات الأمنية العاجلة</h1>
+    <div class="sub">🚨 قبل أي تطوير أو نشر جديد</div>
+  </div>
+  <div class="content">
+    <div class="section-title">الثغرات الحرجة الحالية والحلول المطلوبة</div>
+    <table style="margin-top: 0.1in; font-size:9.5pt;">
+      <thead>
+        <tr>
+          <th style="width:48%;">الحل المطلوب</th>
+          <th style="width:47%;">المشكلة الحالية</th>
+          <th style="width:5%;">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>نقل المصادقة إلى Backend (Firebase Auth / Auth0). لا يجوز أن تكون في Frontend.</td><td>🚨 كلمات السر مكتوبة صراحة في الكود (ADMIN_USERS array).</td><td class="strong">1</td></tr>
+        <tr><td>حذف السطر الذي يذكر بيانات الدخول التجريبية من الصفحة العامة.</td><td>🚨 كلمات السر معروضة نصياً: "للتجربة: admission@... / Admission@2026".</td><td class="strong">2</td></tr>
+        <tr><td>ربط رفع الملفات بـ Firebase Storage أو AWS S3 مع تشفير ومراجعة.</td><td>🚨 رفع الملفات وهمي — الملفات لا تُحفظ في أي مكان.</td><td class="strong">3</td></tr>
+        <tr><td>فصل صفحة الإدارة عن صفحة العرض العام تماماً — نطاق فرعي مختلف.</td><td>🚨 لوحة الإدارة والعرض العام في نفس الصفحة.</td><td class="strong">4</td></tr>
+        <tr><td>نقل الاستضافة من GitHub Pages إلى نطاق رسمي (salama/salhia.daralforsan.edu.sa).</td><td>الاستضافة على fcoodee.github.io (نطاق شخصي غير رسمي).</td><td class="strong">5</td></tr>
+        <tr><td>تفعيل HTTPS Strict + CSP + Rate Limiting.</td><td>لا توجد رؤوس أمنية (Security Headers).</td><td class="strong">6</td></tr>
+        <tr><td>إضافة سياسة خصوصية واضحة (PDPL Compliance) في كل موقع.</td><td>لا يوجد نص سياسة خصوصية للامتثال للأنظمة السعودية.</td><td class="strong">7</td></tr>
+        <tr><td>تشفير جميع البيانات الشخصية (Encryption at Rest + In Transit).</td><td>لا يوجد تشفير للبيانات (لأنها لا تُحفظ أصلاً).</td><td class="strong">8</td></tr>
+        <tr><td>تفعيل 2FA على حسابات المسؤولين.</td><td>لا توجد حماية إضافية لحسابات الإدارة.</td><td class="strong">9</td></tr>
+        <tr><td>تغيير كلمات السر الفعلية لإيميلات admission@ و registrar@ فوراً.</td><td>🚨 هذه الإيميلات أصبحت مكشوفة للعامة الآن.</td><td class="strong">10</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 12 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 13: TECHNICAL STACK -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>المكدس التقني المقترح (Technical Stack)</h1>
+    <div class="sub">التقنيات والأدوات لبناء النسخة النهائية</div>
+  </div>
+  <div class="content">
+    <table style="font-size:10pt;">
+      <thead>
+        <tr>
+          <th style="width:33%;">التكلفة التقريبية</th>
+          <th style="width:37%;">الأداة / التقنية</th>
+          <th style="width:30%;">المكوّن</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>مجاني</td><td>Next.js 14 (App Router) + React 18</td><td class="strong">الواجهة الأمامية (Frontend)</td></tr>
+        <tr><td>مجاني</td><td>Tailwind CSS + Shadcn/ui</td><td class="strong">التصميم والمكونات</td></tr>
+        <tr><td>مجاني</td><td>Multi-tenant architecture (route groups)</td><td class="strong">بنية الموقعين</td></tr>
+        <tr><td>مجاني (Blaze عند الاحتياج)</td><td>Firebase Firestore</td><td class="strong">قاعدة البيانات</td></tr>
+        <tr><td>مجاني حتى 5GB</td><td>Firebase Storage</td><td class="strong">رفع المستندات</td></tr>
+        <tr><td>مجاني حتى 10K/شهر</td><td>Firebase Auth (SMS OTP)</td><td class="strong">تسجيل ولي الأمر</td></tr>
+        <tr><td>مجاني</td><td>Vercel أو Netlify</td><td class="strong">الاستضافة</td></tr>
+        <tr><td>مجاني</td><td>*.daralforsan.edu.sa (subdomains)</td><td class="strong">النطاق الفرعي الرسمي</td></tr>
+        <tr><td>مجاني (SSL تلقائي)</td><td>Cloudflare</td><td class="strong">CDN + WAF + SSL</td></tr>
+        <tr><td>50-100$/شهر</td><td>Wati.io أو 360dialog</td><td class="strong">WhatsApp Business API</td></tr>
+        <tr><td>مجاني</td><td>Google Analytics 4</td><td class="strong">التحليلات</td></tr>
+        <tr><td>Setup مرة واحدة (~15K ر.س)</td><td>Kuula.co أو Matterport</td><td class="strong">منصة VR Tour</td></tr>
+        <tr><td>30-50$/شهر (اختياري)</td><td>Landbot / OpenAI Assistant</td><td class="strong">Chatbot مستشار القبول</td></tr>
+        <tr><td>مجاني</td><td>GitHub Actions + Sentry</td><td class="strong">CI/CD + مراقبة الأخطاء</td></tr>
+      </tbody>
+    </table>
+    <div style="background:#1E5F7D; color:#FFF; padding: 0.1in 0.2in; border-radius:6px; margin-top: 0.15in; text-align:right; font-weight:700;">
+      💰 إجمالي التكلفة: Setup لمرة واحدة ~15,000 ر.س (VR + WhatsApp) | تشغيلية شهرية ~500 ر.س فقط
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 13 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 14: TIMELINE -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>خارطة الطريق التنفيذية</h1>
+    <div class="sub">خطة 6 أسابيع من التصميم إلى الإطلاق</div>
+  </div>
+  <div class="content">
+    <div class="section-title">المراحل الزمنية بالمهام والمسؤوليات</div>
+    <table style="font-size:10.5pt; margin-top: 0.1in;">
+      <thead>
+        <tr>
+          <th style="width:25%;">المخرج المطلوب</th>
+          <th style="width:20%;">المسؤول</th>
+          <th style="width:38%;">المهام الرئيسية</th>
+          <th style="width:17%;">الأسبوع</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Mockups جاهزة للاعتماد</td><td>قسم التواصل + مصمم UI/UX</td><td>تصميم Wireframes + Mockups + Design System في Figma لكل موقع</td><td class="strong">1. التصميم</td></tr>
+        <tr><td>الواجهات جاهزة (بدون Backend)</td><td>أ. فهد السفياني</td><td>بناء الموقعين (4 صفحات) بـ Next.js + Multi-tenant</td><td class="strong">2. البناء الأمامي</td></tr>
+        <tr><td>24 مشهد VR جاهز (12 لكل فرع)</td><td>مصور خارجي متخصص</td><td>تصوير المدرستين 360° + معالجة + رفع على Kuula</td><td class="strong">3. VR + الصور</td></tr>
+        <tr><td>نظام حقيقي يعمل</td><td>أ. فهد + مطور Backend</td><td>Firebase Setup + نموذجَي التسجيل + رفع الملفات + Auth</td><td class="strong">4. التكامل</td></tr>
+        <tr><td>Chatbot + WhatsApp API + FAQ مشترك</td><td>أ. فهد + قسم التواصل</td><td>بناء مكتبة FAQ + قاعدة الأسئلة + Landbot + WhatsApp</td><td class="strong">5. الأتمتة</td></tr>
+        <tr><td>الموقعان منشوران على النطاقين الرسميين</td><td>الفريق كامل + IT</td><td>اختبار + تصحيح + تدريب فريق القبول + إعلان الإطلاق</td><td class="strong">6. الإطلاق</td></tr>
+      </tbody>
+    </table>
+    <div class="section-title" style="margin-top: 0.2in;">مؤشرات نجاح المشروع (KPIs)</div>
+    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:0.1in;">
+      <div class="card" style="padding: 0.1in; border-right: 5px solid #2A9D8F;"><b style="color:#1E5F7D; font-size:10pt;">Bounce Rate</b><br><b style="color:#2A9D8F;">أقل من 30%</b></div>
+      <div class="card" style="padding: 0.1in; border-right: 5px solid #2A9D8F;"><b style="color:#1E5F7D; font-size:10pt;">Conversion Rate</b><br><b style="color:#2A9D8F;">أعلى من 15%</b></div>
+      <div class="card" style="padding: 0.1in; border-right: 5px solid #2A9D8F;"><b style="color:#1E5F7D; font-size:10pt;">Time on Site</b><br><b style="color:#2A9D8F;">أكثر من 4 دقائق</b></div>
+      <div class="card" style="padding: 0.1in; border-right: 5px solid #2A9D8F;"><b style="color:#1E5F7D; font-size:10pt;">Support Calls</b><br><b style="color:#2A9D8F;">انخفاض 60%</b></div>
+      <div class="card" style="padding: 0.1in; border-right: 5px solid #2A9D8F;"><b style="color:#1E5F7D; font-size:10pt;">Mobile UX Score</b><br><b style="color:#2A9D8F;">أعلى من 90</b></div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 14 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 15: FAQ CONTENT -->
+<section class="slide">
+  <div class="topbar">
+    <div class="logo"></div>
+    <h1>الأسئلة الشائعة (FAQ) — المحتوى المقترح للمكتبة المشتركة</h1>
+    <div class="sub">أسئلة أولياء الأمور الأكثر تكراراً</div>
+  </div>
+  <div class="content">
+    <table style="font-size:10pt;">
+      <thead>
+        <tr>
+          <th style="width:15%;">الفرع المستهدف</th>
+          <th style="width:50%;">الإجابة المختصرة</th>
+          <th style="width:35%;">السؤال</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>🟢 مشترك</td><td>3 مسارات: (1) الأهلي (2) الدبلوما الأمريكية (3) التربية الخاصة.</td><td class="strong">ما المسارات التعليمية المتاحة؟</td></tr>
+        <tr><td>🟢 مشترك</td><td>الاطلاع على جدول الرسوم الكامل في صفحة القبول الخاصة بكل فرع.</td><td class="strong">كم رسوم المدرسة السنوية؟</td></tr>
+        <tr><td>🟢 مشترك</td><td>نعم عبر تابي وتمارا بدون فوائد + تقسيط بنكي متاح.</td><td class="strong">هل يمكنني تقسيط الرسوم؟</td></tr>
+        <tr><td>🟢 مشترك</td><td>نعم، احجز زيارتك المجانية من الصفحة الرئيسية للفرع.</td><td class="strong">هل يمكنني زيارة المدرسة قبل التسجيل؟</td></tr>
+        <tr><td>🟢 مشترك</td><td>هوية ولي الأمر + شهادة ميلاد + كشف درجات + تقرير طبي.</td><td class="strong">ما الأوراق المطلوبة للتسجيل؟</td></tr>
+        <tr><td>🟢 مشترك</td><td>نعم للمسار الدبلوما فقط + للطلاب فوق الصف الرابع.</td><td class="strong">هل يوجد اختبار قبول؟</td></tr>
+        <tr><td>🟢 مشترك</td><td>نعم بأسطول باصات آمن يغطي معظم أحياء جدة.</td><td class="strong">هل يوجد خدمة نقل مدرسي؟</td></tr>
+        <tr><td>🟢 مشترك</td><td>STEM + الروبوت + تحدي القراءة + كانجارو + آيسف + IELTS.</td><td class="strong">ما البرامج الإثرائية المميزة؟</td></tr>
+        <tr><td>🔵 السلامة فقط</td><td>كل المراحل من رياض إلى ثانوي + كل المسارات (الأهلي، الدبلوما، التربية الخاصة).</td><td class="strong">ما المراحل المتاحة بفرع السلامة؟</td></tr>
+        <tr><td>🟠 الصالحية فقط</td><td>نعم بخصم تأسيسي 40% لأول دفعة. متبقي X مقعد.</td><td class="strong">هل التسجيل مفتوح في فرع الصالحية؟</td></tr>
+        <tr><td>🟠 الصالحية فقط</td><td>بنات: من رياض إلى أول متوسط | بنين: من رياض إلى ثالث ابتدائي (أهلي فقط).</td><td class="strong">ما المراحل المتاحة بفرع الصالحية؟</td></tr>
+        <tr><td>🟠 الصالحية فقط</td><td>الصالحية + الحمدانية + الرحمانية + الريان + الكوثر.</td><td class="strong">أي أحياء يخدمها فرع الصالحية؟</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <span>قسم التواصل المؤسسي | مدارس دار الفرسان الأهلية</span>
+    <span>صفحة 15 من 16</span>
+  </div>
+</section>
+
+<!-- SLIDE 16: CONCLUSION -->
+<section class="slide">
+  <div class="final">
+    <img src="logo.png" style="position:absolute; top:0.35in; left:0.4in; width:0.85in; height:0.85in;">
+    <h1>الخلاصة والقرار المطلوب</h1>
+    <div class="pillar" style="--pcolor:#2A9D8F;">
+      <h3>💡 المعمارية الجديدة استراتيجية ومحكمة</h3>
+      <p>موقعان مستقلان لكل فرع مع FAQ مشترك = أفضل تجربة استخدام. كل فرع يظهر كوحدة قوية بهويته الخاصة، مع تجنب تكرار المحتوى الإداري.</p>
+    </div>
+    <div class="pillar" style="--pcolor:#E69F35;">
+      <h3>🛠️ العمل التقني موجود ويحتاج توجيه</h3>
+      <p>أ. فهد السفياني أثبت قدرة تقنية عالية في التصميم الحالي. المطلوب: تحويل رؤيته إلى معمارية متعددة النطاقات + معالجة الثغرات الأمنية + دعم بميزانية VR.</p>
+    </div>
+    <div class="pillar" style="--pcolor:#C9E4F0;">
+      <h3>🚀 خلال 6 أسابيع نطلق منتجاً احترافياً</h3>
+      <p>بميزانية 15,000 ر.س Setup + 500 ر.س شهرياً، نحصل على موقعين عالميَي المستوى. العائد المتوقع: مضاعفة معدل التحويل خلال شهرين من الإطلاق.</p>
+    </div>
+    <div class="recommendation">
+      التوصية: اعتماد المعمارية الجديدة + معالجة الثغرات الأمنية الفورية + بدء التنفيذ من الأسبوع القادم
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

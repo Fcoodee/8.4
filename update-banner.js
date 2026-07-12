@@ -1,13 +1,13 @@
 /* ============================================================
    UPDATE BANNER — صندوق إشعار "آخر التحديثات"
-   يظهر فقط في index.html، لمدة أسبوع واحد بدءًا من 2026-07-11 22:14 (بتوقيت السعودية)
+   يظهر فقط في index.html، لمدة أسبوع واحد بدءًا من 2026-07-12 (بتوقيت السعودية)
    بعدها يتوقف عن الظهور تلقائيًا دون أي تدخل يدوي.
    ============================================================ */
 (function () {
   'use strict';
 
   /* ---------- نافذة الظهور: أسبوع واحد من لحظة إضافة هذا التحديث ---------- */
-  var SHOW_FROM = new Date('2026-07-11T22:14:19+03:00').getTime();
+  var SHOW_FROM = new Date('2026-07-12T00:00:00+03:00').getTime();
   var SHOW_UNTIL = SHOW_FROM + 7 * 24 * 60 * 60 * 1000; // +7 أيام
 
   var now = Date.now();
@@ -25,8 +25,10 @@
     + '.ubnr-icon{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(198,154,70,.18);'
     + 'display:flex;align-items:center;justify-content:center;font-size:18px;}'
     + '.ubnr-text{flex:1;min-width:0;}'
-    + '.ubnr-title{font-size:12.5px;font-weight:800;color:#E7CD8E;margin-bottom:3px;}'
+    + '.ubnr-title{font-size:12.5px;font-weight:800;color:#E7CD8E;margin-bottom:5px;}'
     + '.ubnr-msg{font-size:12px;color:#D9E0E6;line-height:1.7;}'
+    + '.ubnr-list{margin:6px 0 0;padding-right:16px;font-size:11.5px;color:#D9E0E6;line-height:1.9;}'
+    + '.ubnr-list li{margin-bottom:2px;}'
     + '.ubnr-close{flex-shrink:0;background:rgba(255,255,255,.1);border:none;color:#E7CD8E;'
     + 'width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:12px;line-height:1;}'
     + '.ubnr-bar-track{height:4px;background:rgba(255,255,255,.12);}'
@@ -47,8 +49,13 @@
     '<div class="ubnr-inner">' +
       '<div class="ubnr-icon">🎉</div>' +
       '<div class="ubnr-text">' +
-        '<div class="ubnr-title">تحديث جديد — النسخة v8.3</div>' +
-        '<div class="ubnr-msg">تم تحديث المشروع للنسخة v8.3 الجديدة، حيث تم إضافة شات بوت محادثة 🤖. شكرًا لكم.</div>' +
+        '<div class="ubnr-title">تحديث جديد — النسخة v8.4</div>' +
+        '<div class="ubnr-msg">تم تحديث النسخة إلى v8.4:' +
+          '<ul class="ubnr-list">' +
+            '<li>إضافة تحسينات إلى شات المحادثة الذكي 🤖</li>' +
+            '<li>إتاحة مراسلة المطوّر من على الصفحة ✉️</li>' +
+          '</ul>' +
+        '</div>' +
       '</div>' +
       '<button class="ubnr-close" aria-label="إغلاق">✕</button>' +
     '</div>' +
@@ -68,5 +75,5 @@
     var fill = document.getElementById('ubnrBarFill');
     if (fill) fill.style.width = '100%';
   });
-  setTimeout(dismiss, 7000); // إخفاء تلقائي بعد 7 ثوانٍ (يبقى بإمكان الزائر إغلاقه يدويًا قبل ذلك)
+  setTimeout(dismiss, 9000); // إخفاء تلقائي بعد 9 ثوانٍ (يبقى بإمكان الزائر إغلاقه يدويًا قبل ذلك)
 })();
