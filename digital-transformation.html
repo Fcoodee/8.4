@@ -71,6 +71,17 @@
       radial-gradient(ellipse at 85% 80%, rgba(198,154,70,.18) 0%, transparent 45%);
   }
   .hero > * { position: relative; z-index: 2; }
+  .hero-visual {
+    position: absolute;
+    top: 50%; right: -60px;
+    transform: translateY(-50%);
+    width: 370px; height: 260px;
+    opacity: 0.9;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-visual svg { width: 100%; height: 100%; }
+  @media (max-width: 900px) { .hero-visual { display: none; } }
   .hero-tag {
     display: inline-block;
     background: rgba(198,154,70,.2);
@@ -191,6 +202,66 @@
   </div>
 
   <section class="hero">
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 340 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- خطوط اتصال بالأيقونتين الجانبيتين -->
+        <g stroke="#C69A46" stroke-width="1.5" opacity="0.5" stroke-dasharray="3 4">
+          <line x1="62" y1="70" x2="112" y2="100"/>
+          <line x1="62" y1="170" x2="112" y2="140"/>
+        </g>
+        <circle cx="62" cy="70" r="3" fill="#E7CD8E"/>
+        <circle cx="62" cy="170" r="3" fill="#E7CD8E"/>
+
+        <!-- أيقونة: تقرير/تحليل بيانات -->
+        <g transform="translate(30,48)">
+          <rect x="0" y="0" width="44" height="44" rx="10" fill="#0B2A4A" stroke="#C69A46" stroke-width="1.5"/>
+          <rect x="12" y="12" width="20" height="15" rx="2" fill="none" stroke="#E7CD8E" stroke-width="1.4"/>
+          <line x1="15" y1="24" x2="15" y2="19" stroke="#1EA1E0" stroke-width="1.6"/>
+          <line x1="19" y1="24" x2="19" y2="16" stroke="#1EA1E0" stroke-width="1.6"/>
+          <line x1="23" y1="24" x2="23" y2="20" stroke="#1EA1E0" stroke-width="1.6"/>
+          <line x1="27" y1="24" x2="27" y2="14" stroke="#1EA1E0" stroke-width="1.6"/>
+        </g>
+
+        <!-- أيقونة: منصة تعليمية/تقنية ذكية -->
+        <g transform="translate(30,148)">
+          <rect x="0" y="0" width="44" height="44" rx="10" fill="#0B2A4A" stroke="#C69A46" stroke-width="1.5"/>
+          <rect x="10" y="12" width="24" height="16" rx="2" fill="none" stroke="#E7CD8E" stroke-width="1.4"/>
+          <line x1="10" y1="32" x2="34" y2="32" stroke="#E7CD8E" stroke-width="1.4"/>
+          <circle cx="22" cy="20" r="4.5" fill="none" stroke="#1EA1E0" stroke-width="1.4"/>
+          <circle cx="22" cy="20" r="1.4" fill="#1EA1E0"/>
+        </g>
+
+        <!-- القرص المركزي: التحوّل الرقمي -->
+        <g transform="translate(112,0)">
+          <g>
+            <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="50s" repeatCount="indefinite"/>
+            <circle cx="120" cy="120" r="108" fill="none" stroke="#C69A46" stroke-width="1" opacity="0.35"/>
+            <circle cx="120" cy="120" r="88" fill="none" stroke="#C69A46" stroke-width="1" stroke-dasharray="4 6" opacity="0.5"/>
+            <g stroke="#E7CD8E" stroke-width="1" opacity="0.4">
+              <line x1="120" y1="12" x2="120" y2="32"/>
+              <line x1="120" y1="208" x2="120" y2="228"/>
+              <line x1="12" y1="120" x2="32" y2="120"/>
+              <line x1="208" y1="120" x2="228" y2="120"/>
+            </g>
+            <g fill="#E7CD8E">
+              <circle cx="120" cy="30" r="4"/>
+              <circle cx="120" cy="210" r="4"/>
+              <circle cx="30" cy="120" r="4"/>
+              <circle cx="210" cy="120" r="4"/>
+            </g>
+          </g>
+          <circle cx="120" cy="120" r="58" fill="url(#hvGrad)" stroke="#C69A46" stroke-width="2"/>
+          <defs>
+            <radialGradient id="hvGrad" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#1EA1E0" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#0B2A4A" stop-opacity="0.95"/>
+            </radialGradient>
+          </defs>
+          <text x="120" y="115" text-anchor="middle" fill="#E7CD8E" font-size="11" font-weight="800" font-family="Cairo, sans-serif">التحوّل</text>
+          <text x="120" y="132" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="800" font-family="Cairo, sans-serif">الرقمي</text>
+        </g>
+      </svg>
+    </div>
     <span class="hero-tag">#التحول_الرقمي_لمدارس_دار_الفرسان_2027</span>
     <h1>الرؤية الشاملة لـ<span>مبادرة التحول الرقمي</span><br>مدارس دار الفرسان الأهلية</h1>
     <p>

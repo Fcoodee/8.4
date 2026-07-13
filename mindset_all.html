@@ -2072,6 +2072,49 @@ X-Signature: sha256=...
           <td style="padding:7px;">إصلاح فجوة: إضافة روابط لصفحة <code>digital-transformation.html</code>
             (الرؤية الشاملة) — لم تكن مرتبطة سوى من index.html سابقًا؛ 2 رابط في كل ملف</td>
         </tr>
+        <tr>
+          <td style="padding:7px; font-weight:700;" rowspan="7">v8.8</td>
+          <td style="padding:7px;"><code>update-banner.js</code></td>
+          <td style="padding:7px;">حذف بند "تصحيح AIAASC" من قائمة تحديثات v8.7 (تصحيح إملائي لا
+            يُعدّ تحديثًا فعليًا)؛ إعادة تصميم أيقونة السجل الكامل من وضع ثابت (fixed) إلى عنصر
+            داخل تدفّق الصفحة، بمنتصفها فوق شارة العنوان</td>
+        </tr>
+        <tr style="background:#f5f5f5;">
+          <td style="padding:7px;"><code>index.html</code></td>
+          <td style="padding:7px;">إضافة نقطة إدراج أيقونة السجل فوق شارة الهيرو؛ تحويل شارة الهيرو
+            لرابط بفقاعة تلميح "يمكنك الانتقال لوصف المبادرة بالضغط هنا"</td>
+        </tr>
+        <tr>
+          <td style="padding:7px;">5 ملفات عامة</td>
+          <td style="padding:7px;">تغليف كل ورودات نص الهاشتاق الرسمي (67 موضعًا إجمالًا) بروابط
+            لصفحة digital-transformation.html؛ اكتُشف وأُصلح تغليف مزدوج في 3 مواضع كانت مُغلّفة
+            يدويًا مسبقًا (خطأ في نافذة فحص الاستبدال الآلي)</td>
+        </tr>
+        <tr style="background:#f5f5f5;">
+          <td style="padding:7px;"><code>index.html</code>, <code>quick-solution.html</code>,
+            <code>infographic.html</code></td>
+          <td style="padding:7px;">إضافة خطوة سابعة/ثامنة لمسار الحل السريع: "القبول النهائي" —
+            اعتماد الأستاذ محمد القحطاني لنتائج الاختبار + توجيه موظف القبول + SMS تهنئة لولي الأمر</td>
+        </tr>
+        <tr>
+          <td style="padding:7px;"><code>index.html</code>, <code>quick-solution.html</code>,
+            <code>infographic.html</code></td>
+          <td style="padding:7px;">إضافة إشادة وشكر للأستاذ محمد بن ناصر القحطاني — الإشراف والتوجيه
+            على مسار الحل السريع بالكامل، واعتماد نتائج اختبار القبول النهائي</td>
+        </tr>
+        <tr style="background:#f5f5f5;">
+          <td style="padding:7px;"><code>1st_stone.html</code> (ملف جديد)</td>
+          <td style="padding:7px;">استضافة "حجر الأساس" — الصفحة الأصلية الأولى (صفحة هبوط/إقلاع)
+            التي انطلقت منها المبادرة، كما استلمناها بلا أي تعديل؛ رُبطت من مرحلة "نشأة المبادرة"
+            في index.html. ملاحظة: تعتمد على Tailwind CDN خارجي — لن تعمل بلا اتصال إنترنت</td>
+        </tr>
+        <tr>
+          <td style="padding:7px;"><code>digital-transformation.html</code></td>
+          <td style="padding:7px;">إضافة عنصر بصري SVG أصلي (عجلة/قرص دوّار بهوية بحرية-ذهبية) في
+            الهيرو، مستوحى من الصورة المرجعية التي أرسلها المستخدم — <strong>لم تُستخدم الصورة
+            الأصلية نفسها</strong> (اعتبارات حقوق الملكية لصور Stock)، بل عنصر أصلي بديل بنفس الروح
+            البصرية</td>
+        </tr>
       </tbody>
     </table>
 
@@ -2377,7 +2420,7 @@ X-Signature: sha256=...
 
   <!-- Footer -->
   <footer class="doc-footer">
-    <strong>ورقة عصف ذهني تقنية داخلية</strong> · مبادرة <span style="color: var(--tech-blue);">#التحول_الرقمي_لمدارس_دار_الفرسان_2027</span> · مدارس دار الفرسان الأهلية<br>
+    <strong>ورقة عصف ذهني تقنية داخلية</strong> · مبادرة <span style="color: var(--tech-blue);"><a href="digital-transformation.html" style="color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor;">#التحول_الرقمي_لمدارس_دار_الفرسان_2027</a></span> · مدارس دار الفرسان الأهلية<br>
     مادة عمل مرافقة لتقرير النموذج الأولي (النسخة السابعة) · تاريخ التحرير: 10 يوليو 2026 · 25 محرم 1448هـ
   </footer>
 

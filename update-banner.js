@@ -16,14 +16,26 @@
   ---------------------------------------------------------------------------- */
   var CHANGELOG = [
     {
+      version: 'v8.8',
+      level: 'عام',
+      scope: null,
+      items: [
+        'شارة العنوان الرئيسي أصبحت رابطًا مباشرًا لصفحة الرؤية الشاملة',
+        'إتاحة كل ذكر لهاشتاق المبادرة كرابط للرؤية الشاملة عبر الموقع',
+        'إضافة خطوة "القبول النهائي" لمسار الحل السريع + إشادة بالأستاذ محمد القحطاني',
+        'إضافة صفحة "حجر الأساس" — نقطة انطلاق المبادرة الأولى'
+      ],
+      showFrom: '2026-07-13T00:00:00+03:00',
+      showUntil: '2026-07-20T00:00:00+03:00'
+    },
+    {
       version: 'v8.7',
       level: 'عام',
       scope: null,
       items: [
         'إضافة شريط تبويبات علوي (عناوين أولية، المحتوى قيد الإعداد)',
         'أيقونة ثابتة لعرض كامل سجل التحديثات في أي وقت',
-        'iDar Chatbot أصبح يحمل فقاعة تفكير متحركة أعلى أيقونته',
-        'تصحيح اسم هيئة الاعتماد الدولي إلى AIAASC'
+        'iDar Chatbot أصبح يحمل فقاعة تفكير متحركة أعلى أيقونته'
       ],
       showFrom: '2026-07-12T00:00:00+03:00',
       showUntil: '2026-07-19T00:00:00+03:00'
@@ -69,8 +81,9 @@
     + 'transition:width 3.2s linear;}'
     + '.ubnr-wrap.ubnr-hide{animation:ubnr-lift .35s ease forwards;}'
     + '@keyframes ubnr-lift{to{opacity:0;transform:translate(-50%,-14px);}}'
-    /* أيقونة عرض السجل الكامل — ثابتة أعلى الشاشة دائمًا */
-    + '.ubnr-history-btn{position:fixed;top:14px;left:14px;z-index:99997;width:40px;height:40px;'
+    /* أيقونة عرض السجل الكامل — في تدفّق الصفحة، بمنتصفها فوق شارة العنوان */
+    + '.ubnr-history-anchor-wrap{display:flex;justify-content:center;margin-bottom:14px;position:relative;}'
+    + '.ubnr-history-btn{position:relative;width:40px;height:40px;'
     + 'border-radius:50%;background:linear-gradient(135deg,#0B2A4A,#163B60);border:1px solid #C69A46;'
     + 'color:#E7CD8E;font-size:17px;display:flex;align-items:center;justify-content:center;'
     + 'cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.3);}'
@@ -183,8 +196,18 @@
         entriesHtml +
       '</div>';
 
-    document.body.appendChild(btn);
     document.body.appendChild(overlay);
+
+    var anchor = document.getElementById('ubnrHistoryAnchor');
+    if (anchor) {
+      var wrap = document.createElement('div');
+      wrap.className = 'ubnr-history-anchor-wrap';
+      wrap.appendChild(btn);
+      anchor.appendChild(wrap);
+    } else {
+      // احتياطًا إن لم توجد نقطة الإدراج، نُبقيها ظاهرة أعلى الصفحة بدل فقدانها
+      document.body.appendChild(btn);
+    }
 
     btn.addEventListener('click', function () { overlay.classList.add('open'); });
     overlay.querySelector('.ubnr-history-close').addEventListener('click', function () {
