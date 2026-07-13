@@ -1,6 +1,6 @@
 /* ============================================================
    FAQ WIDGET — صندوق الأسئلة الشائعة العائم
-   مبادرة #التحول_الرقمي — مدارس دار الفرسان الأهلية
+   مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027 — مدارس دار الفرسان الأهلية
    ملف مشترك يُضمَّن في كل صفحات المشروع الخمس.
    ============================================================ */
 (function () {
@@ -33,7 +33,7 @@
       a: 'إجمالي 21,000 ريال لأول سنة، بزيادة سنوية قدرها 6,000 ريال.'
     },
     {
-      q: 'كم تكلفة الإعداد المقترحة من مبادرة #التحول_الرقمي للتطوير الشامل؟',
+      q: 'كم تكلفة الإعداد المقترحة من مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027 للتطوير الشامل؟',
       a: 'إجمالي 11,000 ريال لأول سنة، بزيادة سنوية قدرها 6,000 ريال.'
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       q: 'ما اسم المبادرة؟',
-      a: 'مبادرة #التحول_الرقمي للتطوير الشامل — رؤية نحو تحوّل رقمي ذكي يواكب عصر الذكاء الاصطناعي، ببنية تحتية وتقنية تعليمية حديثة.'
+      a: 'مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027 للتطوير الشامل — رؤية نحو تحوّل رقمي ذكي يواكب عصر الذكاء الاصطناعي، ببنية تحتية وتقنية تعليمية حديثة.'
     },
     {
       q: 'هل المشروع مموّل رسميًا أم تطوّعي؟',
@@ -70,7 +70,23 @@
     },
     {
       q: 'كيف يرتبط هذا الروبوت بالمشروع؟',
-      a: 'جزء من مبادرة #التحول_الرقمي، أُضيف لتسهيل وصول الزوّار للمعلومات العامة عن المشروع.'
+      a: 'جزء من مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027، أُضيف لتسهيل وصول الزوّار للمعلومات العامة عن المشروع.'
+    },
+    {
+      q: 'ما الرؤية الشاملة للمبادرة؟',
+      a: 'تحديث البنية التحتية الرقمية والموقع الإلكتروني والمنصة التعليمية نحو تقنيات ذكية تخدم كل أطراف المدرسة.'
+    },
+    {
+      q: 'ما هو التعليم الرقمي في المبادرة؟',
+      a: 'أدوات تعليم ذكية تشمل: المعلّم الرقمي، الطالب الرقمي، والتعليم الرقمي.'
+    },
+    {
+      q: 'هل هناك خطة لتطوير المناهج؟',
+      a: 'نعم، ضمن الرؤية الشاملة، بما يتكامل مع أدوات التعليم الرقمي الجديدة.'
+    },
+    {
+      q: 'ما مسار الاعتماد الدولي المستهدف؟',
+      a: 'دراسة الانتقال من الاعتماد الحالي (AIAASC) نحو اعتماد Cognia العالمي.'
     }
   ];
 
@@ -105,7 +121,22 @@
     + '.faqw-reset{font-size:10.5px;color:#5C6B7A;text-align:center;padding:6px 0 0;cursor:pointer;'
     + 'text-decoration:underline;flex-shrink:0;}'
     + '@media print{.faqw-btn,.faqw-panel{display:none !important;}}'
-    + '@media (max-width:400px){.faqw-panel{right:10px;left:10px;width:auto;bottom:80px;}.faqw-btn{right:14px;bottom:14px;}}';
+    + '@media (max-width:400px){.faqw-panel{right:10px;left:10px;width:auto;bottom:80px;}.faqw-btn{right:14px;bottom:14px;}}'
+    /* فقاعة التفكير المتحركة فوق أيقونة الروبوت */
+    + '.faqw-think{position:fixed;bottom:88px;right:16px;max-width:220px;z-index:99997;'
+    + 'background:#FFFFFF;border:1px solid #C69A46;border-radius:14px 14px 2px 14px;'
+    + 'padding:9px 14px;font-family:\'Cairo\',sans-serif;font-size:11.5px;font-weight:700;'
+    + 'color:#0B2A4A;box-shadow:0 6px 20px rgba(11,42,74,.18);cursor:pointer;'
+    + 'transition:opacity .35s ease, transform .35s ease;}'
+    + '.faqw-think.faqw-think-hidden{opacity:0;transform:translateY(6px);pointer-events:none;}'
+    + '.faqw-think-dots{display:inline-flex;gap:3px;margin-inline-start:4px;vertical-align:middle;}'
+    + '.faqw-think-dots span{width:4px;height:4px;border-radius:50%;background:#C69A46;'
+    + 'display:inline-block;animation:faqwDotPulse 1.2s infinite ease-in-out;}'
+    + '.faqw-think-dots span:nth-child(2){animation-delay:.15s;}'
+    + '.faqw-think-dots span:nth-child(3){animation-delay:.3s;}'
+    + '@keyframes faqwDotPulse{0%,100%{opacity:.3;transform:translateY(0);}50%{opacity:1;transform:translateY(-2px);}}'
+    + '@media print{.faqw-think{display:none !important;}}'
+    + '@media (max-width:400px){.faqw-think{right:14px; max-width:180px;}}';
 
   var styleTag = document.createElement('style');
   styleTag.textContent = css;
@@ -114,23 +145,58 @@
   /* ---------- البنية ---------- */
   var btn = document.createElement('div');
   btn.className = 'faqw-btn';
-  btn.setAttribute('title', 'الأسئلة الشائعة عن المشروع');
+  btn.setAttribute('title', 'iDar Chatbot — الأسئلة الشائعة عن المشروع');
   btn.innerHTML = '🤖';
 
   var panel = document.createElement('div');
   panel.className = 'faqw-panel';
   panel.innerHTML =
     '<div class="faqw-head">' +
-      '<div class="faqw-head-title">🤖 مساعد مبادرة #التحول_الرقمي</div>' +
+      '<div class="faqw-head-title">🤖 iDar Chatbot — مساعد مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027</div>' +
       '<button class="faqw-close" aria-label="إغلاق">✕</button>' +
     '</div>' +
     '<div class="faqw-body" id="faqwBody">' +
-      '<div class="faqw-bubble-bot">مرحبًا 👋 اختر سؤالًا من القائمة أدناه لعرض إجابة سريعة عن المشروع.</div>' +
+      '<div class="faqw-bubble-bot">مرحبًا 👋 أنا iDar Chatbot، اختر سؤالًا من القائمة أدناه لعرض إجابة سريعة عن المشروع.</div>' +
     '</div>' +
     '<div class="faqw-q-list" id="faqwQList"></div>';
 
   document.body.appendChild(btn);
   document.body.appendChild(panel);
+
+  /* ---------- فقاعة التفكير المتحركة ---------- */
+  var THINK_MESSAGES = [
+    'مرحبًا 👋 أنا iDar، المساعد الذكي للمبادرة',
+    'كيف يمكنني مساعدتك؟',
+    'لا تتردد في سؤالي بالنقر هنا',
+    'هذا موقع مبادرة #التحول_الرقمي_الشامل'
+  ];
+  var thinkBubble = document.createElement('div');
+  thinkBubble.className = 'faqw-think';
+  thinkBubble.innerHTML =
+    '<span id="faqwThinkText">' + THINK_MESSAGES[0] + '</span>' +
+    '<span class="faqw-think-dots"><span></span><span></span><span></span></span>';
+  document.body.appendChild(thinkBubble);
+
+  var thinkIndex = 0;
+  var thinkTextEl = thinkBubble.querySelector('#faqwThinkText');
+  function cycleThinkMessage() {
+    thinkBubble.classList.add('faqw-think-hidden');
+    setTimeout(function () {
+      thinkIndex = (thinkIndex + 1) % THINK_MESSAGES.length;
+      thinkTextEl.textContent = THINK_MESSAGES[thinkIndex];
+      thinkBubble.classList.remove('faqw-think-hidden');
+    }, 350);
+  }
+  var thinkInterval = setInterval(cycleThinkMessage, 3800);
+
+  // النقر على الفقاعة يفتح الروبوت مباشرة، كما لو ناداك المستخدم
+  thinkBubble.addEventListener('click', function () {
+    panel.classList.add('open');
+  });
+  // إخفاء الفقاعة أثناء فتح لوحة المحادثة نفسها لتفادي التداخل البصري
+  btn.addEventListener('click', function () {
+    thinkBubble.classList.add('faqw-think-hidden');
+  });
 
   var body = panel.querySelector('#faqwBody');
   var qList = panel.querySelector('#faqwQList');
@@ -168,5 +234,6 @@
   });
   closeBtn.addEventListener('click', function () {
     panel.classList.remove('open');
+    thinkBubble.classList.remove('faqw-think-hidden');
   });
 })();
