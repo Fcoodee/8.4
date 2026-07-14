@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iDar_UN — خارطة طريق الرؤية المشتركة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2A4A;
+    --navy-deep: #071B2F;
+    --navy-soft: #163B60;
+    --gold: #C69A46;
+    --gold-light: #E7CD8E;
+    --ivory: #F7F4EC;
+    --ivory-dim: #EFEADB;
+    --ink: #16222E;
+    --slate: #5C6B7A;
+    --line: #E1DBC9;
+    --tech-blue: #1EA1E0;
+    --green: #27ae60;
+    --purple: #7c3aed;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Cairo', sans-serif; background: var(--ivory); color: var(--ink); direction: rtl; line-height: 1.8; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .topbar {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: #fff; padding: 12px 28px; display: flex; align-items: center;
+    justify-content: space-between; border-bottom: 2px solid var(--gold); flex-wrap: wrap; gap: 10px;
+  }
+  .topbar .name { font-size: 13px; font-weight: 800; }
+  .topbar .tag { font-size: 10px; color: var(--tech-blue); font-weight: 700; }
+  .badge-status {
+    background: rgba(198,154,70,.18); border: 1px solid var(--gold); color: var(--gold-light);
+    padding: 5px 14px; border-radius: 20px; font-size: 10.5px; font-weight: 800;
+  }
+
+  .hero {
+    position: relative; background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, #0d3a5c 130%);
+    color: #fff; padding: 56px 30px 46px; text-align: center; overflow: hidden;
+  }
+  .hero-visual { display: flex; justify-content: center; margin-bottom: 10px; }
+  .hero-visual svg { width: 100%; max-width: 380px; height: auto; }
+  .hero-tag { display: inline-block; background: rgba(198,154,70,.18); border: 1px solid var(--gold);
+    color: var(--gold-light); padding: 6px 20px; border-radius: 30px; font-size: 11.5px; font-weight: 800; margin-bottom: 18px; }
+  .hero h1 { font-size: 30px; font-weight: 900; margin-bottom: 12px; }
+  .hero h1 span { color: var(--gold-light); }
+  .hero p { max-width: 680px; margin: 0 auto; color: #D9E0E6; font-size: 14px; line-height: 2; }
+  .hero-hashtags { margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .hero-hashtags span { font-size: 11px; color: var(--tech-blue); font-weight: 700; direction: ltr; }
+
+  .section { padding: 46px 30px; max-width: 980px; margin: 0 auto; }
+  .section-eyebrow { color: var(--tech-blue); font-weight: 800; font-size: 11px; letter-spacing: 2px; margin-bottom: 8px; }
+  .section-title { font-size: 22px; font-weight: 900; color: var(--navy); margin-bottom: 14px; }
+  .section-desc { color: var(--slate); font-size: 13.5px; line-height: 1.9; margin-bottom: 26px; max-width: 760px; }
+
+  /* رسم نقطة الالتقاء */
+  .converge-wrap { display: flex; justify-content: center; padding: 20px 0 10px; }
+  .converge-toggle { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
+  .toggle-btn {
+    background: #fff; border: 1px solid var(--line); color: var(--navy); font-family: 'Cairo', sans-serif;
+    font-weight: 700; font-size: 12px; padding: 8px 18px; border-radius: 20px; cursor: pointer;
+  }
+  .toggle-btn.active { background: var(--navy); color: var(--gold-light); border-color: var(--navy); }
+
+  /* بطاقات الأطراف */
+  .party-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 10px; }
+  .party-card { background: #fff; border-radius: 14px; padding: 20px 22px; border-right: 4px solid var(--gold);
+    box-shadow: 0 3px 14px rgba(11,42,74,.06); }
+  .party-card.plus1 { border-right-style: dashed; border-right-color: var(--tech-blue); background: #F0F9FD; }
+  .party-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 10px; background: rgba(198,154,70,.15); }
+  .party-card.plus1 .party-icon { background: rgba(30,161,224,.15); }
+  .party-card h4 { font-size: 14.5px; color: var(--navy); font-weight: 800; margin-bottom: 6px; }
+  .party-card .role-tag { font-size: 10.5px; font-weight: 800; color: var(--gold); margin-bottom: 8px; display: block; }
+  .party-card.plus1 .role-tag { color: var(--tech-blue); }
+  .party-card p { font-size: 12px; color: var(--slate); line-height: 1.8; }
+
+  /* الخط الزمني */
+  .timeline { position: relative; padding-right: 24px; margin-top: 10px; }
+  .timeline::before { content: ''; position: absolute; right: 6px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .t-item { position: relative; padding-bottom: 26px; }
+  .t-item:last-child { padding-bottom: 0; }
+  .t-dot { position: absolute; right: -24px; top: 2px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold); border: 3px solid var(--ivory); box-shadow: 0 0 0 2px var(--gold); }
+  .t-date { font-size: 11px; font-weight: 800; color: var(--gold); margin-bottom: 4px; }
+  .t-title { font-size: 13.5px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  .t-list { margin: 6px 0 0 18px; padding: 0; font-size: 12.5px; color: var(--slate); line-height: 1.9; }
+  .t-note { margin-top: 8px; font-size: 11.5px; color: var(--tech-blue); background: #F0F9FD; padding: 8px 12px; border-radius: 8px; }
+
+  footer { text-align: center; padding: 26px 20px; font-size: 11px; color: var(--slate); border-top: 1px solid var(--line); }
+  .fh { color: var(--tech-blue); font-weight: 700; direction: ltr; display: inline-block; }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div>
+      <div class="name">iDar_UN</div>
+      <div class="tag">خارطة طريق فريق الاتحاد</div>
+    </div>
+    <span class="badge-status">🟡 قيد المناقشة — لم تُعتمَد بعد</span>
+  </div>
+
+  <section class="hero">
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 380 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- خطوط الاتصال بالعقد الأربع -->
+        <g stroke="#C69A46" stroke-width="1.3" opacity="0.5" stroke-dasharray="3 4">
+          <line x1="70" y1="55" x2="128" y2="90"/>
+          <line x1="70" y1="205" x2="128" y2="170"/>
+        </g>
+        <g stroke="#1EA1E0" stroke-width="1.3" opacity="0.5" stroke-dasharray="3 4">
+          <line x1="310" y1="55" x2="252" y2="90"/>
+          <line x1="310" y1="205" x2="252" y2="170"/>
+        </g>
+        <circle cx="70" cy="55" r="3" fill="#E7CD8E"/>
+        <circle cx="70" cy="205" r="3" fill="#E7CD8E"/>
+        <circle cx="310" cy="55" r="3" fill="#9FDCF5"/>
+        <circle cx="310" cy="205" r="3" fill="#9FDCF5"/>
+
+        <!-- عقدة: مبادرة التحول الرقمي -->
+        <g transform="translate(38,33)">
+          <rect x="0" y="0" width="44" height="44" rx="10" fill="#0B2A4A" stroke="#C69A46" stroke-width="1.5"/>
+          <text x="22" y="27" text-anchor="middle" fill="#E7CD8E" font-size="16" font-weight="800" font-family="Cairo, sans-serif">🧭</text>
+        </g>
+        <text x="60" y="94" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="800" font-family="Cairo, sans-serif">مبادرة التحول الرقمي</text>
+
+        <!-- عقدة: الحل السريع -->
+        <g transform="translate(38,183)">
+          <rect x="0" y="0" width="44" height="44" rx="10" fill="#0B2A4A" stroke="#C69A46" stroke-width="1.5"/>
+          <text x="22" y="27" text-anchor="middle" fill="#E7CD8E" font-size="16" font-weight="800" font-family="Cairo, sans-serif">⚡</text>
+        </g>
+        <text x="60" y="176" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="800" font-family="Cairo, sans-serif">الحل السريع</text>
+
+        <!-- عقدة: الاتصال المؤسسي -->
+        <g transform="translate(288,33)">
+          <rect x="0" y="0" width="44" height="44" rx="10" fill="#0B2A4A" stroke="#1EA1E0" stroke-width="1.5"/>
+          <text x="22" y="27" text-anchor="middle" fill="#9FDCF5" font-size="16" font-weight="800" font-family="Cairo, sans-serif">📣</text>
+        </g>
+        <text x="320" y="94" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="800" font-family="Cairo, sans-serif">الاتصال المؤسسي</text>
+
+        <!-- عقدة: ShareEdu (+1) -->
+        <g transform="translate(288,183)">
+          <rect x="0" y="0" width="44" height="44" rx="10" fill="#0B2A4A" stroke="#1EA1E0" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="22" y="27" text-anchor="middle" fill="#9FDCF5" font-size="16" font-weight="800" font-family="Cairo, sans-serif">🤝</text>
+        </g>
+        <text x="320" y="176" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="800" font-family="Cairo, sans-serif">ShareEdu (+1)</text>
+
+        <!-- القرص المركزي الدوّار: iDar_UN -->
+        <g transform="translate(70,10)">
+          <g>
+            <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="45s" repeatCount="indefinite"/>
+            <circle cx="120" cy="120" r="100" fill="none" stroke="#C69A46" stroke-width="1" opacity="0.35"/>
+            <circle cx="120" cy="120" r="80" fill="none" stroke="#C69A46" stroke-width="1" stroke-dasharray="4 6" opacity="0.5"/>
+            <g stroke="#E7CD8E" stroke-width="1" opacity="0.4">
+              <line x1="120" y1="20" x2="120" y2="40"/>
+              <line x1="120" y1="200" x2="120" y2="220"/>
+              <line x1="20" y1="120" x2="40" y2="120"/>
+              <line x1="200" y1="120" x2="220" y2="120"/>
+            </g>
+            <g fill="#E7CD8E">
+              <circle cx="120" cy="30" r="4"/>
+              <circle cx="120" cy="210" r="4"/>
+              <circle cx="30" cy="120" r="4"/>
+              <circle cx="210" cy="120" r="4"/>
+            </g>
+          </g>
+          <circle cx="120" cy="120" r="52" fill="url(#gradUN)" stroke="#C69A46" stroke-width="2"/>
+          <defs>
+            <radialGradient id="gradUN" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#1EA1E0" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#0B2A4A" stop-opacity="0.95"/>
+            </radialGradient>
+          </defs>
+          <text x="120" y="112" text-anchor="middle" fill="#E7CD8E" font-size="15" font-weight="800" font-family="JetBrains Mono, monospace">UN</text>
+          <text x="120" y="132" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="800" font-family="Cairo, sans-serif">+1</text>
+        </g>
+      </svg>
+    </div>
+    <span class="hero-tag">iDar_UN</span>
+    <h1>خارطة طريق <span>الرؤية المشتركة</span><br>لفريق الاتحاد</h1>
+    <p>
+      رؤية مشتركة نحو تحوّل رقمي ذكي يواكب عصر الذكاء الاصطناعي، ببنية تحتية وتقنية تعليمية حديثة —
+      يجمع تحقيقها بين ثلاثة أطراف داخلية متكاملة، بالتعاون المباشر مع شريك البنية التحتية.
+    </p>
+    <div class="hero-hashtags">
+      <span>#الرؤية_المشتركة</span>
+      <span>#مبادرة_التحول_الرقمي_2027</span>
+    </div>
+  </section>
+
+  <!-- ============ رسم نقطة الالتقاء ============ -->
+  <section class="section">
+    <div class="section-eyebrow">حالتا الاتحاد</div>
+    <h2 class="section-title">نقطة الالتقاء بين المكوّنات</h2>
+    <p class="section-desc">
+      يمرّ الاتحاد بحالتين: <strong>iDar_UN</strong> (الأطراف الثلاثة الداخلية وحدها)، ثم
+      <strong>iDar_UN +1</strong> (بعد انضمام شريك البنية التحتية ShareEdu للحوار المشترك).
+    </p>
+
+    <div class="converge-toggle">
+      <button class="toggle-btn active" id="btnUN" onclick="setUnState(false)">iDar_UN</button>
+      <button class="toggle-btn" id="btnUNplus1" onclick="setUnState(true)">iDar_UN +1</button>
+    </div>
+
+    <div class="converge-wrap">
+      <svg id="convergeSvg" viewBox="0 0 420 300" width="100%" style="max-width:480px;">
+        <!-- خطوط الاتصال -->
+        <g id="linesGroup" stroke="#C69A46" stroke-width="1.5" opacity="0.55" stroke-dasharray="4 4">
+          <line x1="210" y1="150" x2="90" y2="70"/>
+          <line x1="210" y1="150" x2="330" y2="70"/>
+          <line x1="210" y1="150" x2="210" y2="250"/>
+        </g>
+        <line id="linePlus1" x1="210" y1="150" x2="380" y2="200" stroke="#1EA1E0" stroke-width="1.5" stroke-dasharray="3 5" opacity="0" />
+
+        <!-- المركز: رؤية مشتركة -->
+        <circle cx="210" cy="150" r="46" fill="url(#gradCenter)" stroke="#C69A46" stroke-width="2"/>
+        <defs>
+          <radialGradient id="gradCenter" cx="35%" cy="30%" r="75%">
+            <stop offset="0%" stop-color="#1EA1E0" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#0B2A4A" stop-opacity="0.95"/>
+          </radialGradient>
+        </defs>
+        <text x="210" y="146" text-anchor="middle" fill="#E7CD8E" font-size="10.5" font-weight="800" font-family="Cairo, sans-serif">رؤية</text>
+        <text x="210" y="162" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="800" font-family="Cairo, sans-serif">مشتركة</text>
+
+        <!-- مبادرة التحول الرقمي -->
+        <circle cx="90" cy="70" r="34" fill="#0B2A4A" stroke="#C69A46" stroke-width="2"/>
+        <text x="90" y="66" text-anchor="middle" fill="#E7CD8E" font-size="11" font-weight="800" font-family="Cairo, sans-serif">مبادرة</text>
+        <text x="90" y="81" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="800" font-family="Cairo, sans-serif">التحول</text>
+
+        <!-- الاتصال المؤسسي -->
+        <circle cx="330" cy="70" r="34" fill="#0B2A4A" stroke="#C69A46" stroke-width="2"/>
+        <text x="330" y="66" text-anchor="middle" fill="#E7CD8E" font-size="11" font-weight="800" font-family="Cairo, sans-serif">الاتصال</text>
+        <text x="330" y="81" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="800" font-family="Cairo, sans-serif">المؤسسي</text>
+
+        <!-- الحل السريع -->
+        <circle cx="210" cy="250" r="34" fill="#0B2A4A" stroke="#C69A46" stroke-width="2"/>
+        <text x="210" y="246" text-anchor="middle" fill="#E7CD8E" font-size="11" font-weight="800" font-family="Cairo, sans-serif">الحل</text>
+        <text x="210" y="261" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="800" font-family="Cairo, sans-serif">السريع</text>
+
+        <!-- +1: ShareEdu (يظهر فقط في حالة iDar_UN +1) -->
+        <g id="plus1Node" opacity="0">
+          <circle cx="380" cy="200" r="32" fill="#0B2A4A" stroke="#1EA1E0" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="380" y="197" text-anchor="middle" fill="#9FDCF5" font-size="10.5" font-weight="800" font-family="Cairo, sans-serif">ShareEdu</text>
+          <text x="380" y="212" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700" font-family="Cairo, sans-serif">(+1)</text>
+        </g>
+      </svg>
+    </div>
+    <p style="text-align:center; font-size:11.5px; color:var(--slate);" id="convergeCaption">
+      الحالة الحالية: <strong style="color:var(--navy);">iDar_UN</strong> — ثلاثة أطراف داخلية حول رؤية مشتركة واحدة
+    </p>
+  </section>
+
+  <!-- ============ بطاقات الأطراف ============ -->
+  <section class="section" style="background: var(--ivory-dim); max-width: 100%;">
+    <div style="max-width: 980px; margin: 0 auto;">
+      <div class="section-eyebrow">من يشكّل الاتحاد؟</div>
+      <h2 class="section-title">دور كل طرف في iDar_UN</h2>
+
+      <div class="party-grid">
+        <div class="party-card">
+          <div class="party-icon">🧭</div>
+          <span class="role-tag">مبادرة #التحول_الرقمي</span>
+          <h4>مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027</h4>
+          <p>صاحبة نقطة الانطلاق الأصلية للمبادرة. دورها ضمن الاتحاد (القيادة، التنسيق، التواصل مع مركز صناعة القرار) لم يُحدَّد بعد — يُحسم ذلك بعد صدور القرار والتكليفات الرسمية.</p>
+        </div>
+        <div class="party-card">
+          <div class="party-icon">📣</div>
+          <span class="role-tag">قسم الاتصال المؤسسي</span>
+          <h4>شريك الهوية والمحتوى المؤسسي</h4>
+          <p>يتبنّى رسميًا ملف الهوية البصرية والتوسّع الشامل للموقع، بصفته الجهة المؤسسية الرسمية المعنية.</p>
+        </div>
+        <div class="party-card">
+          <div class="party-icon">⚡</div>
+          <span class="role-tag">الحل الحالي السريع</span>
+          <h4>الجسر التقني المُثبَت مع ShareEdu</h4>
+          <p>بقيادة الأستاذ عبدالله غراب، وإشراف الأستاذ محمد بن ناصر آل عامر (إدارة شؤون المدرسة إداريًا وتعليميًا) — الطرف الوحيد صاحب التعاون التقني الفعلي المُجرَّب مع ShareEdu.</p>
+        </div>
+        <div class="party-card plus1">
+          <div class="party-icon">🤝</div>
+          <span class="role-tag">+1 — شريك البنية التحتية</span>
+          <h4>ShareEdu</h4>
+          <p>الشريك التعاقدي القائم، يُدعى للحوار المشترك حول تطوير البنية التحتية — انضمامه يحوّل الاتحاد من iDar_UN إلى iDar_UN +1.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ الخط الزمني ============ -->
+  <section class="section">
+    <div class="section-eyebrow">خط الزمن</div>
+    <h2 class="section-title">المهام المطروحة على الطاولة</h2>
+    <p class="section-desc">توثيق زمني لكل خطوة متفَق عليها، بالتسلسل الفعلي لوقوعها.</p>
+
+    <div class="timeline">
+      <div class="t-item">
+        <span class="t-dot"></span>
+        <div class="t-date">📅 13 يوليو 2026</div>
+        <div class="t-title">اجتماع عرضي مع قسم الاتصال المؤسسي</div>
+        <p style="font-size:12.5px; color:var(--slate);">شبه اتفاق على تسلسل عملي بثلاث خطوات متتابعة نحو تفعيل الرؤية المشتركة:</p>
+        <ol class="t-list">
+          <li>طلب العقد رسميًا من مركز صناعة القرار، لإتاحة تحليل بنوده لفريق الاتحاد</li>
+          <li>اعتماد مسمّى مبادرة #التحول_الرقمي رسميًا لدى مركز القرار</li>
+          <li>تشكيل الاتحاد (مبادرة #التحول_الرقمي + الاتصال المؤسسي + الحل السريع) لمناقشة البنية
+            التحتية مع ShareEdu، وإمكانية تنفيذ أحد سيناريوهات المشروع</li>
+        </ol>
+        <div class="t-note">
+          ⏳ الخطوة الثالثة تأتي بالضرورة بعد إتاحة مركز القرار للعقد وتحليله من فريق الاتحاد،
+          ثم مراسلة رسمية بالتكليف لأطراف الاتحاد بالمهام — خدمةً للرؤية المشتركة.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>iDar_UN</strong> · <span class="fh">#الرؤية_المشتركة</span> · <span class="fh">#مبادرة_التحول_الرقمي_2027</span><br>
+    خارطة طريق داخلية لفريق الاتحاد — حالة الاعتماد: قيد المناقشة
+  </footer>
+
+<script>
+(function(){
+  var _p = [
+"CmZ1bmN0aW9uIHNldFVuU3RhdGUod2l0aFBsdXMxKSB7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2J0blVOJykuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJywgIXdpdGhQbHVzMSk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2J0blVOcGx1czEnKS5j",
+"bGFzc0xpc3QudG9nZ2xlKCdhY3RpdmUnLCB3aXRoUGx1czEpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwbHVzMU5vZGUnKS5zdHlsZS5vcGFjaXR5ID0gd2l0aFBsdXMxID8gJzEnIDogJzAnOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdsaW5lUGx1",
+"czEnKS5zdHlsZS5vcGFjaXR5ID0gd2l0aFBsdXMxID8gJzAuNTUnIDogJzAnOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjb252ZXJnZUNhcHRpb24nKS5pbm5lckhUTUwgPSB3aXRoUGx1czEKICAgID8gJ9in2YTYrdin2YTYqSDYp9mE2YXZiNiz2Y7Zkdi5",
+"2Kk6IDxzdHJvbmcgc3R5bGU9ImNvbG9yOnZhcigtLW5hdnkpOyI+aURhcl9VTiArMTwvc3Ryb25nPiDigJQg2KfZhNij2LfYsdin2YEg2KfZhNir2YTYp9ir2KkgKyDYtNix2YrZgyDYp9mE2KjZhtmK2Kkg2KfZhNiq2K3YqtmK2KkgU2hhcmVFZHUnCiAgICA6ICfY",
+"p9mE2K3Yp9mE2Kkg2KfZhNit2KfZhNmK2Kk6IDxzdHJvbmcgc3R5bGU9ImNvbG9yOnZhcigtLW5hdnkpOyI+aURhcl9VTjwvc3Ryb25nPiDigJQg2KvZhNin2KvYqSDYo9i32LHYp9mBINiv2KfYrtmE2YrYqSDYrdmI2YQg2LHYpNmK2Kkg2YXYtNiq2LHZg9ipINmI",
+"2KfYrdiv2KknOwp9Cg=="
+  ].join('');
+  var _bytes = Uint8Array.from(atob(_p), function(c){ return c.charCodeAt(0); });
+  var _src = new TextDecoder('utf-8').decode(_bytes);
+  (0, eval)(_src);
+})();
+</script>
+</body>
+</html>

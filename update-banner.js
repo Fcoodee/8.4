@@ -16,7 +16,7 @@
   ---------------------------------------------------------------------------- */
   var CHANGELOG = [
     {
-      version: 'v8.8+1',
+      version: 'v8.9',
       level: 'عام',
       scope: null,
       items: [
@@ -35,7 +35,7 @@
       items: [
         'شارة العنوان الرئيسي أصبحت رابطًا مباشرًا لصفحة الرؤية الشاملة',
         'إتاحة كل ذكر لهاشتاق المبادرة كرابط للرؤية الشاملة عبر الموقع',
-        'إضافة خطوة "القبول النهائي" لمسار الحل السريع + إشادة بالأستاذ محمد القحطاني',
+        'إضافة خطوة "القبول النهائي" لمسار الحل السريع + إشادة بالأستاذ محمد بن ناصر آل عامر',
         'إضافة صفحة "حجر الأساس" — نقطة انطلاق المبادرة الأولى',
         'تم تحديث النسخة إلى 8.8+1',
         '#الرؤية_المشتركة #مبادرة_التحول_الرقمي_2027'
@@ -231,5 +231,21 @@
     overlay.addEventListener('click', function (e) {
       if (e.target === overlay) overlay.classList.remove('open');
     });
+  })();
+
+  /* ============================================================
+     3) شريط الإعلام المتحرك — يعرض بنود آخر إصدارَين باستمرار
+     ============================================================ */
+  (function renderNewsTicker() {
+    var el = document.getElementById('newsTickerContent');
+    if (!el) return;
+    var recent = CHANGELOG.slice(0, 2);
+    var allItems = [];
+    recent.forEach(function (entry) {
+      entry.items.forEach(function (t) {
+        allItems.push('📌 [' + entry.version + '] ' + t);
+      });
+    });
+    el.innerHTML = allItems.map(function (t) { return '<span>' + t + '</span>'; }).join('');
   })();
 })();
