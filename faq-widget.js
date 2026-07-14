@@ -90,6 +90,23 @@
     }
   ];
 
+  var faqUnlocked = false;
+
+  /* ---------- جلب الأسئلة الاستراتيجية المقفلة من ملف خارجي (كما هو الحال مع dev-access.txt) ---------- */
+  function loadStrategicQuestions() {
+    return fetch('qu-high.txt', { cache: 'no-store' })
+      .then(function (res) { return res.text(); })
+      .then(function (text) {
+        text.trim().split('\n').forEach(function (line) {
+          var parts = line.split('|');
+          if (parts.length >= 2) {
+            FAQ.push({ q: parts[0].trim(), a: parts[1].trim(), locked: true });
+          }
+        });
+      })
+      .catch(function () { /* الملف غير متاح — نستمر بالأسئلة العامة فقط */ });
+  }
+
   /* ---------- الأنماط ---------- */
   var css = ''
     + '.faqw-btn{position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:50%;'
@@ -118,6 +135,17 @@
     + 'padding:7px 12px;font-size:11.5px;font-weight:700;cursor:pointer;text-align:right;'
     + 'font-family:\'Cairo\',sans-serif;transition:background .15s;}'
     + '.faqw-q-btn:hover{background:#FFF6EE;}'
+    + '.faqw-q-btn.locked{border-color:#7c3aed;color:#7c3aed;background:#F5EEFB;}'
+    + '.faqw-lock-icon{margin-left:4px;}'
+    + '.faqw-lock-msg{background:#F5EEFB;border:1px solid #7c3aed;border-radius:12px 12px 12px 2px;'
+    + 'padding:9px 13px;font-size:12px;color:#4c1d95;line-height:1.7;max-width:88%;align-self:flex-start;}'
+    + '.faqw-lock-form{background:#FFFFFF;border:1px solid #E1DBC9;border-radius:10px;padding:10px;'
+    + 'display:flex;flex-direction:column;gap:6px;max-width:88%;align-self:flex-start;}'
+    + '.faqw-lock-form input{border:1px solid #E1DBC9;border-radius:6px;padding:6px 8px;'
+    + 'font-family:\'Cairo\',sans-serif;font-size:11.5px;}'
+    + '.faqw-lock-form button{background:#7c3aed;color:#fff;border:none;border-radius:6px;'
+    + 'padding:6px 10px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:\'Cairo\',sans-serif;}'
+    + '.faqw-lock-error{color:#c0392b;font-size:10.5px;display:none;}'
     + '.faqw-reset{font-size:10.5px;color:#5C6B7A;text-align:center;padding:6px 0 0;cursor:pointer;'
     + 'text-decoration:underline;flex-shrink:0;}'
     + '@media print{.faqw-btn,.faqw-panel{display:none !important;}}'
@@ -206,8 +234,8 @@
     qList.innerHTML = '';
     FAQ.forEach(function (item) {
       var b = document.createElement('button');
-      b.className = 'faqw-q-btn';
-      b.textContent = item.q;
+      b.className = 'faqw-q-btn' + (item.locked && !faqUnlocked ? ' locked' : '');
+      b.innerHTML = (item.locked && !faqUnlocked ? '<span class="faqw-lock-icon">🔒</span>' : '') + item.q;
       b.onclick = function () { askQuestion(item); };
       qList.appendChild(b);
     });
@@ -219,6 +247,53 @@
     uBubble.textContent = item.q;
     body.appendChild(uBubble);
 
+    if (item.locked && !faqUnlocked) {
+      var lockMsg = document.createElement('div');
+      lockMsg.className = 'faqw-lock-msg';
+      lockMsg.textContent = 'هذا السؤال استراتيجي ويحتاج مستوى وصول أعلى لعرض الإجابة عليه.';
+      body.appendChild(lockMsg);
+
+      var form = document.createElement('div');
+      form.className = 'faqw-lock-form';
+      form.innerHTML =
+        '<input type="text" placeholder="اسم المستخدم" class="faqw-lock-user">' +
+        '<input type="password" placeholder="كلمة المرور" class="faqw-lock-pass">' +
+        '<div class="faqw-lock-error">بيانات الدخول غير صحيحة.</div>' +
+        '<button type="button">دخول لعرض الإجابة</button>';
+      body.appendChild(form);
+      body.scrollTop = body.scrollHeight;
+
+      var userInput = form.querySelector('.faqw-lock-user');
+      var passInput = form.querySelector('.faqw-lock-pass');
+      var errorEl = form.querySelector('.faqw-lock-error');
+      form.querySelector('button').addEventListener('click', function () {
+        Promise.resolve()
+          .then(function () { return fetch('dev-access.txt', { cache: 'no-store' }); })
+          .then(function (res) { return res.text(); })
+          .then(function (text) {
+            var lines = text.trim().split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+            var matched = lines.some(function (line) {
+              var parts = line.split(':').map(function (s) { return s.trim(); });
+              return userInput.value.trim() === parts[0] && passInput.value.trim() === parts[1];
+            });
+            if (matched) {
+              faqUnlocked = true;
+              form.remove();
+              var okBubble = document.createElement('div');
+              okBubble.className = 'faqw-bubble-bot';
+              okBubble.textContent = item.a;
+              body.appendChild(okBubble);
+              renderQuestions();
+              body.scrollTop = body.scrollHeight;
+            } else {
+              errorEl.style.display = 'block';
+            }
+          })
+          .catch(function () { errorEl.style.display = 'block'; });
+      });
+      return;
+    }
+
     var bBubble = document.createElement('div');
     bBubble.className = 'faqw-bubble-bot';
     bBubble.textContent = item.a;
@@ -228,6 +303,7 @@
   }
 
   renderQuestions();
+  loadStrategicQuestions().then(renderQuestions);
 
   btn.addEventListener('click', function () {
     panel.classList.toggle('open');
