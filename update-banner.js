@@ -16,7 +16,7 @@
   ---------------------------------------------------------------------------- */
   var CHANGELOG = [
     {
-      version: 'v8.9',
+      version: 'v8.10 (تجريبية)',
       level: 'عام',
       scope: null,
       items: [
@@ -124,18 +124,23 @@
   styleTag.textContent = css;
   document.head.appendChild(styleTag);
 
-  /* ============================================================
-     1) الصندوق المنبثق — يظهر فقط للتحديث الواقع ضمن نافذته الزمنية
-     ============================================================ */
-  (function renderActiveBanner() {
+  /* ---------- دالة مشتركة: تحديد التحديث الحالي ضمن نافذته الزمنية ---------- */
+  function getCurrentEntry() {
     var now = Date.now();
-    var current = null;
     for (var i = 0; i < CHANGELOG.length; i++) {
       var entry = CHANGELOG[i];
       var from = new Date(entry.showFrom).getTime();
       var until = new Date(entry.showUntil).getTime();
-      if (now >= from && now <= until) { current = entry; break; }
+      if (now >= from && now <= until) return entry;
     }
+    return null;
+  }
+
+  /* ============================================================
+     1) الصندوق المنبثق — يظهر فقط للتحديث الواقع ضمن نافذته الزمنية
+     ============================================================ */
+  (function renderActiveBanner() {
+    var current = getCurrentEntry();
     if (!current) return;
 
     var icon = levelIcon[current.level] || '🎉';
@@ -234,18 +239,35 @@
   })();
 
   /* ============================================================
-     3) شريط الإعلام المتحرك — يعرض بنود آخر إصدارَين باستمرار
+     3) شريط الإعلام المتحرك — يعرض نفس بنود الصندوق المنبثق النشط حاليًا
      ============================================================ */
   (function renderNewsTicker() {
     var el = document.getElementById('newsTickerContent');
-    if (!el) return;
-    var recent = CHANGELOG.slice(0, 2);
-    var allItems = [];
-    recent.forEach(function (entry) {
-      entry.items.forEach(function (t) {
-        allItems.push('📌 [' + entry.version + '] ' + t);
-      });
+    var track = document.querySelector('.news-ticker-track');
+    if (!el || !track) return;
+
+    // نفس العنصر الظاهر في صندوق الحوار — إن لم يوجد (خارج نافذته الزمنية)، نعرض آخر إصدار كاحتياط
+    var current = getCurrentEntry() || CHANGELOG[0];
+    if (!current) return;
+
+    var itemsText = current.items.map(function (t) {
+      return '📌 [' + current.version + '] ' + t;
     });
-    el.innerHTML = allItems.map(function (t) { return '<span>' + t + '</span>'; }).join('');
+    // نكرّر القائمة مرتين متتاليتين لضمان تمرير سلس بلا فراغ عند اكتمال الدورة
+    var html = itemsText.map(function (t) { return '<span>' + t + '</span>'; }).join('') +
+                itemsText.map(function (t) { return '<span>' + t + '</span>'; }).join('');
+    el.innerHTML = html;
+
+    requestAnimationFrame(function () {
+      var halfWidth = el.scrollWidth / 2; // عرض دورة واحدة كاملة (قبل التكرار)
+      var pos = track.offsetWidth; // البداية من خارج الحاوية يمينًا
+      function step() {
+        pos -= 0.8;
+        if (pos < -halfWidth) pos = track.offsetWidth;
+        el.style.transform = 'translateX(' + pos + 'px)';
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
   })();
 })();

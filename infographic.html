@@ -715,9 +715,19 @@
     .role-highlights { grid-template-columns: 1fr 1fr; }
     .budget-row { flex-direction: column; align-items: flex-start; gap: 2px; }
   }
+  .back-home-float {
+    position: fixed; top: 14px; left: 14px; z-index: 9999;
+    background: var(--navy); color: var(--gold-light);
+    font-family: 'Cairo', sans-serif; font-size: 11px; font-weight: 800;
+    padding: 7px 16px; border-radius: 20px; text-decoration: none;
+    border: 1px solid var(--gold); box-shadow: 0 3px 10px rgba(0,0,0,.25);
+  }
+  @media print { .back-home-float { display: none !important; } }
 </style>
 </head>
 <body>
+
+<a href="index.html" class="back-home-float">→ الصفحة الرئيسية</a>
 
 <div class="infographic">
 
@@ -744,6 +754,9 @@
     </p>
 
     <span class="hero-badge">مسودة توضيحية · تاريخ الإطلاق: 11 يوليو 2026 · آخر تحديث: 14 يوليو 2026</span>
+    <div style="margin-top: 10px;">
+      <a href="index.html" style="color: var(--gold); font-size: 12px; font-weight: 700; text-decoration: none;">↩ العودة للصفحة الرئيسية</a>
+    </div>
 
     <div class="hero-dates">
       <div class="date-chip">
@@ -992,7 +1005,7 @@
         <div class="component-body">
           مبادرة فردية من الأستاذ عبدالله غراب لمعالجة الوضع الراهن — إذ بدأ فعليًا موسم القبول
           والتسجيل — فبادر بالتعاون المباشر مع فريق ShareEdu لأتمتة الرحلة كاملة في وقت قياسي،
-          بإشراف وتوجيه الأستاذ محمد بن ناصر آل عامر (إدارة شؤون المدرسة إداريًا وتعليميًا) على المسار بالكامل.
+          بإشراف وتوجيه الأستاذ محمد بن ناصر آل عامر (وكيل الشؤون التعليمية - القسم الأهلي / المكلف بـ إدارة شؤون المدرسة إداريًا وتعليميًا) على المسار بالكامل.
           <strong>جُرِّبت فعليًا وهي الآن في مراحلها الأخيرة قبل الإطلاق</strong> — لهما منّا كل التقدير.
         </div>
       </div>

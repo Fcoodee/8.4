@@ -100,9 +100,12 @@
   <div class="topbar">
     <div>
       <div class="name">iDar_UN</div>
-      <div class="tag">خارطة طريق فريق الاتحاد</div>
+      <div class="tag">خارطة طريق فريق الاتحاد · آخر تحديث: 14 يوليو 2026</div>
     </div>
-    <span class="badge-status">🟡 قيد المناقشة — لم تُعتمَد بعد</span>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <a href="index.html" style="color: var(--gold-light); font-size: 11px; font-weight: 800; text-decoration: none; border: 1px solid var(--gold); padding: 5px 14px; border-radius: 20px;">→ العودة للصفحة الرئيسية</a>
+      <span class="badge-status" style="background: rgba(39,174,96,.18); border-color: #27ae60; color: #8CE99A;">🟢 معتمدة وعلنية</span>
+    </div>
   </div>
 
   <section class="hero">
@@ -279,7 +282,7 @@
           <div class="party-icon">⚡</div>
           <span class="role-tag">الحل الحالي السريع</span>
           <h4>الجسر التقني المُثبَت مع ShareEdu</h4>
-          <p>بقيادة الأستاذ عبدالله غراب، وإشراف الأستاذ محمد بن ناصر آل عامر (إدارة شؤون المدرسة إداريًا وتعليميًا) — الطرف الوحيد صاحب التعاون التقني الفعلي المُجرَّب مع ShareEdu.</p>
+          <p>بقيادة الأستاذ عبدالله غراب، وإشراف الأستاذ محمد بن ناصر آل عامر (وكيل الشؤون التعليمية - القسم الأهلي / المكلف بـ إدارة شؤون المدرسة إداريًا وتعليميًا) — الطرف الوحيد صاحب التعاون التقني الفعلي المُجرَّب مع ShareEdu.</p>
         </div>
         <div class="party-card plus1">
           <div class="party-icon">🤝</div>
@@ -323,19 +326,15 @@
   </footer>
 
 <script>
-(function(){
-  var _p = [
-"CmZ1bmN0aW9uIHNldFVuU3RhdGUod2l0aFBsdXMxKSB7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2J0blVOJykuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJywgIXdpdGhQbHVzMSk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2J0blVOcGx1czEnKS5j",
-"bGFzc0xpc3QudG9nZ2xlKCdhY3RpdmUnLCB3aXRoUGx1czEpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwbHVzMU5vZGUnKS5zdHlsZS5vcGFjaXR5ID0gd2l0aFBsdXMxID8gJzEnIDogJzAnOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdsaW5lUGx1",
-"czEnKS5zdHlsZS5vcGFjaXR5ID0gd2l0aFBsdXMxID8gJzAuNTUnIDogJzAnOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjb252ZXJnZUNhcHRpb24nKS5pbm5lckhUTUwgPSB3aXRoUGx1czEKICAgID8gJ9in2YTYrdin2YTYqSDYp9mE2YXZiNiz2Y7Zkdi5",
-"2Kk6IDxzdHJvbmcgc3R5bGU9ImNvbG9yOnZhcigtLW5hdnkpOyI+aURhcl9VTiArMTwvc3Ryb25nPiDigJQg2KfZhNij2LfYsdin2YEg2KfZhNir2YTYp9ir2KkgKyDYtNix2YrZgyDYp9mE2KjZhtmK2Kkg2KfZhNiq2K3YqtmK2KkgU2hhcmVFZHUnCiAgICA6ICfY",
-"p9mE2K3Yp9mE2Kkg2KfZhNit2KfZhNmK2Kk6IDxzdHJvbmcgc3R5bGU9ImNvbG9yOnZhcigtLW5hdnkpOyI+aURhcl9VTjwvc3Ryb25nPiDigJQg2KvZhNin2KvYqSDYo9i32LHYp9mBINiv2KfYrtmE2YrYqSDYrdmI2YQg2LHYpNmK2Kkg2YXYtNiq2LHZg9ipINmI",
-"2KfYrdiv2KknOwp9Cg=="
-  ].join('');
-  var _bytes = Uint8Array.from(atob(_p), function(c){ return c.charCodeAt(0); });
-  var _src = new TextDecoder('utf-8').decode(_bytes);
-  (0, eval)(_src);
-})();
+function setUnState(withPlus1) {
+  document.getElementById('btnUN').classList.toggle('active', !withPlus1);
+  document.getElementById('btnUNplus1').classList.toggle('active', withPlus1);
+  document.getElementById('plus1Node').style.opacity = withPlus1 ? '1' : '0';
+  document.getElementById('linePlus1').style.opacity = withPlus1 ? '0.55' : '0';
+  document.getElementById('convergeCaption').innerHTML = withPlus1
+    ? 'الحالة الموسَّعة: <strong style="color:var(--navy);">iDar_UN +1</strong> — الأطراف الثلاثة + شريك البنية التحتية ShareEdu'
+    : 'الحالة الحالية: <strong style="color:var(--navy);">iDar_UN</strong> — ثلاثة أطراف داخلية حول رؤية مشتركة واحدة';
+}
 </script>
 </body>
 </html>
