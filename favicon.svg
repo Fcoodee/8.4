@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="idarFaviconBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B2A4A"/>
+      <stop offset="100%" stop-color="#163B60"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#idarFaviconBg)" stroke="#C69A46" stroke-width="3"/>
+  <text x="32" y="42" text-anchor="middle" font-family="'Cairo', 'Segoe UI', Arial, sans-serif"
+        font-size="24" font-weight="800" fill="#E7CD8E" letter-spacing="-0.5">iDar</text>
+</svg>

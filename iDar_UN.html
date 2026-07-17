@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>iDar_UN — خارطة طريق الرؤية المشتركة</title>
@@ -100,7 +101,7 @@
   <div class="topbar">
     <div>
       <div class="name">iDar_UN</div>
-      <div class="tag">خارطة طريق فريق الاتحاد · آخر تحديث: 14 يوليو 2026</div>
+      <div class="tag">خارطة طريق فريق الاتحاد · آخر تحديث: 16 يوليو 2026</div>
     </div>
     <div style="display:flex; align-items:center; gap:10px;">
       <a href="index.html" style="color: var(--gold-light); font-size: 11px; font-weight: 800; text-decoration: none; border: 1px solid var(--gold); padding: 5px 14px; border-radius: 20px;">→ العودة للصفحة الرئيسية</a>
@@ -317,6 +318,44 @@
           ثم مراسلة رسمية بالتكليف لأطراف الاتحاد بالمهام — خدمةً للرؤية المشتركة.
         </div>
       </div>
+      <div class="t-item">
+        <span class="t-dot" style="background: var(--gold);"></span>
+        <div class="t-date">📅 14 يوليو 2026</div>
+        <div class="t-title">"خطة التحول الرقمي الشاملة" — مسودة أولى من قسم الاتصال المؤسسي</div>
+        <p style="font-size:12.5px; color:var(--slate);">
+          خطة تقنية مفصّلة (50 صفحة) تغطي: الموقع، بوابة القبول، نظام حضور ذكي (QR)، مساعد
+          رقمي (AI)، وجولة افتراضية (VR) — نطاق أوسع من "الموقع فقط"، لكنه لا يزال جزءًا من
+          الرؤية الشاملة الأكبر (لا يغطي المناهج أو اعتماد Cognia أو أدوات مركز صناعة القرار).
+        </p>
+        <div class="t-note" style="border-color: var(--gold); background: rgba(198,154,70,.08); color: var(--navy);">
+          ⚠️ للتوضيح: <strong>لم يُعقَد اجتماع الاتحاد الرسمي بعد</strong>، ولم تُتَح بنود العقد
+          مع ShareEdu رسميًا من مركز صناعة القرار حتى تاريخه — هذه المسودة خطوة مستقلة من قسم
+          الاتصال المؤسسي، لا جزءًا من التسلسل الثلاثي المتفَق عليه أعلاه.
+        </div>
+      </div>
+      <div class="t-item">
+        <span class="t-dot" style="background: #1EA1E0;"></span>
+        <div class="t-date">📅 15 يوليو 2026</div>
+        <div class="t-title">اجتماع تنسيقي أونلاين مع شريك البنية التحتية ShareEdu</div>
+        <p style="font-size:12.5px; color:var(--slate);">
+          اجتماع جدولته إدارة الاتصال المؤسسي، بحضور الأطراف الثلاثة الداخلية (مبادرة
+          #التحول_الرقمي، الاتصال المؤسسي، الحل السريع) مع فريق ShareEdu — أول تواصل مباشر
+          يجمع الاتحاد بشريك البنية التحتية (حالة <strong>iDar_UN +1</strong>).
+        </p>
+        <ol class="t-list">
+          <li>مناقشة تحديات تقنية في الحل السريع والعمل عليها مباشرة — استقرت آليته وأصبح
+            متاحًا الآن لكامل فريق القبول والتسجيل لهذا العام</li>
+          <li>انتقال النقاش لمستوى تطوير الموقع الإلكتروني، بعرض نموذج مستهدف من الاتصال
+            المؤسسي على فريق ShareEdu</li>
+          <li>أفاد فريق ShareEdu بأن تنفيذ هذا المسار يحتاج تشاورًا داخليًا مع مبرمجي نظامهم
+            الحالي لدراسة إمكانية العمل به ضمن بنيتهم التحتية القائمة</li>
+          <li>أوضحت مبادرة #التحول_الرقمي أهمية أن تكون البنية التحتية المستقبلية للموقع
+            مرنة ومنفتحة على دمج أدوات الذكاء الاصطناعي ومفاتيح API لخدمات ذكية</li>
+        </ol>
+        <div class="t-note">
+          ⏳ بانتظار رد ShareEdu (حتى 16 يوليو 2026) بشأن قابلية التنفيذ ضمن بنيتهم الحالية.
+        </div>
+      </div>
     </div>
   </section>
 
@@ -326,15 +365,19 @@
   </footer>
 
 <script>
-function setUnState(withPlus1) {
-  document.getElementById('btnUN').classList.toggle('active', !withPlus1);
-  document.getElementById('btnUNplus1').classList.toggle('active', withPlus1);
-  document.getElementById('plus1Node').style.opacity = withPlus1 ? '1' : '0';
-  document.getElementById('linePlus1').style.opacity = withPlus1 ? '0.55' : '0';
-  document.getElementById('convergeCaption').innerHTML = withPlus1
-    ? 'الحالة الموسَّعة: <strong style="color:var(--navy);">iDar_UN +1</strong> — الأطراف الثلاثة + شريك البنية التحتية ShareEdu'
-    : 'الحالة الحالية: <strong style="color:var(--navy);">iDar_UN</strong> — ثلاثة أطراف داخلية حول رؤية مشتركة واحدة';
-}
+(function(){
+  var _p = [
+"CmZ1bmN0aW9uIHNldFVuU3RhdGUod2l0aFBsdXMxKSB7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2J0blVOJykuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJywgIXdpdGhQbHVzMSk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2J0blVOcGx1czEnKS5j",
+"bGFzc0xpc3QudG9nZ2xlKCdhY3RpdmUnLCB3aXRoUGx1czEpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwbHVzMU5vZGUnKS5zdHlsZS5vcGFjaXR5ID0gd2l0aFBsdXMxID8gJzEnIDogJzAnOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdsaW5lUGx1",
+"czEnKS5zdHlsZS5vcGFjaXR5ID0gd2l0aFBsdXMxID8gJzAuNTUnIDogJzAnOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjb252ZXJnZUNhcHRpb24nKS5pbm5lckhUTUwgPSB3aXRoUGx1czEKICAgID8gJ9in2YTYrdin2YTYqSDYp9mE2YXZiNiz2Y7Zkdi5",
+"2Kk6IDxzdHJvbmcgc3R5bGU9ImNvbG9yOnZhcigtLW5hdnkpOyI+aURhcl9VTiArMTwvc3Ryb25nPiDigJQg2KfZhNij2LfYsdin2YEg2KfZhNir2YTYp9ir2KkgKyDYtNix2YrZgyDYp9mE2KjZhtmK2Kkg2KfZhNiq2K3YqtmK2KkgU2hhcmVFZHUnCiAgICA6ICfY",
+"p9mE2K3Yp9mE2Kkg2KfZhNit2KfZhNmK2Kk6IDxzdHJvbmcgc3R5bGU9ImNvbG9yOnZhcigtLW5hdnkpOyI+aURhcl9VTjwvc3Ryb25nPiDigJQg2KvZhNin2KvYqSDYo9i32LHYp9mBINiv2KfYrtmE2YrYqSDYrdmI2YQg2LHYpNmK2Kkg2YXYtNiq2LHZg9ipINmI",
+"2KfYrdiv2KknOwp9Cg=="
+  ].join('');
+  var _bytes = Uint8Array.from(atob(_p), function(c){ return c.charCodeAt(0); });
+  var _src = new TextDecoder('utf-8').decode(_bytes);
+  (0, eval)(_src);
+})();
 </script>
 </body>
 </html>
