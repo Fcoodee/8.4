@@ -1,7 +1,11 @@
 /* ============================================================
    STRATEGIC LOCK — قفل موحّد للتقرير الشامل والإنفوجرافيك
    مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027 — مدارس دار الفرسان الأهلية
-   يعتمد نفس بيانات الدخول في dev-access.txt (3 مستويات).
+   يعتمد نفس بيانات الدخول في dev-access.txt (3 مستويات، جلب خارجي عبر fetch — لا كلمات مرور
+   مضمَّنة في الكود إطلاقًا).
+   التصريح مؤقت داخل الذاكرة فقط لهذا التحميل الحالي للصفحة (لا localStorage) — إدخال كلمة مرور
+   صحيحة مرة واحدة يفتح التقرير والإنفوجرافيك معًا طوال هذه الزيارة، لكن أي تحديث للصفحة (F5) أو
+   خروج وعودة يُعيد القفل تلقائيًا على الاثنين.
    وضعان: initFullPage() لصفحة كاملة (report-v7.html / infographic.html)،
           initSectionLocks([...]) لتغطية عنصر محدد داخل index.html.
    ============================================================ */
@@ -12,19 +16,16 @@
   var LOG_KEY = 'devAccessLog';
   var LOCK_MESSAGE = 'تم حجب المحتوى المطلوب لأسباب استراتيجية جاري العمل عليها';
 
+  /* تصريح داخل الذاكرة فقط لهذا التحميل الحالي للصفحة — لا localStorage ولا sessionStorage.
+     أي تحديث للصفحة (F5) أو خروج وعودة إليها يُعيد تشغيل هذا الملف من الصفر، فيرجع القفل تلقائيًا. */
+  var memoryUnlock = null; // { user, label } | null
+
   function isUnlocked() {
-    try {
-      var raw = localStorage.getItem(UNLOCK_KEY);
-      if (!raw) return false;
-      var data = JSON.parse(raw);
-      return !!(data && data.user);
-    } catch (e) { return false; }
+    return !!(memoryUnlock && memoryUnlock.user);
   }
 
   function persistUnlock(user, label) {
-    try {
-      localStorage.setItem(UNLOCK_KEY, JSON.stringify({ user: user, label: label, ts: new Date().toISOString() }));
-    } catch (e) { /* localStorage غير متاح — نتجاهل بصمت */ }
+    memoryUnlock = { user: user, label: label };
   }
 
   function logAccessAttempt(username, success) {
@@ -38,12 +39,15 @@
       });
       while (log.length > 50) log.shift();
       localStorage.setItem(LOG_KEY, JSON.stringify(log));
-    } catch (e) { /* نتجاهل بصمت */ }
+    } catch (e) { /* نتجاهل بصمت — سجل المحاولات فقط، لا علاقة له بحالة القفل نفسها */ }
   }
 
   function verifyCredentials(user, pass) {
     return fetch('dev-access.txt', { cache: 'no-store' })
-      .then(function (res) { return res.text(); })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status + ' عند جلب dev-access.txt');
+        return res.text();
+      })
       .then(function (text) {
         var lines = text.trim().split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
         for (var i = 0; i < lines.length; i++) {
@@ -52,7 +56,14 @@
         }
         return null;
       })
-      .catch(function () { return null; });
+      .catch(function (err) {
+        /* لا نُظهر تفاصيل تقنية للمستخدم، لكن نسجّلها في console لتشخيص مشاكل مثل فتح الصفحة
+           عبر file:// مباشرة (بلا خادم) حيث يمنع المتصفح fetch() للملفات المحلية تمامًا. */
+        console.warn('StrategicLock: تعذّر التحقق من dev-access.txt — ' + err.message +
+          '. إن كنت تفتح الصفحة بنقرة مزدوجة من جهازك (file://) فهذا هو السبب الأرجح؛ ' +
+          'جرّب عبر خادم محلي أو الرابط المنشور فعليًا.');
+        return null;
+      });
   }
 
   function injectStylesOnce() {
