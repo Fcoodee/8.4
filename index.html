@@ -1165,6 +1165,9 @@
     <div class="subnav-item">
       <button class="subnav-btn" onclick="toggleSubnav(3)">ETEC — هيئة تقويم التعليم والتدريب <span class="subnav-caret">▾</span></button>
       <div class="subnav-panel" id="subnavPanel3">
+        <div style="padding: 6px 4px 10px; font-size: 12px; color: var(--slate); font-weight: 700; line-height: 1.8;">
+          النظام الموحّد لإدارة وتدقيق متطلبات الاعتماد والتميّز المدرسي
+        </div>
         <div class="subnav-placeholder">🚧 المحتوى قيد الإعداد — سيُضاف لاحقًا</div>
       </div>
     </div>
@@ -1182,6 +1185,22 @@
         <a href="digital-transformation.html" class="go-link">🌐 مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027</a>
         <a href="iDar_UN.html" class="go-link">🤝 خارطة طريق الرؤية المشتركة</a>
         <a href="report-v7.html#budget" class="go-link">💰 تقدير الميزانيات</a>
+      </div>
+    </div>
+    <div class="subnav-item">
+      <button class="subnav-btn" onclick="toggleSubnav(5)">⏳ خط الزمن <span class="subnav-caret">▾</span></button>
+      <div class="subnav-panel" id="subnavPanel5">
+        <div style="padding: 6px 4px 4px; font-size: 12px; color: var(--gold-light); font-weight: 800;">
+          المهام المطروحة على الطاولة
+        </div>
+        <div style="padding: 0 4px 10px; font-size: 11.5px; color: var(--slate); line-height: 1.8;">
+          توثيق زمني لكل خطوة متفَق عليها، بالتسلسل الفعلي لوقوعها.
+          <br><span style="color: #9AA7B4;">آخر تحديث: 19 يوليو 2026</span>
+        </div>
+        <div style="padding: 8px 10px; margin: 0 4px 10px; background: rgba(243,156,18,.1); border: 1px solid #f39c12; border-radius: 8px; font-size: 11px; color: var(--gold-light); font-weight: 700;">
+          ⏳ بانتظار رد ShareEdu (حتى 16 يوليو 2026) بشأن قابلية التنفيذ ضمن بنيتهم الحالية.
+        </div>
+        <a href="iDar_UN.html" class="go-link">🤝 عرض الخط الزمني الكامل</a>
       </div>
     </div>
   </nav>
@@ -1211,9 +1230,10 @@
           🆕 تحديث جديد في هذا المسار
         </div>
         <div style="font-size: 11px; color: #D9E0E6; line-height: 1.7;">
-          قسم الاتصال المؤسسي قدّم "خطة التحول الرقمي الشاملة" (مسودة أولى للاعتماد) — تخص
-          الموقع، بوابة القبول، الحضور الذكي، والمساعد الرقمي. قيد المراجعة.
-          <span style="color: #9AA7B4;">📅 14 يوليو 2026</span>
+          قسم الاتصال المؤسسي قدّم "نموذج موقع ويب المستهدف ضمن خطة التحول الرقمي للموقع" (مسودة
+          أولى للاعتماد) — تخص الموقع، بوابة القبول، الحضور الذكي، والمساعد الرقمي. بانتظار
+          المطوّر ShareEdu للتنفيذ ضمن بنيتهم التحتية الحالية.
+          <span style="color: #9AA7B4;">📅 19 يوليو 2026</span>
         </div>
       </div>
       <div style="font-size: 11.5px; color: var(--gold-light); font-weight: 700; margin-bottom: 8px;">
@@ -1552,7 +1572,7 @@
         </div>
         <div class="report-actions">
           <a class="btn gold" href="report-v7.html" target="_blank" rel="noopener">↗ فتح في نافذة جديدة</a>
-          <a class="btn outline" href="report-v7.html" download="تقرير-التحول-الرقمي-النسخة-السابعة.html">⬇ تنزيل نسخة HTML</a>
+          <a class="btn outline" href="javascript:void(0)" onclick="gatedReportDownload()">⬇ تنزيل نسخة HTML</a>
           <a class="btn outline" href="javascript:void(0)" onclick="downloadReportPDF()">🖨 تحميل التقرير بصيغة PDF</a>
         </div>
       </div>
@@ -1917,6 +1937,17 @@
 <script src="strategic-lock.js"></script>
 <script>
   StrategicLock.initSectionLocks(['#report-section .report-embed-wrap', '#infographic-section .report-embed-wrap']);
+
+  function gatedReportDownload() {
+    StrategicLock.requestAccess('#report-section', function () {
+      var a = document.createElement('a');
+      a.href = 'report-v7.html';
+      a.download = 'تقرير-التحول-الرقمي-النسخة-السابعة.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+  }
 </script>
 </body>
 </html>

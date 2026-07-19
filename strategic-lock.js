@@ -108,6 +108,14 @@
     return box;
   }
 
+  var pendingActions = [];
+
+  function runPendingActions() {
+    var actions = pendingActions.slice();
+    pendingActions = [];
+    actions.forEach(function (fn) { try { fn(); } catch (e) { /* تجاهل */ } });
+  }
+
   function wireBox(box, overlay, onUnlock) {
     var teaser = box.querySelector('.strategic-lock-teaser');
     var form = box.querySelector('.strategic-lock-form');
@@ -131,6 +139,7 @@
           persistUnlock(u, label);
           document.querySelectorAll('.strategic-lock-overlay').forEach(function (el) { el.remove(); });
           if (onUnlock) onUnlock(label);
+          runPendingActions();
         } else {
           errorBox.classList.add('show');
         }
@@ -172,9 +181,28 @@
     });
   }
 
+  function requestAccess(sectionSelector, callback) {
+    if (isUnlocked()) { callback(); return; }
+    pendingActions.push(callback);
+    var container = sectionSelector ? document.querySelector(sectionSelector) : null;
+    var overlay = container ? container.querySelector('.strategic-lock-overlay') : null;
+    if (overlay) {
+      var teaser = overlay.querySelector('.strategic-lock-teaser');
+      var form = overlay.querySelector('.strategic-lock-form');
+      if (teaser && form && teaser.style.display !== 'none') {
+        teaser.style.display = 'none';
+        form.classList.remove('hidden');
+      }
+      overlay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var userInput = overlay.querySelector('.strat-user');
+      if (userInput) userInput.focus();
+    }
+  }
+
   global.StrategicLock = {
     initFullPage: initFullPage,
     initSectionLocks: initSectionLocks,
-    isUnlocked: isUnlocked
+    isUnlocked: isUnlocked,
+    requestAccess: requestAccess
   };
 })(window);
