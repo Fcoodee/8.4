@@ -2,6 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B2A4A">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>لوحة مبادرة #التحول_الرقمي_لمدارس_دار_الفرسان_2027 | مدارس دار الفرسان الأهلية</title>
@@ -1203,6 +1206,9 @@
         <a href="iDar_UN.html" class="go-link">🤝 عرض الخط الزمني الكامل</a>
       </div>
     </div>
+    <div class="subnav-item">
+      <button class="subnav-btn subnav-btn-gold-flash" id="pwaInstallBtn" onclick="openPwaInstallDialog()" title="تثبيت الموقع كتطبيق">📲 تثبيت التطبيق (iOS/Android)</button>
+    </div>
   </nav>
 
   <!-- ============ شريط إعلام متحرك — يعرض آخر التحديثات باستمرار ============ -->
@@ -1645,6 +1651,18 @@
 
   <!-- صندوق حوار هوية المطوّر يُنشأ ديناميكيًا عبر showDevMsgBox() في الجافاسكربت -->
 
+  <div class="modal-overlay" id="pwaInstallModalOverlay">
+    <div class="modal-box" style="max-width: 440px; text-align:center;">
+      <div style="font-size:38px; margin-bottom:6px;">📲</div>
+      <h3 id="pwaInstallModalTitle">تثبيت التطبيق</h3>
+      <div id="pwaInstallModalBody" style="font-size:12.5px; color:#D9E0E6; line-height:1.9; margin:10px 0 18px;"></div>
+      <div class="modal-actions">
+        <button class="btn ghost" onclick="closePwaInstallDialog()" id="pwaInstallCancelBtn">إلغاء</button>
+        <button class="btn gold" onclick="confirmPwaInstall()" id="pwaInstallConfirmBtn">تثبيت الآن</button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-overlay" id="contactModalOverlay">
     <div class="modal-box" style="max-width: 480px;">
       <div id="contactFormContent">
@@ -1949,5 +1967,6 @@
     });
   }
 </script>
+<script src="pwa-install.js"></script>
 </body>
 </html>
